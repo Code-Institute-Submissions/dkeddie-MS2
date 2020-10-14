@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Bootstrap CDN -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+    integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+    integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+    crossorigin="anonymous"></script>
+
+  <!-- Font Awasome -->
+  <script src="https://kit.fontawesome.com/f55296781a.js" crossorigin="anonymous"></script>
+
+  <link rel="stylesheet" href="assets/css/style.css" type="text/css">
+
+
+
+  <title>Perfect Weather</title>
+</head>
+
+<body>
+
+  <div class="container-fluid" id="bigBox">
+    <div class="container" id="destHeader">
+      <div class="row justify-content-center">
+        <div class="col">
+          <input type="text" id="destination" name="destination" placeholder="Enter Destination to Begin Search">
+        </div>
+      </div>
+    </div>
+
+
+    <div class="container-fluid" id="squares">
+      <!-- Row 1 -->
+      <div class="row no-gutters justify-content-center">
+        <!-- Weather Chart Box -->
+        <div class="col rectangle" id="weatherChart">
+          <p>Weather Chart</p>
+        </div>
+        <!-- Month Select Box -->
+        <div class="col square" id="month">
+          <div id="monthName">
+            <i class="fas fa-caret-left"></i>
+            <h1 id="currentMonth"></h1>
+            <i class="fas fa-caret-right"></i>
+          </div>
+          <h2>2020</h2>
+        </div>
+        <!-- Average Temperature Box -->
+        <div class="col square" id="aveTemp">
+          <div id="aveTempAlign">
+            <h2>Average temp</h2>
+            <h1><span>36</span>&degC</h1>
+          </div>
+        </div>
+        <!-- Today's Temperature Box -->
+        <div class="col square" id="todayTemp">
+          <div id="todayTempAlign">
+            <h2>Today <img src="assets/images/039-sun.svg" alt="Weather Image"></h2>
+            <h1><span>30</span>&degC</h1>
+          </div>
+        </div>
+      </div>
+
+      <!-- Row 2 -->
+      <div class="row no-gutters justify-content-center">
+        <!-- Map Box -->
+        <div class="col rectangle" id="mapBox">
+          <p>Weather Chart</p>
+        </div>
+        <!-- Flight Cost Box -->
+        <div class="col square" id="flightCostBox">
+          <div id="flightCostBoxAlign">
+            <i class="fas fa-plane-departure"></i>
+            <h1>£<span>2000</span></h1>
+          </div>
+        </div>
+        <!-- Image Box -->
+        <div class="col rectangle" id="imageBox">
+          <h2>Average temp</h2>
+          <h1>30 degrees</h1>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Need to Attribute for Icons -->
+  <!-- Icons made by <a href="https://www.flaticon.com/authors/iconixar" title="iconixar">iconixar</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a> -->
+
+  <script src="/assets/js/app.js"></script>
+
+</body>
+
+</html>

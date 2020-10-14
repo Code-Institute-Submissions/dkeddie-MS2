@@ -1,0 +1,147 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik&display=swap');
+
+/* Common Styles */
+
+h1 {
+  font-size: 45px;
+  font-weight: 500;
+}
+
+h2 {
+  font-size: 16px;
+}
+
+/* Box Set-up */
+
+#bigBox {
+  font-family: 'Rubik', sans-serif;
+  color: rgb(253, 0, 42);
+  width: 100%;
+  height: 100%;
+  background-color: pink;
+  margin-top: 100px;
+  padding-bottom: 25px;
+}
+
+#destination {
+  color: inherit;
+  text-align: center;
+  font-size: 32px;
+  width: 600px;
+  height: 100px;
+  margin-top: 50px;
+  margin-bottom: 25px;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  border: 0px solid white;
+  border-radius: 25px;
+  background-color: white;
+}
+
+#destination:focus {
+  border: 0px solid white;
+  outline: none;
+}
+
+.rectangle {
+  max-width: 450px;
+  height: 200px;
+  border: 15px solid white;
+  background-color: white;
+  border-radius: 25px;
+  margin: 25px;
+}
+
+.square {
+  max-width: 200px;
+  height: 200px;
+  border: 15px solid white;
+  background-color: white;
+  border-radius: 25px;
+  margin: 25px;
+}
+
+#weatherChart {
+}
+
+/* Month Box */
+#monthName {
+  text-align: center;
+  margin-top: 50%;
+  transform: translate(0, -50%);
+}
+
+#month h1, i {
+  display: inline-block;
+  vertical-align: middle;
+  margin: 10px 3px;
+}
+
+#monthName h1 {
+  font-size: 50px;
+  font-weight: 500;
+}
+
+#monthName i {
+  font-size: 64px;
+}
+
+#month h2 {
+  margin-top: -30%;
+  text-align: center;
+}
+
+/* Average Temperature Box */
+
+#aveTempAlign {
+  text-align: center;
+  margin-top: 50%;
+  transform: translate(0, -50%);
+}
+
+#aveTemp h1 {
+  font-size: 60px;
+}
+
+/* Today Temp Box */
+
+#todayTempAlign{
+  text-align: center;
+  margin-top: 50%;
+  transform: translate(0, -50%);
+}
+
+#todayTempAlign h1{
+  font-size: 55px;
+}
+
+#todayTempAlign h2{
+  font-size: 30px;
+}
+
+#todayTemp img {
+  height: 40px;
+  width: 40px;
+}
+
+
+
+
+
+/* Flight Cost Box */
+
+#flightCostBoxAlign {
+  text-align: center;
+  margin-top: 50%;
+  transform: translate(0, -50%);
+}
+
+#flightCostBoxAlign i {
+  font-size: 60px;
+  color: rgb(179, 179, 179);
+}
+
+#flightCostBoxAlign h1 {
+  font-weight: 600;
+}
