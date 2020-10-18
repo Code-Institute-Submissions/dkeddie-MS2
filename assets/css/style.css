@@ -63,7 +63,19 @@ h2 {
   margin: 25px;
 }
 
-#weatherChart {
+
+
+/* Weather Chart Graph */
+
+#weatherChartContainer {
+  position: relative;
+  margin: auto;
+  top: 12px;
+  height: 90%;
+  width: 85%;
+}
+
+#myChart {
 }
 
 /* Month Box */

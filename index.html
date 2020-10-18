@@ -21,6 +21,10 @@
   <!-- Font Awasome -->
   <script src="https://kit.fontawesome.com/f55296781a.js" crossorigin="anonymous"></script>
 
+  <!-- Chart.jx -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+
+
   <link rel="stylesheet" href="assets/css/style.css" type="text/css">
 
 
@@ -44,7 +48,9 @@
       <div class="row no-gutters justify-content-center">
         <!-- Weather Chart Box -->
         <div class="col rectangle" id="weatherChart">
-          <p>Weather Chart</p>
+          <div id="weatherChartContainer">
+          <canvas id="myChart" width"80" height"80"></canvas>
+        </div>
         </div>
         <!-- Month Select Box -->
         <div class="col square" id="month">

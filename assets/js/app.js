@@ -38,9 +38,11 @@ function getDestination() {
       console.log(destination)
       getData()
       setTimeout(() => {
-        getWeather()
+        getWeather();
       }, 200);
-
+      setTimeout(() => {
+        graphData();
+      }, 400);
     }
   });
   // Current Location
@@ -159,7 +161,10 @@ async function getWeather() {
   // })
   weatherDataTemps = weatherData.map((months, index) => {
     return weatherData[index].tavg;
-  })
+  });
+  weatherDataPrcp = weatherData.map((months, index) => {
+    return weatherData[index].prcp;
+  });
   console.log(months)
   console.log(monthArray)
   console.log(weatherData)
@@ -172,15 +177,16 @@ async function getWeather() {
     console.log(moInt)
     console.log(moTemp)
     document.getElementById('temp').innerHTML = `${moTemp}&degC`;
-    
+
   }
   weatherUpdate()
+  console.log(weatherDataTemps)
 }
 
-  // setTimeout(() => {
+// setTimeout(() => {
 
-  // }, 250);
-  
+// }, 250);
+
 // };
 
 document.getElementById('month').addEventListener('click', () => {
@@ -189,3 +195,73 @@ document.getElementById('month').addEventListener('click', () => {
   const moTemp = weatherData[moInt].tavg
   document.getElementById('temp').innerHTML = `${moTemp}&degC`
 })
+
+// GRAPH TILE
+
+async function graphData() {
+  // let lat = 0
+  // let lng = 0
+  // let weatherData = []
+  // const stepOne = await getData()
+  const stepTwo = await getWeather()
+  console.log(weatherDataTemps)
+  // console.log(weatherData[0].tavg)
+  var ctx = await document.getElementById('myChart').getContext('2d');
+  var chart = await new Chart(ctx, {
+    // The type of chart we want to create
+    type: 'line',
+
+    // The data for our dataset
+    data: {
+      labels: months,
+      datasets: [{
+        label: 'Temp',
+        fill: 'false',
+        borderColor: 'rgb(175, 0, 42)',
+        data: weatherDataTemps,
+        yAxisID: 'degC'
+      }, {
+        label: 'Rain',
+        fill: 'false',
+        borderColor: 'rgb(0, 0, 204)',
+        data: weatherDataPrcp,
+        yAxisID: 'mm'
+      }]
+    },
+
+
+    // Configuration options go here
+    options: {
+      // maintainAspectRatio: 'false',
+      legend: {
+        display: false
+      },
+      scales: {
+        xAxes: [{
+          gridLines: 'false',
+          maintainAspectRatio: 'false'
+        }],
+        yAxes: [{
+          id: 'degC',
+          type: 'linear',
+          position: 'left',
+          scaleLabel: {
+            display: 'true',
+            labelString: 'Temp (\xB0C)',
+            fontColor: 'rgb(175, 0, 42)'
+          },
+        }, {
+          id: 'mm',
+          type: 'linear',
+          position: 'right',
+          scaleLabel: {
+            display: 'true',
+            labelString: 'Rain (mm)',
+            fontColor: 'rgb(0, 0, 204)'
+          },
+        }]
+      }
+    }
+  });
+}
+
