@@ -127,6 +127,7 @@ h2 {
 
 #todayTempAlign h1{
   font-size: 55px;
+  margin: -20px;
 }
 
 #todayTempAlign h2{
@@ -134,8 +135,8 @@ h2 {
 }
 
 #todayTemp img {
-  height: 40px;
-  width: 40px;
+  height: 60px;
+  width: 60px;
 }
 
 

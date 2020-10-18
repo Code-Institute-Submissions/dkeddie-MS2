@@ -39,6 +39,7 @@ function getDestination() {
       getData()
       setTimeout(() => {
         getWeather();
+        currentWeather();
       }, 200);
       setTimeout(() => {
         graphData();
@@ -236,10 +237,26 @@ async function graphData() {
       legend: {
         display: false
       },
+      // layout: {
+      //   padding: {
+      //     left: 0,
+      //     right: 0,
+      //     top: 0,
+      //     bottom: 0
+      //   }
+      // },
       scales: {
         xAxes: [{
           gridLines: 'false',
-          maintainAspectRatio: 'false'
+          // maintainAspectRatio: 'true'
+        }],
+        xAxes: [{
+          // id: 'degC',
+          // type: 'linear',
+          // position: 'left',
+          scaleLabel: {
+            padding: '20'
+          }
         }],
         yAxes: [{
           id: 'degC',
@@ -265,3 +282,16 @@ async function graphData() {
   });
 }
 
+async function currentWeather() {
+  const response = await fetch(`http://api.weatherapi.com/v1/current.json?key=3061f2bda70e40c4a77180232201810&q=${destination}`);
+  const weatherNowData = await response.json();
+  console.log(weatherNowData)
+  const weatherNowTemp = weatherNowData.current.temp_c;
+  const weatherNowCondition = weatherNowData.current.condition.text;
+  const weatherNowImage = weatherNowData.current.condition.icon;
+  console.log(weatherNowTemp)
+  document.getElementById('weatherNowTemp').innerHTML = `${weatherNowTemp}&degC`
+  document.getElementById('weatherNowImage').src = `${weatherNowImage}`
+}
+
+currentWeather();
