@@ -2,6 +2,8 @@
 
 // let currentLocation
 let destination
+let address
+let origin
 
 // Algolia Places Search: https://www.algolia.com/
 function autoComplete() {
@@ -44,6 +46,7 @@ function getDestination() {
       }, 200);
       setTimeout(() => {
         graphData();
+        getFlightData();
       }, 400);
     }
   });
@@ -51,8 +54,10 @@ function getDestination() {
   setTimeout(async () => {
     let response = await fetch(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${cLat},${cLng}&key=AIzaSyBKd5I7u1oc_iX8wrBze-LNNmiHFPqdtCI`);
     let location = await response.json();
+    console.log(location)
     address = location.results[6].formatted_address
     console.log(address)
+    origin = location.results[9].address_components[0].long_name
   }, 200);
 };
 getDestination()
@@ -301,6 +306,7 @@ async function currentWeather() {
 
 // Flight Cost Tile
 
+
 document.getElementById('month').addEventListener('click', () => {
   const mo = document.getElementById('currentMonth').innerHTML
   let moInt
@@ -326,47 +332,59 @@ document.getElementById('month').addEventListener('click', () => {
 console.log(monthArray[0].toString().search('Nov'));
 
 
+let currentD = new Date()
 
-// let monthOut = `2020-${monthNr}`
-// let monthIn = `2020-${monthNr}`
-// let origin = "London"
+let yearNr = currentD.getFullYear();
+let monthNr = currentD.getMonth()+1;
+let monthOut = `${yearNr}-${monthNr}`
+let monthIn = `${yearNr}-${monthNr}`
+// let origin = address
 // let destination = "Paris"
 
-// async function getFlightData() {
-//   const originNameSearch = await fetch(`https://skyscanner-skyscanner-flight-search-v1.p.rapidapi.com/apiservices/autosuggest/v1.0/UK/GBP/en-GB/?query=${origin}`, {
-//     "method": "GET",
-//     "headers": {
-//       "x-rapidapi-host": "skyscanner-skyscanner-flight-search-v1.p.rapidapi.com",
-//       "x-rapidapi-key": "79d622f787mshe349c803b0be374p11035ejsn2a0c241e87dd"
-//     }
-//   })
-//   const originNameData = await originNameSearch.json()
-//   console.log(originNameData)
-//   const originNameID = originNameData.Places[0].CityId
-//   console.log(originNameID)
-
-//   const destinationNameSearch = await fetch(`https://skyscanner-skyscanner-flight-search-v1.p.rapidapi.com/apiservices/autosuggest/v1.0/UK/GBP/en-GB/?query=${destination}`, {
-//     "method": "GET",
-//     "headers": {
-//       "x-rapidapi-host": "skyscanner-skyscanner-flight-search-v1.p.rapidapi.com",
-//       "x-rapidapi-key": "79d622f787mshe349c803b0be374p11035ejsn2a0c241e87dd"
-//     }
-//   })
-//   const destinationNameData = await destinationNameSearch.json()
-//   console.log(destinationNameData)
-//   const destinationNameID = destinationNameData.Places[0].CityId
-//   console.log(destinationNameID)
+console.log(monthOut);
 
 
-//   const response = await fetch(`https://skyscanner-skyscanner-flight-search-v1.p.rapidapi.com/apiservices/browsedates/v1.0/US/USD/en-US/${originNameID}/${destinationNameID}/${outbound}?inboundpartialdate=${inbound}`, {
-// 	"method": "GET",
-// 	"headers": {
-// 		"x-rapidapi-host": "skyscanner-skyscanner-flight-search-v1.p.rapidapi.com",
-// 		"x-rapidapi-key": "79d622f787mshe349c803b0be374p11035ejsn2a0c241e87dd"
-//   }
-//   })
-//   const data = await response.json()
-//   console.log(data)
-// }
 
-// getFlightData();
+async function getFlightData() {
+  console.log(address);
+  // origin = "London"
+  console.log(origin);
+  const originNameSearch = await fetch(`https://skyscanner-skyscanner-flight-search-v1.p.rapidapi.com/apiservices/autosuggest/v1.0/UK/GBP/en-GB/?query=${origin}`, {
+    "method": "GET",
+    "headers": {
+      "x-rapidapi-host": "skyscanner-skyscanner-flight-search-v1.p.rapidapi.com",
+      "x-rapidapi-key": "79d622f787mshe349c803b0be374p11035ejsn2a0c241e87dd"
+    }
+  })
+  const originNameData = await originNameSearch.json()
+  console.log(originNameData)
+  const originNameID = originNameData.Places[0].CityId
+  console.log(originNameID)
+
+  const destinationNameSearch = await fetch(`https://skyscanner-skyscanner-flight-search-v1.p.rapidapi.com/apiservices/autosuggest/v1.0/UK/GBP/en-GB/?query=${destination}`, {
+    "method": "GET",
+    "headers": {
+      "x-rapidapi-host": "skyscanner-skyscanner-flight-search-v1.p.rapidapi.com",
+      "x-rapidapi-key": "79d622f787mshe349c803b0be374p11035ejsn2a0c241e87dd"
+    }
+  })
+  const destinationNameData = await destinationNameSearch.json()
+  console.log(destinationNameData)
+  const destinationNameID = destinationNameData.Places[0].CityId
+  console.log(destinationNameID)
+
+
+  const response = await fetch(`https://skyscanner-skyscanner-flight-search-v1.p.rapidapi.com/apiservices/browsedates/v1.0/US/USD/en-US/${originNameID}/${destinationNameID}/${monthOut}?inboundpartialdate=${monthIn}`, {
+	"method": "GET",
+	"headers": {
+		"x-rapidapi-host": "skyscanner-skyscanner-flight-search-v1.p.rapidapi.com",
+		"x-rapidapi-key": "79d622f787mshe349c803b0be374p11035ejsn2a0c241e87dd"
+  }
+  })
+  const data = await response.json()
+  console.log(data)
+  lowestPrice = data.Quotes[0].MinPrice
+  console.log(lowestPrice)
+  document.getElementById('flightPrice').innerHTML = `£${lowestPrice}`
+}
+
