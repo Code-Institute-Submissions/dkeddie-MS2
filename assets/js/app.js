@@ -25,6 +25,8 @@ if ('geolocation' in navigator) {
   navigator.geolocation.getCurrentPosition(position => {
     cLat = position.coords.latitude;
     cLng = position.coords.longitude;
+    console.log(cLat);
+    console.log(cLng);
   });
 }
 else {
@@ -58,7 +60,7 @@ function getDestination() {
     address = location.results[6].formatted_address
     console.log(address)
     origin = location.results[9].address_components[0].long_name
-  }, 200);
+  }, 300);
 };
 getDestination()
 
@@ -360,8 +362,12 @@ async function getFlightData() {
   console.log(originNameData)
   const originNameID = originNameData.Places[0].CityId
   console.log(originNameID)
+  console.log(origin)
 
-  const destinationNameSearch = await fetch(`https://skyscanner-skyscanner-flight-search-v1.p.rapidapi.com/apiservices/autosuggest/v1.0/UK/GBP/en-GB/?query=${destination}`, {
+  let destinationShort = destination.slice(0, destination.indexOf(","));
+  console.log(destinationShort)
+
+  const destinationNameSearch = await fetch(`https://skyscanner-skyscanner-flight-search-v1.p.rapidapi.com/apiservices/autosuggest/v1.0/UK/GBP/en-GB/?query=${destinationShort}`, {
     "method": "GET",
     "headers": {
       "x-rapidapi-host": "skyscanner-skyscanner-flight-search-v1.p.rapidapi.com",
@@ -370,6 +376,7 @@ async function getFlightData() {
   })
   const destinationNameData = await destinationNameSearch.json()
   console.log(destinationNameData)
+  console.log(destination)
   const destinationNameID = destinationNameData.Places[0].CityId
   console.log(destinationNameID)
 
