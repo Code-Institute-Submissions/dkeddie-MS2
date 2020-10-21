@@ -49,6 +49,7 @@ function getDestination() {
       setTimeout(() => {
         graphData();
         getFlightData();
+        setMap();
       }, 400);
     }
   });
@@ -304,6 +305,26 @@ async function currentWeather() {
   document.getElementById('weatherNowTemp').innerHTML = `${weatherNowTemp}&degC`
   document.getElementById('weatherNowImage').src = `${weatherNowImage}`
 }
+
+
+// Map Tile
+
+function setMap() {
+  const url = `https://maps.googleapis.com/maps/api/staticmap?center=${dLat},${dLng}&zoom=5&size=800x800&scale2&key=AIzaSyBKd5I7u1oc_iX8wrBze-LNNmiHFPqdtCI`
+  document.getElementById('mapBox').style.backgroundImage=`url("${url}")`
+
+}
+
+
+
+
+
+
+
+
+
+
+
 
 
 // Flight Cost Tile
