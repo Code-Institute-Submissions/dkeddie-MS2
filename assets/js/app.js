@@ -51,6 +51,7 @@ function getDestination() {
         getFlightData();
         setMap();
       }, 400);
+      // getPhoto();
     }
   });
   // Current Location
@@ -82,9 +83,9 @@ console.log(monthArray);
 
 let months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
-function newFunction() {
-  autoComplete();
-}
+// function newFunction() {
+//   autoComplete();
+// }
 
 
 let m;
@@ -310,20 +311,10 @@ async function currentWeather() {
 // Map Tile
 
 function setMap() {
-  const url = `https://maps.googleapis.com/maps/api/staticmap?center=${dLat},${dLng}&zoom=5&size=800x800&scale2&key=AIzaSyBKd5I7u1oc_iX8wrBze-LNNmiHFPqdtCI`
-  document.getElementById('mapBox').style.backgroundImage=`url("${url}")`
+  const url = `https://maps.googleapis.com/maps/api/staticmap?center=${dLat},${dLng}&zoom=5&size=800x800&scale2&key=AIzaSyBKd5I7u1oc_iX8wrBze-LNNmiHFPqdtCI`;
+  document.getElementById('mapBox').style.backgroundImage = `url("${url}")`
 
 }
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -333,21 +324,21 @@ function setMap() {
 document.getElementById('month').addEventListener('click', () => {
   const mo = document.getElementById('currentMonth').innerHTML
   let moInt
-  function confirmData() { 
+  function confirmData() {
     for (i = 0; i < monthArray.length; i++) {
-          if (monthArray[i].toString().search(mo) > 0) {
-            moInt = [i][0]
-            console.log(moInt)
-          }
-        //   else {
-        //     console.log("not success")
-        // }
+      if (monthArray[i].toString().search(mo) > 0) {
+        moInt = [i][0]
+        console.log(moInt)
       }
+      //   else {
+      //     console.log("not success")
+      // }
     }
-    confirmData()
+  }
+  confirmData()
   console.log(moInt)
-  currentD = monthArray[moInt] 
-  console.log(currentD)   
+  currentD = monthArray[moInt]
+  console.log(currentD)
   nextD = new Date(currentD.setMonth(currentD.getMonth() + 1))
   console.log(nextD)
 })
@@ -358,7 +349,7 @@ console.log(monthArray[0].toString().search('Nov'));
 let currentD = new Date()
 
 let yearNr = currentD.getFullYear();
-let monthNr = currentD.getMonth()+1;
+let monthNr = currentD.getMonth() + 1;
 let monthOut = `${yearNr}-${monthNr}`
 let monthIn = `${yearNr}-${monthNr}`
 // let origin = address
@@ -403,11 +394,11 @@ async function getFlightData() {
 
 
   const response = await fetch(`https://skyscanner-skyscanner-flight-search-v1.p.rapidapi.com/apiservices/browsedates/v1.0/US/USD/en-US/${originNameID}/${destinationNameID}/${monthOut}?inboundpartialdate=${monthIn}`, {
-	"method": "GET",
-	"headers": {
-		"x-rapidapi-host": "skyscanner-skyscanner-flight-search-v1.p.rapidapi.com",
-		"x-rapidapi-key": "79d622f787mshe349c803b0be374p11035ejsn2a0c241e87dd"
-  }
+    "method": "GET",
+    "headers": {
+      "x-rapidapi-host": "skyscanner-skyscanner-flight-search-v1.p.rapidapi.com",
+      "x-rapidapi-key": "79d622f787mshe349c803b0be374p11035ejsn2a0c241e87dd"
+    }
   })
   const data = await response.json()
   console.log(data)
@@ -415,4 +406,108 @@ async function getFlightData() {
   console.log(lowestPrice)
   document.getElementById('flightPrice').innerHTML = `£${lowestPrice}`
 }
+
+// Photo Tile
+
+function getPhoto() {
+  var map;
+
+  function initialize() {
+    var mylatlng = new google.maps.LatLng(dLat, dLng);
+    map = new google.maps.Map({});
+    //&radius=500&types=food&name=cruise&key=MYAPIKEY";
+    var request = {
+      location: mylatlng,
+      radius: 500,
+
+    };
+
+    var service = new google.maps.places.PlacesService(map);
+    service.nearbySearch(request, callback);
+  }
+
+
+  function callback(results, status) {
+    if (status == google.maps.places.PlacesServiceStatus.OK) {
+      showFirstPicture(results);
+      console.log(results[0]);
+    }
+  }
+
+
+  // function load()
+  google.maps.event.addDomListener(document.getElementById('destination'), 'keyup', (e) => {
+    if (e.keyCode === 13) {
+       setTimeout(() => {
+         initialize();
+       }, 4000); 
+    }
+  })
+ 
+
+
+  // google.maps.event.addDOMListener(destination, 'keyup', (e) => {
+  //   if (e.keyCode === 13) {
+  //     console.log(e);
+  //     // initialize();
+  //   }
+  // })
+
+  function showFirstPicture(results) {
+    for (var i = 0; i < results.length; i++) {
+      if (results[i].photos != null) {
+        document.getElementById('imageBox').style.backgroundImage = `url("${results[i].photos[0].getUrl({ 'maxWidth': 500, 'maxHeight': 500 })}"`;
+        console.log(results[i].photos[0].getUrl({ 'maxWidth': 500, 'maxHeight': 500 }));
+        console.log(i);
+        console.log(results);
+        break;
+      }
+    }
+  }
+}
+
+getPhoto()
+
+
+
+// async function getPlace() {
+//   const urlPlaceID = `https://maps.googleapis.com/maps/api/place/details/json?place_id=ChIJN1t_tDeuEmsRUsoyG83frY4&fields=name,photo&key=AIzaSyBKd5I7u1oc_iX8wrBze-LNNmiHFPqdtCI`
+//   console.log(urlPlaceID)
+//   const photo = JSON.stringify(urlPlaceID)
+//   console.log(photo)
+//   try {
+//     const respPlace = await fetch(urlPlaceID, {
+//       method: 'GET',
+//       mode: 'no-cors',
+//       // headers: {
+//         // 'Access-Control-Allow-Origin' : '*'
+//       //   'Content-Type': 'application/json'
+//       //   // 'Content-Type': 'application/x-www-form-urlencoded',
+//       // },
+//       // body: JSON.stringify(data)
+//       // credentials: 'omit'
+//       // }
+//     });
+//     const placeData = respPlace.json();
+//     console.log(respPlace)
+//   }
+//     // const placeID = 
+//     // const urlSearch = `https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=9a36946a6f600c73235b2ed47a644f9e&${placeID}&accuracy=8&per_page=10&format=json&nojsoncallback=1`
+
+
+//     // const ID = await getPhotos.photos.photo[0].id
+//     // const serverID = await getPhotos.photos.photo[0].server;
+//     // const secret = await getPhotos.photos.photo[0].secret;
+//     // console.log(ID)
+//     // console.log(serverID)
+//     // console.log(secret)
+//     // let photoURL = await `https://live.staticflickr.com/${serverID}/${ID}_${secret}_c.jpg`;
+//     // console.log(photoURL)
+//     // document.getElementById('imageBox').style.backgroundImage = `url("${photoURL}")`
+//   catch (error) {
+//     console.log(error)
+//   }
+// }
+
+// getPlace()
 

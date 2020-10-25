@@ -143,7 +143,6 @@ h2 {
 
 #mapBox {
   border: 0px solid white;
-  /* background-image: url("https://maps.googleapis.com/maps/api/staticmap?center=Berkeley,CA&zoom=14&size=400x400&key=AIzaSyBKd5I7u1oc_iX8wrBze-LNNmiHFPqdtCI"); */
   background-size: cover;
   background-repeat: no-repeat;
   background-position: 50% 50%;
@@ -165,4 +164,11 @@ h2 {
 
 #flightCostBoxAlign h1 {
   font-weight: 600;
+}
+
+#imageBox {
+  border: 0px solid white;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
 }
