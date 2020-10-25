@@ -23,6 +23,29 @@ h2 {
   padding-bottom: 25px;
 }
 
+#currentLocation {
+  color: inherit;
+  text-align: center;
+  font-size: 32px;
+  width: 100%;
+  height: 100px;
+  margin-top: 50px;
+  margin-bottom: 25px;
+  margin-left: 25px;s
+  margin-right: 25px;
+  padding: 0px;
+  display: block;
+  border: 0px solid white;
+  border-radius: 25px;
+  background-color: white;
+}
+
+#currentLocation:focus {
+  border: 0px solid white;
+  outline: none;
+}
+
+
 #destination {
   color: inherit;
   text-align: center;
@@ -57,15 +80,33 @@ h2 {
 .square {
   max-width: 200px;
   height: 200px;
+  transition: height 2s ease-in;
   border: 15px solid white;
   background-color: white;
   border-radius: 25px;
   margin: 25px;
 }
 
+/* Toggle */
+
+#localHeader {
+  display: block;
+}
+#destHeader {
+  display: none;
+}
+
+#allTiles {
+  display: none;
+}
+
 
 
 /* Weather Chart Graph */
+
+#weatherChart {
+  display: block;
+}
 
 #weatherChartContainer {
   position: relative;
@@ -107,6 +148,10 @@ h2 {
 
 /* Average Temperature Box */
 
+#aveTemp {
+  display: block;
+}
+
 #aveTempAlign {
   text-align: center;
   margin-top: 50%;
@@ -118,6 +163,10 @@ h2 {
 }
 
 /* Today Temp Box */
+
+#todayTemp {
+  display: block;
+}
 
 #todayTempAlign{
   text-align: center;

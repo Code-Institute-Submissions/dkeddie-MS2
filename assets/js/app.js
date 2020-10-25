@@ -1,94 +1,172 @@
 // DESTINATION SEARCH
 
 // let currentLocation
+
+// GLOBAL VARIABLES
+
+// destination
 let destination
 let address
 let origin
 
+// current locations
+let cLat;
+let cLng;
+
+let dLat
+let dLng
+
 // Algolia Places Search: https://www.algolia.com/
 function autoComplete() {
-  var placesAutocomplete = places({
+  var currentPlace = places({
     appId: 'pl3QLZ5PGJOK',
     apiKey: '17ed7fe7c8a13ca6a53f86095b7cde31',
-    container: document.querySelector('#destination')
+    container: document.querySelector('#currentLocation'),
+    templates: {
+      value: function (suggestion) {
+        return suggestion.name;
+      }
+    }
+  }).configure({
+    type: 'city',
+    aroundLatLngViaIP: false,
+  })
+  var destPlace = places({
+    appId: 'pl3QLZ5PGJOK',
+    apiKey: '17ed7fe7c8a13ca6a53f86095b7cde31',
+    container: document.querySelector('#destination'),
+    templates: {
+      value: function (suggestion) {
+        return suggestion.name;
+      }
+    }
+  }).configure({
+    type: 'city',
+    aroundLatLngViaIP: false,
   });
 }
 autoComplete();
 
-// Get Current Location / Coordinates
 
-let cLat;
-let cLng;
+// PAGE LOADING
 
-if ('geolocation' in navigator) {
-  console.log('gelocation available');
-  navigator.geolocation.getCurrentPosition(position => {
-    cLat = position.coords.latitude;
-    cLng = position.coords.longitude;
-    console.log(cLat);
-    console.log(cLng);
-  });
+// currentCoordinates();
+
+// setTimeout(() => {
+//   getCurrentLocation()
+// }, 200);
+
+// after Destination Load
+
+
+
+// function loadAfter() {
+document.getElementById('destination').addEventListener('keyup', function (e) {
+  if (e.keyCode === 13) {
+    // getData()
+    setTimeout(() => {
+      getData();
+    }, 200);
+    setTimeout(() => {
+      getWeather();
+      currentWeather();
+      console.log[m]
+    }, 400);
+    setTimeout(() => {
+      graphData();
+      getFlightData();
+      setMap();
+    }, 800);
+    // getPhoto();
+  }
+});
+// };
+
+
+
+
+// 1. GET CURRENT LOCATION / COORDINATES
+
+
+
+// function currentCoordinates() {
+//   if ('geolocation' in navigator) {
+//     console.log('gelocation available');
+//     navigator.geolocation.getCurrentPosition(position => {
+//       cLat = position.coords.latitude;
+//       cLng = position.coords.longitude;
+//       console.log(cLat);
+//       console.log(cLng);
+//     });
+//   }
+//   else {
+//     console.log('gelocation not available');
+//   }
+// }
+
+// async function getCurrentLocation() {
+//   let response = await fetch(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${cLat},${cLng}&key=AIzaSyBKd5I7u1oc_iX8wrBze-LNNmiHFPqdtCI`);
+//   let location = await response.json();
+//   console.log(location)
+//   address = await location.results[6].formatted_address
+//   console.log(address)
+//   origin = await location.results[10].address_components[0].long_name
+// }
+
+function getCurrentLocation() {
+  document.getElementById('currentLocation').addEventListener('keyup', function (e) {
+    if (e.keyCode === 13) {
+      origin = document.getElementById('currentLocation').value;
+      console.log(origin)
+      $('#localHeader').hide('slow')
+      $('#destHeader').show('slow')
+      $('#allTiles').show('slow')
+    }
+  })
 }
-else {
-  console.log('gelocation not available')
-}
 
-// Load Current Location and Destination to variables
+getCurrentLocation()
+
+
+// getLocation()
+
+// 2. DESTINATION
+
 function getDestination() {
-  // Destination
   document.getElementById('destination').addEventListener('keyup', function (e) {
     if (e.keyCode === 13) {
       destination = document.getElementById('destination').value;
       console.log(destination)
-      getData()
-      setTimeout(() => {
-        getWeather();
-        currentWeather();
-        console.log[m]
-      }, 200);
-      setTimeout(() => {
-        graphData();
-        getFlightData();
-        setMap();
-      }, 400);
+      // getData()
+      // setTimeout(() => {
+      //   getWeather();
+      //   currentWeather();
+      //   console.log[m]
+      // }, 200);
+      // setTimeout(() => {
+      //   graphData();
+      //   getFlightData();
+      //   setMap();
+      // }, 400);
       // getPhoto();
     }
   });
-  // Current Location
-  setTimeout(async () => {
-    let response = await fetch(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${cLat},${cLng}&key=AIzaSyBKd5I7u1oc_iX8wrBze-LNNmiHFPqdtCI`);
-    let location = await response.json();
-    console.log(location)
-    address = location.results[6].formatted_address
-    console.log(address)
-    origin = location.results[9].address_components[0].long_name
-  }, 300);
 };
 getDestination()
-
-setTimeout(() => {
-  console.log(destination)
-}, 200);
 
 // MONTH SELECTOR TILE
 
 let currentDate = new Date();
 let monthArray = [];
+let months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+let m;
 
 for (i = 0; i < 12; i++) {
   monthArray.push(new Date(currentDate.setMonth(currentDate.getMonth([i]) + 1)))
 };
 
-console.log(monthArray);
+// console.log(monthArray);
 
-let months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-
-// function newFunction() {
-//   autoComplete();
-// }
-
-
-let m;
 function showMonth() {
   m = 0;
   document.getElementById("currentMonth").innerHTML = months[monthArray[m].getMonth()];
@@ -110,6 +188,7 @@ function showMonth() {
     }
     document.getElementById("currentMonth").innerHTML = months[monthArray[m].getMonth()];
   })
+
 }
 
 showMonth();
@@ -120,8 +199,7 @@ const url = 'https://maps.googleapis.com/maps/api/geocode/json?address=';
 const key = '&key=AIzaSyBKd5I7u1oc_iX8wrBze-LNNmiHFPqdtCI';
 
 
-let dLat
-let dLng
+
 // let address = 0
 // let place = 0
 
@@ -300,11 +378,11 @@ async function currentWeather() {
   const weatherNowData = await response.json();
   console.log(weatherNowData)
   const weatherNowTemp = weatherNowData.current.temp_c;
-  const weatherNowCondition = weatherNowData.current.condition.text;
   const weatherNowImage = weatherNowData.current.condition.icon;
   console.log(weatherNowTemp)
   document.getElementById('weatherNowTemp').innerHTML = `${weatherNowTemp}&degC`
   document.getElementById('weatherNowImage').src = `${weatherNowImage}`
+  $('#todayTemp').show("slow")
 }
 
 
@@ -372,7 +450,7 @@ async function getFlightData() {
   })
   const originNameData = await originNameSearch.json()
   console.log(originNameData)
-  const originNameID = originNameData.Places[0].CityId
+  const originNameID = await originNameData.Places[0].CityId
   console.log(originNameID)
   console.log(origin)
 
@@ -438,12 +516,13 @@ function getPhoto() {
   // function load()
   google.maps.event.addDomListener(document.getElementById('destination'), 'keyup', (e) => {
     if (e.keyCode === 13) {
-       setTimeout(() => {
-         initialize();
-       }, 4000); 
+      setTimeout(() => {
+        initialize();
+      }, 1000);
     }
   })
- 
+
+
 
 
   // google.maps.event.addDOMListener(destination, 'keyup', (e) => {
