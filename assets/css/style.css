@@ -134,6 +134,10 @@ h2 {
 }
 
 /* Month Box */
+#month {
+  display: none;
+}
+
 #monthName {
   text-align: center;
   margin-top: 50%;
@@ -167,7 +171,7 @@ h2 {
 /* Average Temperature Box */
 
 #aveTemp {
-  display: block;
+  display: none;
 }
 
 #aveTempAlign {
@@ -183,7 +187,7 @@ h2 {
 /* Today Temp Box */
 
 #todayTemp {
-  display: block;
+  display: none;
 }
 
 #todayTempAlign{
@@ -209,6 +213,7 @@ h2 {
 /* Map Tile */
 
 #mapBox {
+  display: none;
   border: 0px solid white;
   background-size: cover;
   background-repeat: no-repeat;
@@ -244,4 +249,9 @@ h2 {
   display: none;
   font-size: 16px;
 
+}
+
+/* Photo Tile Box */
+#imageBox {
+  display: none;
 }

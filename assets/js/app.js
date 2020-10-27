@@ -50,68 +50,25 @@ autoComplete();
 
 // PAGE LOADING
 
-// currentCoordinates();
-
-// setTimeout(() => {
-//   getCurrentLocation()
-// }, 200);
-
-// after Destination Load
-
-
-
-// function loadAfter() {
 document.getElementById('destination').addEventListener('keyup', function (e) {
   if (e.keyCode === 13) {
-    // getData()
     setTimeout(() => {
       getData();
     }, 200);
     setTimeout(() => {
       getWeather();
       currentWeather();
-      console.log[m]
     }, 400);
     setTimeout(() => {
       graphData();
       getFlightData();
       setMap();
-    }, 800);
-    // getPhoto();
+    }, 600);
   }
 });
-// };
-
-
 
 
 // 1. GET CURRENT LOCATION / COORDINATES
-
-
-
-// function currentCoordinates() {
-//   if ('geolocation' in navigator) {
-//     console.log('gelocation available');
-//     navigator.geolocation.getCurrentPosition(position => {
-//       cLat = position.coords.latitude;
-//       cLng = position.coords.longitude;
-//       console.log(cLat);
-//       console.log(cLng);
-//     });
-//   }
-//   else {
-//     console.log('gelocation not available');
-//   }
-// }
-
-// async function getCurrentLocation() {
-//   let response = await fetch(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${cLat},${cLng}&key=AIzaSyBKd5I7u1oc_iX8wrBze-LNNmiHFPqdtCI`);
-//   let location = await response.json();
-//   console.log(location)
-//   address = await location.results[6].formatted_address
-//   console.log(address)
-//   origin = await location.results[10].address_components[0].long_name
-// }
 
 function getCurrentLocation() {
   document.getElementById('currentLocation').addEventListener('keyup', function (e) {
@@ -127,32 +84,18 @@ function getCurrentLocation() {
 
 getCurrentLocation()
 
-
-// getLocation()
-
 // 2. DESTINATION
 
 function getDestination() {
   document.getElementById('destination').addEventListener('keyup', function (e) {
     if (e.keyCode === 13) {
       destination = document.getElementById('destination').value;
-      console.log(destination)
-      // getData()
-      // setTimeout(() => {
-      //   getWeather();
-      //   currentWeather();
-      //   console.log[m]
-      // }, 200);
-      // setTimeout(() => {
-      //   graphData();
-      //   getFlightData();
-      //   setMap();
-      // }, 400);
-      // getPhoto();
+      $('#month').show('slow')
     }
   });
 };
 getDestination()
+
 
 // MONTH SELECTOR TILE
 
@@ -165,14 +108,6 @@ for (i = 0; i < 12; i++) {
   monthArray.push(new Date(currentDate.setMonth(currentDate.getMonth([i]) + 1)))
   console.log(monthArray)
 };
-
-setTimeout(() => {
-  console.log(monthArray[0])
-}, 500);
-
-
-
-// console.log(monthArray);
 
 function showMonth() {
   m = 0;
@@ -204,34 +139,19 @@ function showMonth() {
 
 showMonth();
 
+// WEATHER / TEMPERATURE
+
 // Metostat API Fetch
 
 const url = 'https://maps.googleapis.com/maps/api/geocode/json?address=';
 const key = '&key=AIzaSyBKd5I7u1oc_iX8wrBze-LNNmiHFPqdtCI';
 
-
-
-// let address = 0
-// let place = 0
-
 async function getData() {
-  // address = await document.getElementById('City').value;
-  // console.log(address)
   const response = await fetch(`${url}${destination}${key}`);
-  console.log(`${url}${destination}${key}`)
   const locationData = await response.json();
-  console.log(locationData)
   dLat = locationData.results[0].geometry.location.lat
   dLng = locationData.results[0].geometry.location.lng
-  // place = locationData.results[0].formatted_address
-  // console.log(place)
 };
-
-// setTimeout(() => {
-//   getData()
-//   console.log(`${url}${destination}${key}`)
-// }, 1000);
-
 
 // Weather DATA Import
 
@@ -242,46 +162,27 @@ let weatherDataTemps = []
 let urlWeather = 0
 
 async function getWeather() {
-  // const coordinates = await getData
   urlWeather = `https://api.meteostat.net/v2/point/climate?lat=${dLat}&lon=${dLng}`
-  console.log(urlWeather)
   const response = await fetch(urlWeather, {
     method: 'GET',
     credentials: 'omit',
-    headers: {
-      // 'Content-Type': 'application/json',
-      // 'x-api-key': 'RMs9pME8PJQpNfti54tiw4fJQOquTm71',
-    },
   })
   const data1 = await response.json()
-  console.log(data1)
   weatherData = data1.data
-  // weatherDataMonths = weatherData.map((months, index) => {
-  //   return weatherData[index].month;
-  // })
   weatherDataTemps = weatherData.map((months, index) => {
     return weatherData[index].tavg;
   });
   weatherDataPrcp = weatherData.map((months, index) => {
     return weatherData[index].prcp;
   });
-  console.log(months)
-  console.log(monthArray)
-  console.log(weatherData)
-  console.log(weatherDataTemps[m])
   function weatherUpdate() {
     const mo = document.getElementById('currentMonth').innerHTML;
     const moInt = months.indexOf(mo);
     const moTemp = weatherData[moInt].tavg
-    console.log(mo)
-    console.log(moInt)
-    console.log(moTemp)
     document.getElementById('temp').innerHTML = `${moTemp}&degC`;
-    console.log(m)
+    $('#aveTemp').show('slow')
   }
   weatherUpdate()
-
-  console.log(weatherDataTemps)
 }
 
 document.getElementById('month').addEventListener('click', () => {
@@ -294,13 +195,7 @@ document.getElementById('month').addEventListener('click', () => {
 // GRAPH TILE
 
 async function graphData() {
-  // let lat = 0
-  // let lng = 0
-  // let weatherData = []
-  // const stepOne = await getData()
   const stepTwo = await getWeather()
-  console.log(weatherDataTemps)
-  // console.log(weatherData[0].tavg)
   var ctx = await document.getElementById('myChart').getContext('2d');
   var chart = await new Chart(ctx, {
     // The type of chart we want to create
@@ -323,7 +218,6 @@ async function graphData() {
         yAxisID: 'mm'
       }]
     },
-
 
     // Configuration options go here
     options: {
@@ -374,6 +268,7 @@ async function graphData() {
       }
     }
   });
+  $('#weatherChart').show('slow')
 }
 
 // Today's Temp Tile - Weatherapi.com
@@ -395,62 +290,18 @@ async function currentWeather() {
 
 function setMap() {
   const url = `https://maps.googleapis.com/maps/api/staticmap?center=${dLat},${dLng}&zoom=5&size=800x800&scale2&key=AIzaSyBKd5I7u1oc_iX8wrBze-LNNmiHFPqdtCI`;
-  document.getElementById('mapBox').style.backgroundImage = `url("${url}")`
-
+  document.getElementById('mapBox').style.backgroundImage = `url("${url}")`;
+  $('#mapBox').show('slow')
 }
-
-
 
 // FLIGHT COST TILE --------------------------------------------
 
 // Get current month from month array
-
-// document.getElementById('month').addEventListener('click', async function () {
-//   // currentD = new Date
-//   const mo = await document.getElementById('currentMonth').innerHTML
-//   // let moInt
-//   let moInt = await function () {
-//     for (i = 0; i < monthArray.length; i++) {
-//       if (monthArray[i].toString().search(mo) > 0) {
-//         return [i][0]
-//       }
-//     }
-//   }
-//   console.log(moInt())
-//   let currentD = await monthArray[moInt()]
-//   console.log(currentD)
-//   nextD = new Date(currentD.setMonth(currentD.getMonth() + 1))
-//   console.log(nextD)
-//   console.log(currentD.getFullYear())
-//   console.log(monthIn)
-//   const runData = await getFlightData()
-// })
-
-
-// console.log(monthArray[0].toString().search('Nov'));
-
-
-// // let todayD = new Date()
-// let currentD = new (Date)
-// console.log(currentD)
-
-
-// let yearNr = currentD.getFullYear();
-// let monthNr = currentD.getMonth() + 1
-// let monthOut = `${yearNr}-${monthNr}`
-// let monthIn = `${yearNr}-${monthNr}`
-// console.log(monthOut)
-// let origin = address
-// let destination = "Paris"
-
-// console.log(monthOut);
-
 $('#month').click(function() {
   getFlightData()
-}
-  
-)
+})
 
+// Initial load of Flight data on origin/destination load
 async function getFlightData() {
   try {
     // Get origin airport ID
@@ -464,8 +315,6 @@ async function getFlightData() {
     const originNameData = await originNameSearch.json()
     const originNameID = await originNameData.Places[0].CityId;
     const originNameShort = await originNameID.split('-', 1)[0];
-    console.log(originNameID);
-    console.log(originNameShort);
 
     // Get destination airport ID
     const destinationNameSearch = await fetch(`https://skyscanner-skyscanner-flight-search-v1.p.rapidapi.com/apiservices/autosuggest/v1.0/UK/GBP/en-GB/?query=${destination}`, {
@@ -478,18 +327,13 @@ async function getFlightData() {
     const destinationNameData = await destinationNameSearch.json()
     const destinationNameID = await destinationNameData.Places[0].CityId;
     const destinationNameShort = await destinationNameID.split('-', 1)[0];
-    console.log(destinationNameID);
-    console.log(destinationNameShort);
 
     // Get Flight Prices
 
     let monthNr = ('0'+(new Date($('#fullDate').html()).getMonth() + 1)).slice(-2);
-    console.log(monthNr)
     // Attr: Skyscanner month requires to be two digits e.g. 02 for Feb.  Resolved on Stackoverflow https://stackoverflow.com/questions/1267283/how-can-i-pad-a-value-with-leading-zeros
     let yearNr = new Date($('#fullDate').html()).getFullYear();
     let yearNrShort = yearNr.toString().slice(-2);
-    console.log(yearNrShort)
-    console.log(yearNr)
     let monthOut = `${yearNr}-${monthNr}`;
     let monthIn = `${yearNr}-${monthNr}`;
 
@@ -501,7 +345,6 @@ async function getFlightData() {
       }
     })
     const data = await response.json()
-    console.log(data)
     lowestPrice = data.Quotes[0].MinPrice
 
 
@@ -509,6 +352,7 @@ async function getFlightData() {
     document.getElementById('flightPrice').innerHTML = `£${lowestPrice}`
     $('#flightCostBox').show('slow')
 
+    // Update Tile with link to Skyscanner with pre-inserted search info
     $('a[href="https://www.skyscanner.net"]').attr('href', linkURL)
     linkURL = `https://www.skyscanner.net/transport/flights/${originNameShort}/${destinationNameShort}/?adults=1&adultsv2=1&cabinclass=economy&children=0&childrenv2=&inboundaltsenabled=false&infants=0&iym=${yearNrShort}${monthNr}&outboundaltsenabled=false&oym=${yearNrShort}${monthNr}&preferdirects=false&preferflexible=false&ref=home&rtn=1&selectedoday=01&selectediday=01`
 
@@ -520,12 +364,9 @@ async function getFlightData() {
 
 }
 
-
-
-// console.log(monthOut)
-
-
 // Photo Tile
+
+// The below was developed from here (http://answerbig.diary.to/archives/1038987625.html) and here (http://jsfiddle.net/dLxqx3n8/), as well as the Google Maps Platform documentation associated with Maps Javascript API
 
 function getPhoto() {
   var map;
@@ -533,17 +374,14 @@ function getPhoto() {
   function initialize() {
     var mylatlng = new google.maps.LatLng(dLat, dLng);
     map = new google.maps.Map({});
-    //&radius=500&types=food&name=cruise&key=MYAPIKEY";
     var request = {
       location: mylatlng,
       radius: 500,
-
     };
 
     var service = new google.maps.places.PlacesService(map);
     service.nearbySearch(request, callback);
   }
-
 
   function callback(results, status) {
     if (status == google.maps.places.PlacesServiceStatus.OK) {
@@ -552,8 +390,6 @@ function getPhoto() {
     }
   }
 
-
-  // function load()
   google.maps.event.addDomListener(document.getElementById('destination'), 'keyup', (e) => {
     if (e.keyCode === 13) {
       setTimeout(() => {
@@ -562,23 +398,11 @@ function getPhoto() {
     }
   })
 
-
-
-
-  // google.maps.event.addDOMListener(destination, 'keyup', (e) => {
-  //   if (e.keyCode === 13) {
-  //     console.log(e);
-  //     // initialize();
-  //   }
-  // })
-
   function showFirstPicture(results) {
     for (var i = 0; i < results.length; i++) {
       if (results[i].photos != null) {
         document.getElementById('imageBox').style.backgroundImage = `url("${results[i].photos[0].getUrl({ 'maxWidth': 500, 'maxHeight': 500 })}"`;
-        console.log(results[i].photos[0].getUrl({ 'maxWidth': 500, 'maxHeight': 500 }));
-        console.log(i);
-        console.log(results);
+        $('#imageBox').show('slow')
         break;
       }
     }
@@ -586,47 +410,3 @@ function getPhoto() {
 }
 
 getPhoto()
-
-
-
-// async function getPlace() {
-//   const urlPlaceID = `https://maps.googleapis.com/maps/api/place/details/json?place_id=ChIJN1t_tDeuEmsRUsoyG83frY4&fields=name,photo&key=AIzaSyBKd5I7u1oc_iX8wrBze-LNNmiHFPqdtCI`
-//   console.log(urlPlaceID)
-//   const photo = JSON.stringify(urlPlaceID)
-//   console.log(photo)
-//   try {
-//     const respPlace = await fetch(urlPlaceID, {
-//       method: 'GET',
-//       mode: 'no-cors',
-//       // headers: {
-//         // 'Access-Control-Allow-Origin' : '*'
-//       //   'Content-Type': 'application/json'
-//       //   // 'Content-Type': 'application/x-www-form-urlencoded',
-//       // },
-//       // body: JSON.stringify(data)
-//       // credentials: 'omit'
-//       // }
-//     });
-//     const placeData = respPlace.json();
-//     console.log(respPlace)
-//   }
-//     // const placeID = 
-//     // const urlSearch = `https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=9a36946a6f600c73235b2ed47a644f9e&${placeID}&accuracy=8&per_page=10&format=json&nojsoncallback=1`
-
-
-//     // const ID = await getPhotos.photos.photo[0].id
-//     // const serverID = await getPhotos.photos.photo[0].server;
-//     // const secret = await getPhotos.photos.photo[0].secret;
-//     // console.log(ID)
-//     // console.log(serverID)
-//     // console.log(secret)
-//     // let photoURL = await `https://live.staticflickr.com/${serverID}/${ID}_${secret}_c.jpg`;
-//     // console.log(photoURL)
-//     // document.getElementById('imageBox').style.backgroundImage = `url("${photoURL}")`
-//   catch (error) {
-//     console.log(error)
-//   }
-// }
-
-// getPlace()
-
