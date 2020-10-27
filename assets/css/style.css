@@ -100,13 +100,27 @@ h2 {
   display: none;
 }
 
+#weatherChart {
+  display: none;
+}
 
+
+
+
+
+
+
+
+
+
+
+#flightCostBox {
+  display: none;
+}
 
 /* Weather Chart Graph */
 
-#weatherChart {
-  display: block;
-}
+
 
 #weatherChartContainer {
   position: relative;
@@ -144,6 +158,10 @@ h2 {
 #month h2 {
   margin-top: -30%;
   text-align: center;
+}
+
+#fullDate {
+  display: none;
 }
 
 /* Average Temperature Box */
@@ -220,4 +238,10 @@ h2 {
   background-size: cover;
   background-repeat: no-repeat;
   background-position: 50% 50%;
+}
+
+#noFlightPrice {
+  display: none;
+  font-size: 16px;
+
 }

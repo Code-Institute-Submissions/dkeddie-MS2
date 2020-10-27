@@ -163,32 +163,43 @@ let m;
 
 for (i = 0; i < 12; i++) {
   monthArray.push(new Date(currentDate.setMonth(currentDate.getMonth([i]) + 1)))
+  console.log(monthArray)
 };
+
+setTimeout(() => {
+  console.log(monthArray[0])
+}, 500);
+
+
 
 // console.log(monthArray);
 
 function showMonth() {
   m = 0;
-  document.getElementById("currentMonth").innerHTML = months[monthArray[m].getMonth()];
-  document.getElementById("monthForward").addEventListener('click', function () {
-    if (m <= 10) {
-      m++
-    }
-    else {
-      m = 0;
-    }
-    document.getElementById("currentMonth").innerHTML = months[monthArray[m].getMonth()];
-  });
-  document.getElementById("monthBack").addEventListener('click', function () {
-    if (m > 0) {
-      m--
-    }
-    else {
-      m = 11
-    }
-    document.getElementById("currentMonth").innerHTML = months[monthArray[m].getMonth()];
-  })
-
+  $('#fullDate').html(monthArray[0]);
+  $('#currentMonth').html(months[monthArray[m].getMonth()]);
+  $('#monthForward').click(
+    function () {
+      if (m <= 10) {
+        m++
+      }
+      else {
+        m = 0;
+      };
+      $('#fullDate').html(monthArray[m]);
+      $('#currentMonth').html(months[monthArray[m].getMonth()]);
+    });
+  $('#monthBack').click(
+    function () {
+      if (m > 0) {
+        m--
+      }
+      else {
+        m = 11
+      };
+      $('#fullDate').html(monthArray[m]);
+      $('#currentMonth').html(months[monthArray[m].getMonth()]);
+    })
 }
 
 showMonth();
@@ -272,12 +283,6 @@ async function getWeather() {
 
   console.log(weatherDataTemps)
 }
-
-// setTimeout(() => {
-
-// }, 250);
-
-// };
 
 document.getElementById('month').addEventListener('click', () => {
   const mo = document.getElementById('currentMonth').innerHTML
@@ -396,94 +401,129 @@ function setMap() {
 
 
 
-// Flight Cost Tile
+// FLIGHT COST TILE --------------------------------------------
+
+// Get current month from month array
+
+// document.getElementById('month').addEventListener('click', async function () {
+//   // currentD = new Date
+//   const mo = await document.getElementById('currentMonth').innerHTML
+//   // let moInt
+//   let moInt = await function () {
+//     for (i = 0; i < monthArray.length; i++) {
+//       if (monthArray[i].toString().search(mo) > 0) {
+//         return [i][0]
+//       }
+//     }
+//   }
+//   console.log(moInt())
+//   let currentD = await monthArray[moInt()]
+//   console.log(currentD)
+//   nextD = new Date(currentD.setMonth(currentD.getMonth() + 1))
+//   console.log(nextD)
+//   console.log(currentD.getFullYear())
+//   console.log(monthIn)
+//   const runData = await getFlightData()
+// })
 
 
-document.getElementById('month').addEventListener('click', () => {
-  const mo = document.getElementById('currentMonth').innerHTML
-  let moInt
-  function confirmData() {
-    for (i = 0; i < monthArray.length; i++) {
-      if (monthArray[i].toString().search(mo) > 0) {
-        moInt = [i][0]
-        console.log(moInt)
-      }
-      //   else {
-      //     console.log("not success")
-      // }
-    }
-  }
-  confirmData()
-  console.log(moInt)
-  currentD = monthArray[moInt]
-  console.log(currentD)
-  nextD = new Date(currentD.setMonth(currentD.getMonth() + 1))
-  console.log(nextD)
-})
-
-console.log(monthArray[0].toString().search('Nov'));
+// console.log(monthArray[0].toString().search('Nov'));
 
 
-let currentD = new Date()
+// // let todayD = new Date()
+// let currentD = new (Date)
+// console.log(currentD)
 
-let yearNr = currentD.getFullYear();
-let monthNr = currentD.getMonth() + 1;
-let monthOut = `${yearNr}-${monthNr}`
-let monthIn = `${yearNr}-${monthNr}`
+
+// let yearNr = currentD.getFullYear();
+// let monthNr = currentD.getMonth() + 1
+// let monthOut = `${yearNr}-${monthNr}`
+// let monthIn = `${yearNr}-${monthNr}`
+// console.log(monthOut)
 // let origin = address
 // let destination = "Paris"
 
-console.log(monthOut);
+// console.log(monthOut);
 
-
+$('#month').click(function() {
+  getFlightData()
+}
+  
+)
 
 async function getFlightData() {
-  console.log(address);
-  // origin = "London"
-  console.log(origin);
-  const originNameSearch = await fetch(`https://skyscanner-skyscanner-flight-search-v1.p.rapidapi.com/apiservices/autosuggest/v1.0/UK/GBP/en-GB/?query=${origin}`, {
-    "method": "GET",
-    "headers": {
-      "x-rapidapi-host": "skyscanner-skyscanner-flight-search-v1.p.rapidapi.com",
-      "x-rapidapi-key": "79d622f787mshe349c803b0be374p11035ejsn2a0c241e87dd"
-    }
-  })
-  const originNameData = await originNameSearch.json()
-  console.log(originNameData)
-  const originNameID = await originNameData.Places[0].CityId
-  console.log(originNameID)
-  console.log(origin)
+  try {
+    // Get origin airport ID
+    const originNameSearch = await fetch(`https://skyscanner-skyscanner-flight-search-v1.p.rapidapi.com/apiservices/autosuggest/v1.0/UK/GBP/en-GB/?query=${origin}`, {
+      "method": "GET",
+      "headers": {
+        "x-rapidapi-host": "skyscanner-skyscanner-flight-search-v1.p.rapidapi.com",
+        "x-rapidapi-key": "79d622f787mshe349c803b0be374p11035ejsn2a0c241e87dd"
+      }
+    })
+    const originNameData = await originNameSearch.json()
+    const originNameID = await originNameData.Places[0].CityId;
+    const originNameShort = await originNameID.split('-', 1)[0];
+    console.log(originNameID);
+    console.log(originNameShort);
 
-  let destinationShort = destination.slice(0, destination.indexOf(","));
-  console.log(destinationShort)
+    // Get destination airport ID
+    const destinationNameSearch = await fetch(`https://skyscanner-skyscanner-flight-search-v1.p.rapidapi.com/apiservices/autosuggest/v1.0/UK/GBP/en-GB/?query=${destination}`, {
+      "method": "GET",
+      "headers": {
+        "x-rapidapi-host": "skyscanner-skyscanner-flight-search-v1.p.rapidapi.com",
+        "x-rapidapi-key": "79d622f787mshe349c803b0be374p11035ejsn2a0c241e87dd"
+      }
+    })
+    const destinationNameData = await destinationNameSearch.json()
+    const destinationNameID = await destinationNameData.Places[0].CityId;
+    const destinationNameShort = await destinationNameID.split('-', 1)[0];
+    console.log(destinationNameID);
+    console.log(destinationNameShort);
 
-  const destinationNameSearch = await fetch(`https://skyscanner-skyscanner-flight-search-v1.p.rapidapi.com/apiservices/autosuggest/v1.0/UK/GBP/en-GB/?query=${destinationShort}`, {
-    "method": "GET",
-    "headers": {
-      "x-rapidapi-host": "skyscanner-skyscanner-flight-search-v1.p.rapidapi.com",
-      "x-rapidapi-key": "79d622f787mshe349c803b0be374p11035ejsn2a0c241e87dd"
-    }
-  })
-  const destinationNameData = await destinationNameSearch.json()
-  console.log(destinationNameData)
-  console.log(destination)
-  const destinationNameID = destinationNameData.Places[0].CityId
-  console.log(destinationNameID)
+    // Get Flight Prices
+
+    let monthNr = ('0'+(new Date($('#fullDate').html()).getMonth() + 1)).slice(-2);
+    console.log(monthNr)
+    // Attr: Skyscanner month requires to be two digits e.g. 02 for Feb.  Resolved on Stackoverflow https://stackoverflow.com/questions/1267283/how-can-i-pad-a-value-with-leading-zeros
+    let yearNr = new Date($('#fullDate').html()).getFullYear();
+    let yearNrShort = yearNr.toString().slice(-2);
+    console.log(yearNrShort)
+    console.log(yearNr)
+    let monthOut = `${yearNr}-${monthNr}`;
+    let monthIn = `${yearNr}-${monthNr}`;
+
+    const response = await fetch(`https://skyscanner-skyscanner-flight-search-v1.p.rapidapi.com/apiservices/browsedates/v1.0/US/USD/en-US/${originNameID}/${destinationNameID}/${monthOut}?inboundpartialdate=${monthIn}`, {
+      "method": "GET",
+      "headers": {
+        "x-rapidapi-host": "skyscanner-skyscanner-flight-search-v1.p.rapidapi.com",
+        "x-rapidapi-key": "79d622f787mshe349c803b0be374p11035ejsn2a0c241e87dd"
+      }
+    })
+    const data = await response.json()
+    console.log(data)
+    lowestPrice = data.Quotes[0].MinPrice
 
 
-  const response = await fetch(`https://skyscanner-skyscanner-flight-search-v1.p.rapidapi.com/apiservices/browsedates/v1.0/US/USD/en-US/${originNameID}/${destinationNameID}/${monthOut}?inboundpartialdate=${monthIn}`, {
-    "method": "GET",
-    "headers": {
-      "x-rapidapi-host": "skyscanner-skyscanner-flight-search-v1.p.rapidapi.com",
-      "x-rapidapi-key": "79d622f787mshe349c803b0be374p11035ejsn2a0c241e87dd"
-    }
-  })
-  const data = await response.json()
-  console.log(data)
-  lowestPrice = data.Quotes[0].MinPrice
-  console.log(lowestPrice)
-  document.getElementById('flightPrice').innerHTML = `£${lowestPrice}`
+    // Send lowest flight price to HTML and Show Tile
+    document.getElementById('flightPrice').innerHTML = `£${lowestPrice}`
+    $('#flightCostBox').show('slow')
+
+    $('a[href="https://www.skyscanner.net"]').attr('href', linkURL)
+    linkURL = `https://www.skyscanner.net/transport/flights/${originNameShort}/${destinationNameShort}/?adults=1&adultsv2=1&cabinclass=economy&children=0&childrenv2=&inboundaltsenabled=false&infants=0&iym=${yearNrShort}${monthNr}&outboundaltsenabled=false&oym=${yearNrShort}${monthNr}&preferdirects=false&preferflexible=false&ref=home&rtn=1&selectedoday=01&selectediday=01`
+
+  } catch (error) {
+    // If no flight prices returned, direct users to Skyscanner.net
+    $('#flightCostBox').show('slow')
+    $('#noFlightPrice').show('fast')
+  }
+
 }
+
+
+
+// console.log(monthOut)
+
 
 // Photo Tile
 

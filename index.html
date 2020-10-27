@@ -19,7 +19,8 @@
     crossorigin="anonymous"></script>
 
   <!-- jQuery UI -->
-  <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"
+    integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
     integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
 
@@ -42,14 +43,15 @@
 
 <body>
 
-  
-  
+
+
   <div class="container-fluid" id="bigBox">
-    
+
     <div class="container" id="localHeader">
       <div class="row justify-content-center">
         <div class="col">
-          <input type="search" id="currentLocation" class="autocomplete" name="currentLocation" placeholder="Enter your current Location to Begin">
+          <input type="search" id="currentLocation" class="autocomplete" name="currentLocation"
+            placeholder="Enter your current Location to Begin">
         </div>
       </div>
     </div>
@@ -57,7 +59,8 @@
     <div class="container" id="destHeader">
       <div class="row justify-content-center">
         <div class="col">
-          <input type="search" id="destination" class="autocomplete" name="destination" placeholder="Enter Destination to Begin Search">
+          <input type="search" id="destination" class="autocomplete" name="destination"
+            placeholder="Enter Destination to Begin Search">
         </div>
       </div>
     </div>
@@ -78,6 +81,7 @@
             <i class="fas fa-caret-left" id="monthBack"></i>
             <h1 id="currentMonth"></h1>
             <i class="fas fa-caret-right" id="monthForward"></i>
+            <h6 id="fullDate"></h6>
           </div>
           <h2>2020</h2>
         </div>
@@ -102,16 +106,20 @@
         <!-- Map Box -->
         <div class="col rectangle" id="mapBox"></div>
         <!-- Flight Cost Box -->
-        <div class="col square" id="flightCostBox">
-          <div id="flightCostBoxAlign">
-            <i class="fas fa-plane-departure"></i>
-            <h1 id="flightPrice"></h1>
-          </div>
-        </div>
-        <!-- Photo Tile -->
-        <div class="col rectangle" id="imageBox"></div>
+        <a href="https://www.skyscanner.net" target="_blank">
+          <div class="col square" id="flightCostBox">
+            <div id="flightCostBoxAlign">
+              <i class="fas fa-plane-departure"></i>
+              <h1 id="flightPrice"></h1>
+              <h4 id=noFlightPrice>Go to Skyscanner for Prices</h2>
+            </div>
+        </a>
       </div>
+
+      <!-- Photo Tile -->
+      <div class="col rectangle" id="imageBox"></div>
     </div>
+  </div>
   </div>
 
 
