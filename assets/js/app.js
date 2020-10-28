@@ -74,7 +74,6 @@ function getCurrentLocation() {
   document.getElementById('currentLocation').addEventListener('keyup', function (e) {
     if (e.keyCode === 13) {
       origin = document.getElementById('currentLocation').value;
-      console.log(origin)
       $('#localHeader').hide('slow')
       $('#destHeader').show('slow')
       $('#allTiles').show('slow')
@@ -106,7 +105,6 @@ let m;
 
 for (i = 0; i < 12; i++) {
   monthArray.push(new Date(currentDate.setMonth(currentDate.getMonth([i]) + 1)))
-  console.log(monthArray)
 };
 
 function showMonth() {
@@ -276,10 +274,8 @@ async function graphData() {
 async function currentWeather() {
   const response = await fetch(`http://api.weatherapi.com/v1/current.json?key=3061f2bda70e40c4a77180232201810&q=${destination}`);
   const weatherNowData = await response.json();
-  console.log(weatherNowData)
   const weatherNowTemp = weatherNowData.current.temp_c;
   const weatherNowImage = weatherNowData.current.condition.icon;
-  console.log(weatherNowTemp)
   document.getElementById('weatherNowTemp').innerHTML = `${weatherNowTemp}&degC`
   document.getElementById('weatherNowImage').src = `${weatherNowImage}`
   $('#todayTemp').show("slow")
@@ -394,7 +390,7 @@ function getPhoto() {
     if (e.keyCode === 13) {
       setTimeout(() => {
         initialize();
-      }, 1000);
+      }, 600);
     }
   })
 
@@ -410,3 +406,10 @@ function getPhoto() {
 }
 
 getPhoto()
+
+
+// RELOAD PAGE TO START AGAIN
+
+$('#reset').click( function() {
+  location.reload()
+});

@@ -54,10 +54,9 @@ h2 {
   height: 100px;
   margin-top: 50px;
   margin-bottom: 25px;
-  margin-left: 25px;
-  margin-right: 25px;
   padding: 0px;
-  display: block;
+  display: inline-block;
+  position: relative;
   border: 0px solid white;
   border-radius: 25px;
   background-color: white;
@@ -66,6 +65,31 @@ h2 {
 #destination:focus {
   border: 0px solid white;
   outline: none;
+}
+
+#reset {
+  display: inline-block;
+  position: relative;
+  height: 100px;
+  width: 100px;
+  background-color: white;
+  margin-top: 50px;
+  margin-bottom: 25px;
+  padding: 0;
+  border: 0px solid white;
+  border-radius: 25px;
+  text-align: center;
+}
+
+#reset>i {
+  font-size: 50px;
+  margin-top: 25px;
+  /* transform: translate(0, -50%); */
+  transition: transform 2s;
+}
+
+#reset>i:hover {
+  transform: rotate(360deg);
 }
 
 .rectangle {
@@ -86,6 +110,25 @@ h2 {
   border-radius: 25px;
   margin: 25px;
 }
+
+/* Algolia Styling */
+
+.algolia-places {
+  style: false
+}
+
+.ap-icon-pin, .ap-icon-clear {
+  display: none;
+}
+
+.ap-icon-clear {
+  right: 10px;
+}
+
+ {
+  display: none;
+}
+
 
 /* Toggle */
 
