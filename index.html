@@ -45,11 +45,11 @@
 
 
 
-  <div class="container-fluid" id="bigBox">
+  <div class="container-fluid fontColor" id="bigBox">
 
     <div class="container" id="localHeader">
       <div class="row justify-content-center">
-        <div class="col">
+        <div class="col fontColor">
           <input type="search" id="currentLocation" class="autocomplete" name="currentLocation"
             placeholder="Enter your current Location to Begin" >
         </div>
@@ -58,7 +58,7 @@
 
     <div class="container" id="destHeader">
       <div class="row justify-content-center">
-        <div class="col">
+        <div class="col fontColor">
           <input type="search" id="destination" class="autocomplete" name="destination"
             placeholder="Enter Destination to Begin Search">
         </div>
@@ -74,13 +74,13 @@
       <div class="row no-gutters justify-content-center">
         <!-- Weather Chart Tile -->
         <div class="col rectangle" id="weatherChart" class="hidden">
-          <div id="weatherChartContainer">
+          <div class="fontColor" id="weatherChartContainer">
             <canvas id="myChart" width="100" height="50"></canvas>
           </div>
         </div>
         <!-- Month Select Tile -->
         <div class="col square" id="month">
-          <div id="monthName">
+          <div class="fontColor" id="monthName">
             <i class="fas fa-caret-left" id="monthBack"></i>
             <h1 id="currentMonth"></h1>
             <i class="fas fa-caret-right" id="monthForward"></i>
@@ -90,14 +90,14 @@
         </div>
         <!-- Average Temperature Tile -->
         <div class="col square" id="aveTemp">
-          <div id="aveTempAlign">
+          <div class="fontColor" id="aveTempAlign">
             <h2>Average temp</h2>
             <h1 id="temp"></h1>
           </div>
         </div>
         <!-- Today's Temperature Tile -->
         <div class="col square" id="todayTemp">
-          <div id="todayTempAlign">
+          <div class="fontColor" id="todayTempAlign">
             <h2>Today <img id="weatherNowImage" src=""></h2>
             <h1 id="weatherNowTemp"></h1>
           </div>
@@ -111,10 +111,10 @@
         <!-- Flight Cost Box -->
         <a href="https://www.skyscanner.net" target="_blank" id="ssLink">
           <div class="col square" id="flightCostBox">
-            <div id="flightCostBoxAlign">
+            <div class="fontColor" id="flightCostBoxAlign">
               <i class="fas fa-plane-departure"></i>
               <h1 id="flightPrice"></h1>
-              <h4 id=noFlightPrice>Go to Skyscanner for Prices</h2>
+              <h4 id="noFlightPrice">Go to Skyscanner for Prices</h4>
             </div>
         </a>
       </div>

@@ -64,6 +64,9 @@ document.getElementById('destination').addEventListener('keyup', function (e) {
       getFlightData();
       setMap();
     }, 600);
+    // setTimeout(() => {
+    //   getFlightData();
+    // }, 800);
   }
 });
 
@@ -292,6 +295,8 @@ function setMap() {
 
 // FLIGHT COST TILE --------------------------------------------
 
+let lowestPrice = 0
+
 // Get current month from month array
 $('#month').click(function() {
   getFlightData()
@@ -310,6 +315,7 @@ async function getFlightData() {
     })
     const originNameData = await originNameSearch.json()
     const originNameID = await originNameData.Places[0].CityId;
+    console.log(originNameID)
     const originNameShort = await originNameID.split('-', 1)[0];
 
     // Get destination airport ID
@@ -342,22 +348,28 @@ async function getFlightData() {
     })
     const data = await response.json()
     lowestPrice = data.Quotes[0].MinPrice
+    console.log(lowestPrice)
 
 
     // Send lowest flight price to HTML and Show Tile
-    document.getElementById('flightPrice').innerHTML = `£${lowestPrice}`
+    document.getElementById('flightPrice').innerHTML = `£${lowestPrice}`;
     $('#flightCostBox').show('slow')
 
     // Update Tile with link to Skyscanner with pre-inserted search info
+    linkURL = `https://www.skyscanner.net/transport/flights/${originNameShort}/${destinationNameShort}/?adults=1&adultsv2=1&cabinclass=economy&children=0&childrenv2=&inboundaltsenabled=false&infants=0&iym=${yearNrShort}${monthNr}&outboundaltsenabled=false&oym=${yearNrShort}${monthNr}&preferdirects=false&preferflexible=false&ref=home&rtn=1&selectedoday=01&selectediday=01`;
     $('a[href="https://www.skyscanner.net"]').attr('href', linkURL)
-    linkURL = `https://www.skyscanner.net/transport/flights/${originNameShort}/${destinationNameShort}/?adults=1&adultsv2=1&cabinclass=economy&children=0&childrenv2=&inboundaltsenabled=false&infants=0&iym=${yearNrShort}${monthNr}&outboundaltsenabled=false&oym=${yearNrShort}${monthNr}&preferdirects=false&preferflexible=false&ref=home&rtn=1&selectedoday=01&selectediday=01`
 
   } catch (error) {
     // If no flight prices returned, direct users to Skyscanner.net
-    $('#flightCostBox').show('slow')
-    $('#noFlightPrice').show('fast')
+    if (lowestPrice === 0) {
+      $('#flightCostBox').show('slow');
+      $('#noFlightPrice').show('fast')
+    }
+    else {
+      $('#noFlightPrice').hide('fast')
+    }
+    
   }
-
 }
 
 // Photo Tile
