@@ -172,7 +172,7 @@ a:hover {
   top: 12px;
   height: 90%;
   width: 85%;
-}
+  }
 
 #myChart {
 }
@@ -200,7 +200,11 @@ a:hover {
 }
 
 #monthName i {
-  font-size: 64px;
+  font-size: 60px;
+}
+
+#monthName i:hover {
+  font-size: 70px;
 }
 
 #month h2 {

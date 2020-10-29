@@ -56,9 +56,9 @@ $('#currentLocation').focus()
 // After origin / destination input
 document.getElementById('destination').addEventListener('keyup', function (e) {
   if (e.keyCode === 13) {
-    setTimeout(() => {
-      getData();
-    }, 200);
+    // setTimeout(() => {
+    //   getData();
+    // }, 200);
     setTimeout(() => {
       getWeather();
       currentWeather();
@@ -147,16 +147,6 @@ showMonth();
 
 // Metostat API Fetch
 
-const url = 'https://maps.googleapis.com/maps/api/geocode/json?address=';
-const key = '&key=AIzaSyBKd5I7u1oc_iX8wrBze-LNNmiHFPqdtCI';
-
-async function getData() {
-  const response = await fetch(`${url}${destination}${key}`);
-  const locationData = await response.json();
-  dLat = locationData.results[0].geometry.location.lat
-  dLng = locationData.results[0].geometry.location.lng
-};
-
 // Weather DATA Import
 
 
@@ -166,29 +156,51 @@ let weatherDataTemps = []
 let urlWeather = 0
 
 async function getWeather() {
-  urlWeather = `https://api.meteostat.net/v2/point/climate?lat=${dLat}&lon=${dLng}`
-  const response = await fetch(urlWeather, {
-    method: 'GET',
-    credentials: 'omit',
-  })
-  const data1 = await response.json()
-  weatherData = data1.data
-  weatherDataTemps = weatherData.map((months, index) => {
-    return weatherData[index].tavg;
-  });
-  weatherDataPrcp = weatherData.map((months, index) => {
-    return weatherData[index].prcp;
-  });
-  function weatherUpdate() {
-    const mo = document.getElementById('currentMonth').innerHTML;
-    const moInt = months.indexOf(mo);
-    const moTemp = weatherData[moInt].tavg
-    document.getElementById('temp').innerHTML = `${moTemp}&degC`;
+
+  try {
+
+    // Get Coordinates for weather
+
+    const url = 'https://maps.googleapis.com/maps/api/geocode/json?address=';
+    const key = '&key=AIzaSyBKd5I7u1oc_iX8wrBze-LNNmiHFPqdtCI';
+
+    const response1 = await fetch(`${url}${destination}${key}`);
+    const locationData = await response1.json();
+    dLat = locationData.results[0].geometry.location.lat
+    dLng = locationData.results[0].geometry.location.lng
+
+    // Get Weather Data
+
+    urlWeather = `https://api.meteostat.net/v2/point/climate?lat=${dLat}&lon=${dLng}`
+
+
+    const response2 = await fetch(urlWeather, {
+      method: 'GET',
+      credentials: 'omit',
+    })
+    const data1 = await response2.json()
+    weatherData = data1.data
+    weatherDataTemps = weatherData.map((months, index) => {
+      return weatherData[index].tavg;
+    });
+    weatherDataPrcp = weatherData.map((months, index) => {
+      return weatherData[index].prcp;
+    });
+    function weatherUpdate() {
+      const mo = document.getElementById('currentMonth').innerHTML;
+      const moInt = months.indexOf(mo);
+      const moTemp = weatherData[moInt].tavg
+      document.getElementById('temp').innerHTML = `${moTemp}&degC`;
+      $('#aveTemp').show('slow')
+    }
+    weatherUpdate()
+  } catch (error) {
     $('#aveTemp').show('slow')
+    $('#aveTempAlign').html("<h2>No data retrieved. Try again.</h2>")
   }
-  weatherUpdate()
 }
 
+// Change Average Temp Tile to align with month selected
 document.getElementById('month').addEventListener('click', () => {
   const mo = document.getElementById('currentMonth').innerHTML
   const moInt = months.indexOf(mo);
@@ -197,83 +209,89 @@ document.getElementById('month').addEventListener('click', () => {
 })
 
 // GRAPH TILE
-
 async function graphData() {
-  const stepTwo = await getWeather()
-  var ctx = await document.getElementById('myChart').getContext('2d');
-  var chart = await new Chart(ctx, {
-    // The type of chart we want to create
-    type: 'line',
+  if (weatherDataTemps.length !== 0) {
+    const stepTwo = await getWeather()
+    console.log(weatherDataTemps.length)
+    var ctx = await document.getElementById('myChart').getContext('2d');
+    var chart = await new Chart(ctx, {
+      // The type of chart we want to create
+      type: 'line',
 
-    // The data for our dataset
-    data: {
-      labels: months,
-      datasets: [{
-        label: 'Temp',
-        fill: 'false',
-        borderColor: 'rgb(175, 0, 42)',
-        data: weatherDataTemps,
-        yAxisID: 'degC'
-      }, {
-        label: 'Rain',
-        fill: 'false',
-        borderColor: 'rgb(0, 0, 204)',
-        data: weatherDataPrcp,
-        yAxisID: 'mm'
-      }]
-    },
-
-    // Configuration options go here
-    options: {
-      // maintainAspectRatio: 'false',
-      legend: {
-        display: false
-      },
-      // layout: {
-      //   padding: {
-      //     left: 0,
-      //     right: 0,
-      //     top: 0,
-      //     bottom: 0
-      //   }
-      // },
-      scales: {
-        xAxes: [{
-          gridLines: 'false',
-          // maintainAspectRatio: 'true'
-        }],
-        xAxes: [{
-          // id: 'degC',
-          // type: 'linear',
-          // position: 'left',
-          scaleLabel: {
-            padding: '20'
-          }
-        }],
-        yAxes: [{
-          id: 'degC',
-          type: 'linear',
-          position: 'left',
-          scaleLabel: {
-            display: 'true',
-            labelString: 'Temp (\xB0C)',
-            fontColor: 'rgb(175, 0, 42)'
-          },
+      // The data for our dataset
+      data: {
+        labels: months,
+        datasets: [{
+          label: 'Temp',
+          fill: 'false',
+          borderColor: 'rgb(175, 0, 42)',
+          data: weatherDataTemps,
+          yAxisID: 'degC'
         }, {
-          id: 'mm',
-          type: 'linear',
-          position: 'right',
-          scaleLabel: {
-            display: 'true',
-            labelString: 'Rain (mm)',
-            fontColor: 'rgb(0, 0, 204)'
-          },
+          label: 'Rain',
+          fill: 'false',
+          borderColor: 'rgb(0, 0, 204)',
+          data: weatherDataPrcp,
+          yAxisID: 'mm'
         }]
+      },
+
+      // Configuration options go here
+      options: {
+        // maintainAspectRatio: 'false',
+        legend: {
+          display: false
+        },
+        // layout: {
+        //   padding: {
+        //     left: 0,
+        //     right: 0,
+        //     top: 0,
+        //     bottom: 0
+        //   }
+        // },
+        scales: {
+          xAxes: [{
+            gridLines: 'false',
+            // maintainAspectRatio: 'true'
+          }],
+          xAxes: [{
+            // id: 'degC',
+            // type: 'linear',
+            // position: 'left',
+            scaleLabel: {
+              padding: '20'
+            }
+          }],
+          yAxes: [{
+            id: 'degC',
+            type: 'linear',
+            position: 'left',
+            scaleLabel: {
+              display: 'true',
+              labelString: 'Temp (\xB0C)',
+              fontColor: 'rgb(175, 0, 42)'
+            },
+          }, {
+            id: 'mm',
+            type: 'linear',
+            position: 'right',
+            scaleLabel: {
+              display: 'true',
+              labelString: 'Rain (mm)',
+              fontColor: 'rgb(0, 0, 204)'
+            },
+          }]
+        }
       }
-    }
-  });
-  $('#weatherChart').show('slow')
+    });
+    $('#weatherChart').show('slow')
+  } else {
+    $('#weatherChart').show('slow')
+    $('#weatherChartContainer').html("<h2>Weather Data has not loaded.  Please try again to retrieve Weather Data for your chosen destination</h2>").css('margin-top', '40px')
+  }
 }
+
 
 // Today's Temp Tile - Weatherapi.com
 
