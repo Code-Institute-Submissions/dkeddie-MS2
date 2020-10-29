@@ -104,6 +104,7 @@ a:hover {
 }
 
 .rectangle {
+  min-width: 450px;
   max-width: 450px;
   height: 200px;
   border: 15px solid white;
@@ -113,6 +114,7 @@ a:hover {
 }
 
 .square {
+  min-width: 200px;
   max-width: 200px;
   height: 200px;
   transition: height 2s ease-in;
@@ -120,6 +122,10 @@ a:hover {
   background-color: white;
   border-radius: 25px;
   margin: 25px;
+}
+
+#allTiles {
+  max-width: 1500px;
 }
 
 /* Algolia Styling */
