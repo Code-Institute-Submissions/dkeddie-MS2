@@ -48,8 +48,12 @@ function autoComplete() {
 autoComplete();
 
 
-// PAGE LOADING
+// PAGE LOADING ---------------------------------------------->
 
+// Initial
+$('#currentLocation').focus()
+
+// After origin / destination input
 document.getElementById('destination').addEventListener('keyup', function (e) {
   if (e.keyCode === 13) {
     setTimeout(() => {
@@ -64,9 +68,6 @@ document.getElementById('destination').addEventListener('keyup', function (e) {
       getFlightData();
       setMap();
     }, 600);
-    // setTimeout(() => {
-    //   getFlightData();
-    // }, 800);
   }
 });
 
@@ -80,6 +81,7 @@ function getCurrentLocation() {
       $('#localHeader').hide('slow')
       $('#destHeader').show('slow')
       $('#allTiles').show('slow')
+      $('#destination').focus()
     }
   })
 }
@@ -93,6 +95,7 @@ function getDestination() {
     if (e.keyCode === 13) {
       destination = document.getElementById('destination').value;
       $('#month').show('slow')
+      $('#destination').blur()
     }
   });
 };
@@ -298,7 +301,7 @@ function setMap() {
 let lowestPrice = 0
 
 // Get current month from month array
-$('#month').click(function() {
+$('#month').click(function () {
   getFlightData()
 })
 
@@ -332,7 +335,7 @@ async function getFlightData() {
 
     // Get Flight Prices
 
-    let monthNr = ('0'+(new Date($('#fullDate').html()).getMonth() + 1)).slice(-2);
+    let monthNr = ('0' + (new Date($('#fullDate').html()).getMonth() + 1)).slice(-2);
     // Attr: Skyscanner month requires to be two digits e.g. 02 for Feb.  Resolved on Stackoverflow https://stackoverflow.com/questions/1267283/how-can-i-pad-a-value-with-leading-zeros
     let yearNr = new Date($('#fullDate').html()).getFullYear();
     let yearNrShort = yearNr.toString().slice(-2);
@@ -368,7 +371,7 @@ async function getFlightData() {
     else {
       $('#noFlightPrice').hide('fast')
     }
-    
+
   }
 }
 
@@ -409,9 +412,9 @@ function getPhoto() {
   function showFirstPicture(results) {
     for (var i = 0; i < results.length; i++) {
       if (results[i].photos != null) {
-        document.getElementById('imageBox').style.backgroundImage = `url("${results[i].photos[0].getUrl({ 'maxWidth': 500, 'maxHeight': 500 })}"`;
-        $('#imageBox').show('slow')
-        break;
+        $('#imageBox').css('background-image', `url("${results[i].photos[0].getUrl({ 'maxWidth': 500, 'maxHeight': 500 })}")`);
+        $('#imageBox').show('slow');
+        break
       }
     }
   }
@@ -422,6 +425,6 @@ getPhoto()
 
 // RELOAD PAGE TO START AGAIN
 
-$('#reset').click( function() {
+$('#reset').click(function () {
   location.reload()
 });
