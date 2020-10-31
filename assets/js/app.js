@@ -399,6 +399,7 @@ async function getFlightData() {
 
 function getPhoto() {
   var map;
+  var rotateImages = []
 
   function initialize() {
     var mylatlng = new google.maps.LatLng(dLat, dLng);
@@ -406,16 +407,20 @@ function getPhoto() {
     var request = {
       location: mylatlng,
       radius: 500,
+      query: ['points of interest'],
+      // type: ['park', 'museum', 'cafe'],
+      // rankBy: google.maps.places.RankBy.PROMINENCE,
     };
 
     var service = new google.maps.places.PlacesService(map);
-    service.nearbySearch(request, callback);
+    service.textSearch(request, callback);
   }
 
   function callback(results, status) {
     if (status == google.maps.places.PlacesServiceStatus.OK) {
       showFirstPicture(results);
-      console.log(results[0]);
+      rotateImages = results
+      console.log(results);
     }
   }
 
@@ -427,17 +432,55 @@ function getPhoto() {
     }
   })
 
+  let i = 0;
+
   function showFirstPicture(results) {
-    for (var i = 0; i < results.length; i++) {
+    for (i = 0; i < results.length; i++) {
       if (results[i].photos != null) {
-        $('#imageBox').css('background-image', `url("${results[i].photos[0].getUrl({ 'maxWidth': 500, 'maxHeight': 500 })}")`);
+        $('#imageBox').css('background-image', `url("${results[i].photos[0].getUrl({ 'maxWidth': 500, 'maxHeight': 500 })}")`)
         $('#imageBox').show('slow');
+        console.log(results);
         break
       }
     }
   }
-}
 
+  // console.log(results)
+
+  // function rotatePictures(results) {
+  // $('#imageForward').click((j++) => {
+  //   for (var j = 0; j < 10; j++) {
+  //     j++;
+  //     $('#imageBox').css('background-image', `url("${rotateImages[j].photos[0].getUrl({ 'maxWidth': 500, 'maxHeight': 500 })}")`);
+  //     console.log(j);
+  //     return
+
+  //   }
+  // $('#imageBox').hide('slow')
+  // console.log(rotateImages)
+  // })
+  // }
+
+  $('#imageForward').click(() => {
+    if (i <= 9) {
+      i++
+    }
+    else {
+      i = 0;
+    };
+    $('#imageBox').css('background-image', `url("${rotateImages[i].photos[0].getUrl({ 'maxWidth': 500, 'maxHeight': 500 })}")`)
+  })
+
+  $('#imageBack').click(() => {
+    if (i > 0) {
+      i--
+    }
+    else {
+      i = 10;
+    };
+    $('#imageBox').css('background-image', `url("${rotateImages[i].photos[0].getUrl({ 'maxWidth': 500, 'maxHeight': 500 })}")`)
+  })
+}
 getPhoto()
 
 
