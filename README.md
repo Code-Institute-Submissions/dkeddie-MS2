@@ -1,27 +1,33 @@
 ![Responsive website images](/README-attachments/responsive-screenshots.JPG "Responsive website images")
 
-# **MILESTONE PROJECT ONE**
+# **MILESTONE PROJECT TWO**
 
-++++++++++++++++++
+For Milestone Project Two, which requires the development of an interactive front-end site, users can may retrieve weather and other travel related information for a chosen destinations.
 
-The website can be viewed [here](https://dkeddie.github.io/project-one-v2/)
+The website utilises APIs from various sources, sometimes sharing that data to retrive data from other sources, and then presents the data in a simple UI based on a series of tiles.
 
-+++++++++++++++
-
+The website can be viewed [here](https://dkeddie.github.io/MS2/)
 
 ## **UX**
 
 ### **Who is the Website for?**
 
-++++++++++++++++++++
-
+The user of the site will be a prospective traveller looking to determine a suitable travel destination.  
 
 ### **User Stories**
 
-+++++++++++++
+*As a user, I want to be able to see the likely weather of a chosen destination to help me decide if it is the correct decision.
+
  **Item** | **Experience** | **Objectives**
 ---------|----------------|---------------
-+++++++++++++++++++++
+1 | As a user, I want to be able to find a possible travel destination | Provide a search field to retrieve information on destinations
+2 | As a user, I want to be able check the location of the travel destination | Provide a visual map reference to determine the location of the destination chosen
+3 | As a user of the site, I want to be able to see typical weather conditions of that destination | Provide the typical tempoerative temperature for each month of the year
+4 | As a user, I want to be able to determine the best months to visit the destination | Provide users with a chart of the weather showing the typical temperature and rainfall over a year
+5 | As a user, I want to see the current weather in the chosen destination | Provide the current temperature and conditions for the chosen destination
+6 | As a user, I would like to find out the cost of travelling to this destination | Provide the cost of a flight to the destination.
+7 | As a user, I would like to see what the place I would like to visit looks like | Provide images of the destination
+
 
 
 ### **Functions of the Website**
