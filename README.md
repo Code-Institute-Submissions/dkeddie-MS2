@@ -138,18 +138,13 @@ ___
 ### Frameworks, Libraries and Programmes Used 
 
 * [Bootstrap 4](https://getbootstrap.com/)  
-Bootstrap was generally used to assist with the responsiveness and styling of the website.  Components which were utilised were:-
-  * [Buttons](https://getbootstrap.com/docs/4.5/components/buttons/)
-  * [Carousel](https://getbootstrap.com/docs/4.5/components/carousel/)
-  * [Collapse](https://getbootstrap.com/docs/4.5/components/collapse/)
-  * [Dropdowns](https://getbootstrap.com/docs/4.0/components/dropdowns/)
-  * [Modal](https://getbootstrap.com/docs/4.5/components/modal/) 
+Bootstrap is generally used to assist with the responsiveness and layout of the website.  By utilising the 'flex-wrap' feature, the Tiles on the page adjust from a desktop screen configuration of 5 squares wide x 2 squares high to an appropriate width and height to suit the device resolution settings.
 
 * [Google fonts](https://fonts.google.com/)  
-Google fonts were used to import the 'Monserrat' font into the style.css file which is used on all pages throughout the project.
+Google fonts is used to import the 'Rubik' font into the style.css file which is used throughout the project.
 
-* [Chart.jx](+++++++++++++++)  
-
+* [Chart.js](https://www.chartjs.org/)  
+Chart.js is used to display the monthly average temperatures and rainfalls.
 
 * [Google Maps Javascript API](https://developers.google.com/maps/documentation/javascript/overview) including [Styling Wizard](https://mapstyle.withgoogle.com/)  
 Google Maps was used in the footer to provide locations for the Projects.  Functionaly of the maps was limited in terms of zoom, map type and points of interest to maintain a simple viewport of the Park and Project locations only.  
