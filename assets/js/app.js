@@ -85,7 +85,6 @@ function getCurrentLocation() {
     }
   })
 }
-
 getCurrentLocation()
 
 // 2. DESTINATION
@@ -153,7 +152,7 @@ showMonth();
 let weatherData = []
 let weatherDataTemps = []
 
-let urlWeather = 0
+// let urlWeather = 0
 
 async function getWeather() {
 
@@ -171,7 +170,7 @@ async function getWeather() {
 
     // Get Weather Data
 
-    urlWeather = `https://api.meteostat.net/v2/point/climate?lat=${dLat}&lon=${dLng}`
+    const urlWeather = `https://api.meteostat.net/v2/point/climate?lat=${dLat}&lon=${dLng}`
 
 
     const response2 = await fetch(urlWeather, {
