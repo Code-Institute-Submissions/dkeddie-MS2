@@ -268,10 +268,21 @@ a:hover {
 
 #mapBox {
   display: none;
+  position: relative;
   border: 0px solid white;
   background-size: cover;
   background-repeat: no-repeat;
   background-position: 50% 50%;
+}
+
+#mapBox img{
+  display: block;
+  position: absolute;
+  margin: 0;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0.5;
 }
 
 
