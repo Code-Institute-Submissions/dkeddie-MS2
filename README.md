@@ -13,6 +13,7 @@ The website can be viewed [here](https://dkeddie.github.io/MS2/)
 ### **Who is the Website for?**
 
 The user of the site will be a prospective traveller looking to determine a suitable travel destination.  
+<br>
 
 ### **User Stories**
 
@@ -27,33 +28,58 @@ The user of the site will be a prospective traveller looking to determine a suit
 5 | As a user, I want to see the current weather in the chosen destination | Provide the current temperature and conditions for the chosen destination
 6 | As a user, I would like to find out the cost of travelling to this destination | Provide the cost of a flight to the destination.
 7 | As a user, I would like to see what the place I would like to visit looks like | Provide images of the destination
-
+<br>
 
 
 ### **Functions of the Website**
 
-The functions of the website are to:-
+The functions of the website are to:-    
+    
+1. Provide weather information for travel destinations around the world.
+    - Users can see the average temperares and rainfall for each month across a 12 month period.  This weather a retrieved from the Meteostat API which provides historic, average weather data, and presented in a Chart.js graph.
+    - Users can also scroll through the months and see the Average Temperative of the selected month.  This is the same information provided the Meteostat API.
+    - Users can also see the current weather of the destination.  This information is provided from Weatherapi.com.
 
-1. +++++++++++++++++++
+2.  Retrieve flight prices for those destinations from the users current location.
 
+    - As the intention of the site is to determine the best months to travel to a particular destination, this information will provide the price from which flights start from to the destination in that particular month.  This information is provided from the Skycanner.net API.
+
+3. Show users where in the world the selected destination is located.
+
+    - Users can see where in the world the selected destination is located.  This is provided by the Google Maps API.
+
+4. Retrieve images of 'Places of Interest' of the selected destination.
+
+    - Provide a selection of images which may by Points of Interest for visitors to the chosen destination.  This is provided by Google Places by means of the Google Maps Javascript API.  
+<br>
+
+___
+<br>
 
 ## **Design**
 
 ### **Mobile v. Desktop**
 
-++++++++++++++++++
+By designing the web app around a tile system, the intention is that the app will work on any screen size by adjusting the number of tiles per row.  The tiles are a fixed size, and wrap as required to suit the screen resolution.  As such, the page is fully responsive.  
+<br>
 
 
 ### **Key concepts**
+The primary purpose of the web app is simply to provide weather data for chosen destinations.  As such, the intention of the user interface is to be simple and uncluttered so that it does not detract from this information, albeit supplementary tiles may make the web app more useful.  
 
-*+++++++++++++++++++
+As such, the page is developed along certain principles:-
 
+  1. Not to provide multiple pages that might detract from this core set of information;
+  2. Additional functionality and more detailed information may be added to the web app in time through the Tiles (see **Features to Implement in the Future** below)  
+<br>
 
 ### **Wireframe**
 
-Use of Figma to develop key concepts into framework to commence web development.  Two pages were worked up, for desktop and mobile, in the knowledge that the basic page design would be replicated across the pages.
+Figma was used to develop a key concept into framework for developing the web page / app.  Only a desktop framework was formulated at this stage.
 
-A copy of the original wireframe can be found here: [Figma](https://www.figma.com/file/rbTyJlZNq6apXDVEMjG21f/Project-1?node-id=12%3A0) or [PDF](README-attachments/Wireframe.pdf)
+A copy of the original wireframe can be found here: [Figma](https://www.figma.com/file/3Yqx3U9HCWVm7PZprEhVEt/MS2?node-id=0%3A1) or [PDF](README-attachments/Wireframe.pdf)
+
+The PDF contains additional explanation on the intention of each Tile.
 
 Whilst my wireframe did not incoproate the footer, I knew that I would likely want to add this at a later point.  The contents would be minimal and yet to be decided, as the would be subsidiary to the other information provided.
 
@@ -69,15 +95,17 @@ The colour pallette can be viewed [HERE](http://paletton.com/#uid=c0w3k0Z3N0k6hj
 
 ### Typography
 
-The Montserrat font is the main font used throughout the whole website with Sans Serif as the fallback font in case for any reason the font isn't being imported into the site correctly. Montserrat is a clean font used frequently in programming, so it is both attractive and appropriate.
+The Rubik font is the only font used throughout the whole website with Sans Serif as the fallback font in case for any reason the font isn't being imported into the site correctly. 
 
-Whilst acknowledged that this font has been used frequently in the Code Institute course to date, after experimenting with a few other fonts, I still felt that it is the most appropriate font to use for this project for the reasons noted.
-
+Rubik was selected as a super-clean, legibile front that display clearly on the Tiles.  
+<br>
 
 ### Imagery
 
-As the website is meant to be functional, there is no background images and limited background colours utilised to maintain a clear, crisp display that is functional and distraction-free for users.  Whilst images are of course important to provide context and understanding to a user, they are limited to the gallery (images of the Park and the projects) and corporate logos.
+Imagery is limited to the Photo tile.  The imagery is sourced from Google Places via the Maps Javascript API (as opposed to the Places API, which places restrictions on search without upgrading to the paid version and also does not function with Javascript API retrieval methods due to header conflicts).  
+<br>
 
+___
 
 ## Features
 
