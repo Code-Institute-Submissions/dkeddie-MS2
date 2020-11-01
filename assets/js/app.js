@@ -296,7 +296,7 @@ async function graphData() {
 // Today's Temp Tile - Weatherapi.com
 
 async function currentWeather() {
-  const response = await fetch(`http://api.weatherapi.com/v1/current.json?key=3061f2bda70e40c4a77180232201810&q=${destination}`);
+  const response = await fetch(`https://api.weatherapi.com/v1/current.json?key=3061f2bda70e40c4a77180232201810&q=${destination}`);
   const weatherNowData = await response.json();
   const weatherNowTemp = weatherNowData.current.temp_c;
   const weatherNowImage = weatherNowData.current.condition.icon;
