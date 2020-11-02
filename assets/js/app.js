@@ -68,6 +68,9 @@ document.getElementById('destination').addEventListener('keyup', function (e) {
       getFlightData();
       setMap();
     }, 600);
+    setTimeout(() => {
+      getPhoto();
+    }, 800);
   }
 });
 
@@ -397,18 +400,21 @@ async function getFlightData() {
 function getPhoto() {
   var map;
   var rotateImages = []
-  var mylatlng = 0
+  // var mylatlng = 0
+  console.log(dLat)
 
   function initialize() {
     mylatlng = new google.maps.LatLng(dLat, dLng);
+    console.log(mylatlng);
     map = new google.maps.Map({});
     var request = {
       location: mylatlng,
       radius: 500,
-      query: ['points of interest'],
+      query: ['point of interest'],
       // type: ['park', 'museum', 'cafe'],
       // rankBy: google.maps.places.RankBy.PROMINENCE,
     };
+    console.log(request)
 
     var service = new google.maps.places.PlacesService(map);
     service.textSearch(request, callback);
@@ -422,13 +428,15 @@ function getPhoto() {
     }
   }
 
-  google.maps.event.addDomListener(document.getElementById('destination'), 'keyup', (e) => {
-    if (e.keyCode === 13) {
-      setTimeout(() => {
-        initialize();
-      }, 600);
-    }
-  })
+  // google.maps.event.addDomListener(document.getElementById('destination'), 'keyup', (e) => {
+  //   if (e.keyCode === 13) {
+  //     setTimeout(() => {
+  //       initialize();
+  //     }, 600);
+  //   }
+  // })
+
+  initialize()
 
   let i = 0;
 
@@ -464,7 +472,7 @@ function getPhoto() {
     $('#imageBox').css('background-image', `url("${rotateImages[i].photos[0].getUrl({ 'maxWidth': 500, 'maxHeight': 500 })}")`)
   })
 }
-getPhoto()
+
 
 
 // RELOAD PAGE TO START AGAIN
