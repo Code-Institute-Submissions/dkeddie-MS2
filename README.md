@@ -146,11 +146,15 @@ Google fonts is used to import the 'Rubik' font into the style.css file which is
 * [Chart.js](https://www.chartjs.org/)  
 Chart.js is used to display the monthly average temperatures and rainfalls.
 
-* [Google Maps Javascript API](https://developers.google.com/maps/documentation/javascript/overview) including [Styling Wizard](https://mapstyle.withgoogle.com/)  
-Google Maps was used in the footer to provide locations for the Projects.  Functionaly of the maps was limited in terms of zoom, map type and points of interest to maintain a simple viewport of the Park and Project locations only.  
+* [Google Maps Static API](https://developers.google.com/maps/documentation/maps-static/overview)  
+A static map was used for the Map Tile in order to provide users with a visual reference of where their destination is located.
 
-* [jQuery](https://jquery.com/)  
-jQuery came with Bootstrap to make some of the components operate in JavaScript.
+* [Google Maps Javascript API](https://developers.google.com/maps/documentation/javascript/overview) 
+The Javascript API was used for its access to the Google Places library in order to return access to images of the destination.  
+
+* [jQuery, incl UI](https://jquery.com/)  
+jQuery is used for javascript DOM manipulation.  The UI 
+is also library is also for effects to enable smooth transitions for the Tiles.
 
 * [Git](https://git-scm.com/)  
 Git was used for version control by utilizing the Gitpod terminal to commit to Git and Push to GitHub.
@@ -160,9 +164,6 @@ GitHub is used to store the projects code after being pushed from Git.
 
 * [Figma](https://www.figma.com/)  
 Figma was used to create the wireframes during the design process.
-
-* [Paletton](https://paletton.com/)  
-Paletton was used to create a pallette of colours that supported the main colour of the website, which is based on one of the company logos.
 
 * [Kapwing](https://www.kapwing.com/)
 Kapwing used for editing videos and creating GIFs used in this README file.

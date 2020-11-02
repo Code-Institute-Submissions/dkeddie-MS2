@@ -481,3 +481,4 @@ function getPhoto() {
 $('#reset').click(function () {
   location.reload()
 });
+
