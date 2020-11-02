@@ -152,8 +152,6 @@ showMonth();
 let weatherData = []
 let weatherDataTemps = []
 
-// let urlWeather = 0
-
 async function getWeather() {
 
   try {
@@ -444,22 +442,7 @@ function getPhoto() {
     }
   }
 
-  // console.log(results)
-
-  // function rotatePictures(results) {
-  // $('#imageForward').click((j++) => {
-  //   for (var j = 0; j < 10; j++) {
-  //     j++;
-  //     $('#imageBox').css('background-image', `url("${rotateImages[j].photos[0].getUrl({ 'maxWidth': 500, 'maxHeight': 500 })}")`);
-  //     console.log(j);
-  //     return
-
-  //   }
-  // $('#imageBox').hide('slow')
-  // console.log(rotateImages)
-  // })
-  // }
-
+  // Rotate photos with forward/back buttons
   $('#imageForward').click(() => {
     if (i <= 9) {
       i++
@@ -486,5 +469,5 @@ getPhoto()
 // RELOAD PAGE TO START AGAIN
 
 $('#reset').click(function () {
-  location.reload()
+  location.reload(true)
 });
