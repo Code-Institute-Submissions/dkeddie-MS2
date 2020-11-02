@@ -62,7 +62,7 @@ document.getElementById('destination').addEventListener('keyup', function (e) {
     setTimeout(() => {
       getWeather();
       currentWeather();
-    }, 400);
+    }, 300);
     setTimeout(() => {
       graphData();
       getFlightData();
@@ -183,6 +183,7 @@ async function getWeather() {
     weatherDataTemps = weatherData.map((months, index) => {
       return weatherData[index].tavg;
     });
+    console.log(weatherDataTemps)
     weatherDataPrcp = weatherData.map((months, index) => {
       return weatherData[index].prcp;
     });
@@ -210,9 +211,9 @@ document.getElementById('month').addEventListener('click', () => {
 
 // GRAPH TILE
 async function graphData() {
-  if (weatherDataTemps.length !== 0) {
+  try {
     const stepTwo = await getWeather()
-    console.log(weatherDataTemps.length)
+    console.log(weatherDataTemps)
     var ctx = await document.getElementById('myChart').getContext('2d');
     var chart = await new Chart(ctx, {
       // The type of chart we want to create
@@ -286,7 +287,7 @@ async function graphData() {
       }
     });
     $('#weatherChart').show('slow')
-  } else {
+  } catch {
     $('#weatherChart').show('slow')
     $('#weatherChartContainer').html("<h2>Weather Data has not loaded.  Please try again to retrieve Weather Data for your chosen destination</h2>").css('margin-top', '40px')
   }
