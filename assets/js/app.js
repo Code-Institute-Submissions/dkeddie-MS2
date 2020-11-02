@@ -397,9 +397,10 @@ async function getFlightData() {
 function getPhoto() {
   var map;
   var rotateImages = []
+  var mylatlng = 0
 
   function initialize() {
-    var mylatlng = new google.maps.LatLng(dLat, dLng);
+    mylatlng = new google.maps.LatLng(dLat, dLng);
     map = new google.maps.Map({});
     var request = {
       location: mylatlng,
@@ -469,5 +470,5 @@ getPhoto()
 // RELOAD PAGE TO START AGAIN
 
 $('#reset').click(function () {
-  location.reload(true)
+  location.reload()
 });
