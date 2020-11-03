@@ -239,7 +239,7 @@ async function graphData() {
 
       // Configuration options go here
       options: {
-        // maintainAspectRatio: 'false',
+        maintainAspectRatio: 'false',
         legend: {
           display: false
         },

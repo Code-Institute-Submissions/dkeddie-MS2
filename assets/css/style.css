@@ -123,6 +123,18 @@ a:hover {
   margin: 25px;
 }
 
+@media only screen and (max-width: 500px) {
+  .rectangle {
+    width: 80vw;
+    min-width: 200px;
+    padding-top: 8%;
+    border: 15px solid white;
+    background-color: white;
+    border-radius: 25px;
+    margin: 25px;
+  }
+}
+
 .square {
   min-width: 200px;
   max-width: 200px;
@@ -183,12 +195,16 @@ a:hover {
 #weatherChartContainer {
   position: relative;
   margin: auto;
-  top: 12px;
-  height: 90%;
-  width: 85%;
+  width: 85vw;
   }
 
+canvas {
+  max-width: 95vw;
+  min-height: 100%;
+}
+
 #myChart {
+  padding-bottom: 20px;
 }
 
 /* Month Box */
@@ -315,12 +331,7 @@ a:hover {
   font-weight: 600;
 }
 
-#imageBox {
-  border: 0px solid white;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: 50% 50%;
-}
+
 
 #noFlightPrice {
   display: none;
@@ -328,8 +339,13 @@ a:hover {
 }
 
 /* Photo Tile Box */
+
 #imageBox {
   display: none;
+  border: 0px solid white;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
 }
 
 #imageForward {
