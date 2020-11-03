@@ -33,10 +33,6 @@ a:hover {
   padding-bottom: 25px;
 }
 
-
-
-
-
 #currentLocation {
   color: inherit;
   text-align: center;
@@ -181,10 +177,6 @@ a:hover {
   display: none;
 }
 
-#weatherChart {
-  display: none;
-}
-
 #flightCostBox {
   display: none;
 }
@@ -192,8 +184,8 @@ a:hover {
 /* Weather Chart Graph */
 
 #weatherChartContainer {
-  position: absolute;
-  margin: auto;
+  display: none;
+  position: relative;
   width: 85vw;
   }
 

@@ -286,9 +286,9 @@ async function graphData() {
         }
       }
     });
-    $('#weatherChart').show('slow')
+    $('#weatherChartContainer').show('slow')
   } catch {
-    $('#weatherChart').show('slow')
+    $('#weatherChartContainer').show('slow')
     $('#weatherChartContainer').html("<h2>Weather Data has not loaded.  Please try again to retrieve Weather Data for your chosen destination</h2>").css('margin-top', '40px')
   }
 }
