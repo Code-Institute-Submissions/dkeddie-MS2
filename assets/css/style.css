@@ -28,9 +28,13 @@ a:hover {
 #bigBox {
   font-family: 'Rubik', sans-serif;
   width: 100%;
+  max-width: 1500px;
   height: 100%;
   background-color: #ffed03;
+  position: relative;
   padding-bottom: 25px;
+  border-radius: 25px;
+  margin-top: 25px;
 }
 
 #currentLocation {
