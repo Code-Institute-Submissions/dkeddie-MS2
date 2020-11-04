@@ -56,9 +56,6 @@ $('#currentLocation').focus()
 // After origin / destination input
 document.getElementById('destination').addEventListener('keyup', function (e) {
   if (e.keyCode === 13) {
-    // setTimeout(() => {
-    //   getData();
-    // }, 200);
     setTimeout(() => {
       getWeather();
       currentWeather();
@@ -66,10 +63,10 @@ document.getElementById('destination').addEventListener('keyup', function (e) {
     setTimeout(() => {
       graphData();
       getFlightData();
-      setMap();
     }, 600);
     setTimeout(() => {
       getPhoto();
+      setMap();
     }, 800);
   }
 });
