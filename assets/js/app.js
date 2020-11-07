@@ -44,6 +44,8 @@ function autoComplete() {
     type: 'city',
     aroundLatLngViaIP: false,
   });
+
+  
 }
 autoComplete();
 
