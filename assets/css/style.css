@@ -46,10 +46,9 @@ a:hover {
   height: 100px;
   margin-top: 50px;
   margin-bottom: 25px;
-  /* margin-left: 25px;
-  margin-right: 25px; */
   padding: 0px;
   display: block;
+  border-style: none;
   border-radius: 25px;
   background-color: white;
 }
@@ -145,7 +144,7 @@ a:hover {
   max-width: 1500px;
 }
 
-/* Algolia Styling */
+/* Algolia Styling - for Currect Location and Destination Search */
 
 .algolia-places {
   style: false
@@ -159,12 +158,7 @@ a:hover {
   right: 10px;
 }
 
- {
-  display: none;
-}
-
-
-/* Toggle */
+/* Toggle Tiles to be off at Initial load -*/
 
 #localHeader {
   display: block;
@@ -173,18 +167,19 @@ a:hover {
   display: none;
 }
 
-#allTiles {
+#weatherChartContainer,
+#month,
+#aveTemp,
+#todayTemp,
+#mapBox,
+#flightCostBox,
+#imageBox {
   display: none;
 }
 
-#flightCostBox {
-  display: none;
-}
-
-/* Weather Chart Graph */
+/* Weather Chart Tile */
 
 #weatherChartContainer {
-  display: none;
   position: relative;
   width: 85vw;
   }
@@ -199,22 +194,11 @@ canvas {
   padding-bottom: 35px;
 }
 
-/* Month Box */
-#month {
-  display: none;
-}
+/* Month Tile */
 
 #monthName {
   text-align: center;
-  /* margin-top: 50%;
-  transform: translate(0, -50%); */
 }
-
-/* #month h1, #month i {
-  display: inline-block;
-  vertical-align: middle;
-  margin: 10px 3px;
-} */
 
 #monthName h1 {
   position: absolute;
@@ -256,11 +240,7 @@ canvas {
   display: none;
 }
 
-/* Average Temperature Box */
-
-#aveTemp {
-  display: none;
-}
+/* Average Temperature Tile */
 
 #aveTempAlign {
   text-align: center;
@@ -272,11 +252,7 @@ canvas {
   font-size: 60px;
 }
 
-/* Today Temp Box */
-
-#todayTemp {
-  display: none;
-}
+/* Today Temp Tile */
 
 #todayTempAlign{
   text-align: center;
@@ -301,7 +277,6 @@ canvas {
 /* Map Tile */
 
 #mapBox {
-  display: none;
   position: relative;
   border: 0px solid white;
   background-size: cover;
@@ -320,7 +295,7 @@ canvas {
 }
 
 
-/* Flight Cost Box */
+/* Flight Cost Tile */
 
 #flightCostBoxAlign {
   text-align: center;
@@ -341,17 +316,14 @@ canvas {
   font-weight: 600;
 }
 
-
-
 #noFlightPrice {
   display: none;
   font-size: 16px;
 }
 
-/* Photo Tile Box */
+/* Photo Tile */
 
 #imageBox {
-  display: none;
   border: 0px solid white;
   background-size: cover;
   background-repeat: no-repeat;
