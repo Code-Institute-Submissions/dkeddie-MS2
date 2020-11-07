@@ -182,18 +182,19 @@ Screen Recorder used for creating videos (edited in Kapwing) of website features
 
 **1** | **As a user, I want to be able to find a possible travel destination**
 ---------|----------------
-(a) | Users can load destinations into the search bar to select destinations.  The search bar is restricted so that the parameters is restricted to cities (although this includes towns) 
-(b) | ![Destination Search](/README-attachments/Destination.gif "Destination Search")
+(a) | Users can load destinations into the search bar to select destinations.  
+(b)) | The search bar is restricted to towns and cities, so the search bar can be specific and not over-loaded with the likes of street names.
+(c) | ![Destination Search](/README-attachments/Destination.gif "Destination Search")
 ________________
 
 <br>
 
 **2** | **As a user, I want to be able check the location of the travel destination**
 ---------|----------------
-(a) | In order for users to be able to confirm that the correct destination has been selected, a map is included on the panel.
-(b) | A cross-hair indicates the location of the destination selected.
-(c) | Users can see the country, and surrounding countries, of the destination selected.
-(d) | ![Map](/README-attachments/Map.jpg "Map")
+- | In order for users to be able to confirm that the correct destination has been selected, a map is included on the panel.
+- | A cross-hair indicates the location of the destination selected.
+- | Users can see the country, and surrounding countries, of the destination selected.
+- | ![Map](/README-attachments/Map.jpg "Map")
 _____________
 
 <br>
