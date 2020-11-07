@@ -183,7 +183,7 @@ Screen Recorder used for creating videos (edited in Kapwing) of website features
 **1** | **As a user, I want to be able to find a possible travel destination**
 ---------|----------------
 (a) | Users can load destinations into the search bar to select destinations.  
-(b)) | The search bar is restricted to towns and cities, so the search bar can be specific and not over-loaded with the likes of street names.
+(b) | The search bar is restricted to towns and cities, so the search bar can be specific and not over-loaded with the likes of street names.
 (c) | ![Destination Search](/README-attachments/Destination.gif "Destination Search")
 ________________
 
@@ -191,10 +191,10 @@ ________________
 
 **2** | **As a user, I want to be able check the location of the travel destination**
 ---------|----------------
-- | In order for users to be able to confirm that the correct destination has been selected, a map is included on the panel.
-- | A cross-hair indicates the location of the destination selected.
-- | Users can see the country, and surrounding countries, of the destination selected.
-- | ![Map](/README-attachments/Map.jpg "Map")
+(a) | In order for users to be able to confirm that the correct destination has been selected, a map is included on the panel.
+(b) | A cross-hair indicates the location of the destination selected.
+(c) | Users can see the country, and surrounding countries, of the destination selected.
+(d) | ![Map](/README-attachments/Map.jpg "Map")
 _____________
 
 <br>
@@ -202,41 +202,41 @@ _____________
 **3** | **As a user of the site, I want to be able to see typical weather conditions of that destination**
 ---------|----------------
 **4** | **As a user, I want to be able to determine the best months to visit the destination**
-- | Once the destination is loaded, the panel displays two past trends of weather for that place, the average temperature and rainfall for each month in the form of a Line Chart.
-- | The Chart will show the warmest and dryest months to visit a destination, two factors which help to determine the best months to visit a destination.
-- | To see the average temperature of each month, scroll through the months to read the temperature in degrees celsius.
-- |![Typical Weather](/README-attachments/TypicalWeather.gif "Typical Weather")
+(a) | Once the destination is loaded, the panel displays two past trends of weather for that place, the average temperature and rainfall for each month in the form of a Line Chart.
+(b) | The Chart will show the warmest and dryest months to visit a destination, two factors which help to determine the best months to visit a destination.
+(c) | To see the average temperature of each month, scroll through the months to read the temperature in degrees celsius.
+(d) |![Typical Weather](/README-attachments/TypicalWeather.gif "Typical Weather")
 _____________
 
 <br>
 
 **5** | **As a user, I want to see the current weather in the chosen destination**
 ---------|----------------
-- | A currerent weather tile is included on the page.
-- | ![Current Weather](/README-attachments/CurrentWeather.jpg  "Current Weather")
+(a) | A currerent weather tile is included on the page.
+(b) | ![Current Weather](/README-attachments/CurrentWeather.jpg  "Current Weather")
 _____________
 
 <br>
 
 **6** | **As a user, I would like to find out the cost of travelling to this destination**
 ---------|----------------
-- | A flight price tile is included on the page.
-- | ![Flight Price](README-attachments/FlightPrice.jpg "Flight Price")
-- | The price of the flight of is the lowest price returned from Skyscanner for the destination.
-- | The price is based on the current month selected
-- | ![Flight Price by Month](README-attachments/FlightPriceMonth.gif "Flight Price by Month")
-- | Users can click on the Flight Price Tile to go to Skyscanner and search flight prices in more detail
-- | ![Link to Skyscanner](README-attachments/LinkToSkyscanner.gif "Link to Skyscanner")
-- | Where it is not possible to return flight prices, users can still click on the Flight Price Tile to direct them to Skyscanner.net.
-- | ![No Flight Price Available](README-attachments/NoFlightPrices.gif "No Flight Price Available")
+(a) | A flight price tile is included on the page.
+(b) | ![Flight Price](README-attachments/FlightPrice.jpg "Flight Price")
+(c) | The price of the flight of is the lowest price returned from Skyscanner for the destination.
+(d) | The price is based on the current month selected
+(e) | ![Flight Price by Month](README-attachments/FlightPriceMonth.gif "Flight Price by Month")
+(f) | Users can click on the Flight Price Tile to go to Skyscanner and search flight prices in more detail
+(g) | ![Link to Skyscanner](README-attachments/LinkToSkyscanner.gif "Link to Skyscanner")
+(h) | Where it is not possible to return flight prices, users can still click on the Flight Price Tile to direct them to Skyscanner.net.
+(i) | ![No Flight Price Available](README-attachments/NoFlightPrices.gif "No Flight Price Available")
 _____________
 
 <br>
 
 **7** | **As a user, I would like to see what the place I want like to visit looks like** 
 ---------|----------------
-- | The Photo Tile shows a selection of photos that are 'Points of Interest' at the destination.  
-- | ![Photo Tile](README-attachments/Photos.gif "Photo Tile") 
+(a) | The Photo Tile shows a selection of photos that are 'Points of Interest' at the destination.  
+(b) | ![Photo Tile](README-attachments/Photos.gif "Photo Tile") 
 ____________
 
 <br>

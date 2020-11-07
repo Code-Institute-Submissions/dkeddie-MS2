@@ -69,14 +69,14 @@
 
 
     <div class="container-fluid" id="allTiles">
-      <!-- Row 1 -->
+
       <div class="row no-gutters justify-content-center flex-wrap">
+
         <!-- Weather Chart Tile -->
-        <!-- <div class="col rectangle" id="weatherChart" class="hidden"> -->
-          <div class="col rectangle fontColor" id="weatherChartContainer">
-            <canvas id="myChart"></canvas>
-          </div>
-        <!-- </div> -->
+        <div class="col rectangle fontColor" id="weatherChartContainer">
+          <canvas id="myChart"></canvas>
+        </div>
+
         <!-- Month Select Tile -->
         <div class="col square" id="month">
           <div class="fontColor" id="monthName">
@@ -86,6 +86,7 @@
             <h6 id="fullDate"></h6>
           </div>
         </div>
+
         <!-- Average Temperature Tile -->
         <div class="col square" id="aveTemp">
           <div class="fontColor" id="aveTempAlign">
@@ -93,59 +94,55 @@
             <h1 id="temp"></h1>
           </div>
         </div>
+
         <!-- Today's Temperature Tile -->
         <div class="col square" id="todayTemp">
           <div class="fontColor" id="todayTempAlign">
-            <h2>Today <img id="weatherNowImage" src=""></h2>
+            <h2>Today <img id="weatherNowImage" src="" alt="Weather Conditions"></h2>
             <h1 id="weatherNowTemp"></h1>
           </div>
-          <!-- </div> -->
         </div>
 
-        <!-- Row 2 -->
-        <!-- <div class="row no-gutters justify-content-center"> -->
         <!-- Map Box -->
         <div class="col rectangle" id="mapBox">
           <img src="assets/images/crosshair.png" alt="Crosshair">
         </div>
+
         <!-- Flight Cost Box -->
-        <a href="https://www.skyscanner.net" target="_blank" id="ssLink">
-          <div class="col square" id="flightCostBox">
+        <div class="col square" id="flightCostBox">
+          <a href="https://www.skyscanner.net" target="_blank" id="ssLink">
             <div class="fontColor" id="flightCostBoxAlign">
               <i class="fas fa-plane-departure"></i>
               <h1 id="flightPrice"></h1>
               <h4 id="noFlightPrice">Go to Skyscanner for Prices</h4>
             </div>
-        </a>
-      </div>
+          </a>
+        </div>
 
-      <!-- Photo Tile -->
-      <div class="col rectangle" id="imageBox">
-        <i class="fas fa-caret-left" id="imageBack"></i>
-        <i class="fas fa-caret-right" id="imageForward"></i>
-      </div>
+        <!-- Photo Tile -->
+        <div class="col rectangle" id="imageBox">
+          <i class="fas fa-caret-left" id="imageBack"></i>
+          <i class="fas fa-caret-right" id="imageForward"></i>
+        </div>
 
+      </div>
 
     </div>
   </div>
+
   <footer>
-    <!-- <div class="container"> -->
-      <a href="mailto:mail@test.com">
-        <h4><i class="far fa-paper-plane"></i> Please email any comments or feedback</h4>
-      </a>
-    <!-- </div> -->
+    <a href="mailto:mail@test.com">
+      <h4><i class="far fa-paper-plane"></i> Please email any comments or feedback</h4>
+    </a>
   </footer>
 
   </div>
 
-
-
+  <!-- CDN link for Algolia Place Search -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/places.js/1.19.0/places.min.js"></script>
 
+  <!-- Link to Javascript -->
   <script src="assets/js/app.js"></script>
-
-
-
 
 </body>
 
