@@ -432,7 +432,7 @@ function getPhoto() {
 
   // Rotate photos with forward/back buttons
   $('#imageForward').click(() => {
-    if (i <= 9) {
+    if (i < rotateImages.length - 1) {
       i++;
     }
     else {
@@ -446,7 +446,7 @@ function getPhoto() {
       i--;
     }
     else {
-      i = 10;
+      i = rotateImages.length - 1;
     }
     $('#imageBox').css('background-image', `url("${rotateImages[i].photos[0].getUrl({ 'maxWidth': 500, 'maxHeight': 500 })}")`);
   });

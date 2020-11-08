@@ -252,12 +252,24 @@ The following errors are raised on the validator:-
 ![HTML Validator Errors](README-attachments/ValidatorErrors.jpg "HTML Validator Errors")  
 
 These errors are associated with the blank headings / fields which will be populated once the Javascript app has run, following the input of the user information and full load of the page.  
-As such, these Erros will be rectified once the page has fully loaded.
+As such, these Errors will be rectified once the page has fully loaded.
 
+<br>
 
-* [W3C CSS Validator](https://jigsaw.w3.org/css-validator/) - [Results](https://jigsaw.w3.org/css-validator/validator?uri=https%3A%2F%2Fdkeddie.github.io%2FMS2%2Fassets%2Fcss%2Fstyle.css&profile=css3svg&usermedium=all&warning=1&vextwarning=&lang=en)
+**[W3C CSS Validator](https://jigsaw.w3.org/css-validator/) - [Results](https://jigsaw.w3.org/css-validator/validator?uri=https%3A%2F%2Fdkeddie.github.io%2FMS2%2Fassets%2Fcss%2Fstyle.css&profile=css3svg&usermedium=all&warning=1&vextwarning=&lang=en)**
 
-There are no errors found on the validation service.
+There are no errors found on the validation service for CSS.
+
+### Javascript Code Quality - JSHint
+
+[JSHint](https://jshint.com/) has been used to check and test the Code Quality of the javascript used on this page.  The Javascript has been updated in line with warnings initially returned.  The following items remain and which are deemed not critical to the functioning of the site:-
+
+- Where warnings of ES6, 8 and 10 have been raised, these have not been ignored, as the main browsers will function with the use of this version of Javascript.
+- There remains one warning, 'Redefinition of 'origin'', hover this is an intented part of the Javascript to be implemented on the page.
+- Undefined variables - these are undefined on the initial page load but become defined after further Javascript has been implemented.
+- Unused variablies - these variables are required for the running of external APIs.
+<br>
+<br>
 
 ### Manual Testing of the Site
 
@@ -285,7 +297,12 @@ During the development of the website, and again as a final, comprehensive and i
 
 The following issues were identified during development of the site:-
 
-* 
+* The following error occurs in the console when both the Current Location and Destination have been inputted, and the Tiles are loaded:-
+!['defaultView' Error](README-attachments/Error-defaultView.jpg "'defaultView' Error")
+No knowwn negative effect has been detected.
+* The following error can occur at times in the console when rotating through the images in the Photo Tile:-
+!['Undefined Property' Error](README-attachments/Error-propertyUndefined.jpg "'Undefined Property' Error")
+Although the image does not change when the Error arises, the images will continue to rotate when the forward/back options are selected.
 
 
 ## Deployment
