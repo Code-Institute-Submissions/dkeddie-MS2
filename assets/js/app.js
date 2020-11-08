@@ -1,4 +1,5 @@
-// "jshint" ran to check for errors
+// "JSHINT" ran at https://jshint.com/ to check for errors
+// The following were excluded 
 // jshint esversion: 6
 // jshint esversion: 8
 // jshint esversion: 10
@@ -305,6 +306,7 @@ function setMap() {
 // Utilisation of Global Variables for information required to retrieve data
 
 async function getFlightData() {
+  let lowestPrice = 0;
   try {
     // Get origin airport ID
     const originNameSearch = await fetch(`https://skyscanner-skyscanner-flight-search-v1.p.rapidapi.com/apiservices/autosuggest/v1.0/UK/GBP/en-GB/?query=${origin}`, {
@@ -348,7 +350,7 @@ async function getFlightData() {
       }
     });
     const data = await response.json();
-    let lowestPrice = data.Quotes[0].MinPrice;
+    lowestPrice = data.Quotes[0].MinPrice;
     console.log(lowestPrice);
 
 
