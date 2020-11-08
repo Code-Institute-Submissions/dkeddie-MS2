@@ -364,15 +364,16 @@ async function getFlightData() {
 
     // Update Tile with link to Skyscanner with pre-inserted search info
     linkURL = `https://www.skyscanner.net/transport/flights/${originNameShort}/${destinationNameShort}/?adults=1&adultsv2=1&cabinclass=economy&children=0&childrenv2=&inboundaltsenabled=false&infants=0&iym=${yearNrShort}${monthNr}&outboundaltsenabled=false&oym=${yearNrShort}${monthNr}&preferdirects=false&preferflexible=false&ref=home&rtn=1&selectedoday=01&selectediday=01`;
+    $('#noFlightPrice').hide('fast');
     $('a[href="https://www.skyscanner.net"]').attr('href', linkURL);
 
   } catch (error) {
     // If no flight prices returned, direct users to Skyscanner.net
     if (lowestPrice === 0) {
+      document.getElementById('flightPrice').innerHTML = "";
       $('#flightCostBox').show('slow');
       $('#noFlightPrice').show('fast');
-    }
-    else {
+    } else {
       $('#noFlightPrice').hide('fast');
       // Prevents both flight prices and fallback statement for no flight prices appearing on the tile concurrently
     }

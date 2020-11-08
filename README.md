@@ -275,14 +275,28 @@ There are no errors found on the validation service for CSS.
 
 The following tests were carried out to ensure functionality before deployment:-
 
-**Test**: Check that website links are functioning (Nav bar)  
+**Test**: Check that page fully loads with different Current Locations and Destinations
 * Steps followed:  
-  * Clicked first link (Overview) in the Navbar;
-  * Checked correct destination/page loads;
-  * Pressed 'Back' to return to page under test;
-  * Proceeded to next link and followed above steps until all links tested.
-  * Proceeded to next page and followed the above steps until all pages tested.
+  * Static Current Location of Dublin for 10 different Destinations tested
+  * 10 different Current Locations with static Destination of Dublin tested
+  * 10 different locations used were:-  
+    1. New York
+    2. Shanghai
+    3. Milan  
+    4. London
+    5. Abu Dhabi
+    6. Los Cristianos
+    7. Florence
+    8. Perth
+    9. Wellington
+    10. Cape Town
+  * Check that all Tiles load
+  * Check that map shows correct Destination
+  * Check that Months Tile rotates when clicked, and Ave Temp and Flight Price changes
+  * Check that images can be rotated on Photos Tile
 * Results:  All links were functioning.
+
+Skyscanner limit
 
 ### Further Testing
 
@@ -297,10 +311,10 @@ During the development of the website, and again as a final, comprehensive and i
 
 The following issues were identified during development of the site:-
 
-* The following error occurs in the console when both the Current Location and Destination have been inputted, and the Tiles are loaded:-
+1. The following error occurs in the console when both the Current Location and Destination have been inputted, and the Tiles are loaded:-
 !['defaultView' Error](README-attachments/Error-defaultView.jpg "'defaultView' Error")
 No knowwn negative effect has been detected.
-* The following error can occur at times in the console when rotating through the images in the Photo Tile:-
+2. The following error can occur at times in the console when rotating through the images in the Photo Tile:-
 !['Undefined Property' Error](README-attachments/Error-propertyUndefined.jpg "'Undefined Property' Error")
 Although the image does not change when the Error arises, the images will continue to rotate when the forward/back options are selected.
 
