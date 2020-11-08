@@ -267,7 +267,9 @@ async function graphData() {
   } catch {
     $('#weatherChartContainer').show('slow');
     $('#weatherChartContainer').html("<h2>Weather Data has not loaded.  <br><br>Please reload the page and start again.</h2>");
-    $('#weatherChartContainer > h2').css('margin', '40px 20px');
+    $('#weatherChartContainer > h2').css('margin', '60px 20px');
+    // Hide months again if no Weather Data loads
+    $('#month').hide();
   }
 }
 
@@ -294,10 +296,11 @@ function setMap() {
     const url = `https://maps.googleapis.com/maps/api/staticmap?center=${dLat},${dLng}&zoom=5&size=800x800&scale2&key=AIzaSyBKd5I7u1oc_iX8wrBze-LNNmiHFPqdtCI`;
     document.getElementById('mapBox').style.backgroundImage = `url("${url}")`;
     $('#mapBox').show('slow');
+    // If map loads, then this will allow the following functions to load
     getFlightData();
     getPhoto();
   } else {
-    alert("Destination has not register.  Please refresh the page and try again")
+    alert("Error with loading your Destination.  Please refresh the page and try again, taking care to enter a recognised place in the Search Bar")
   }
 }
 
