@@ -10,6 +10,7 @@
 let destination;
 let address;
 let origin;
+let currentPlace;
 
 // current locations
 let dLat;
@@ -17,7 +18,7 @@ let dLng;
 
 // Algolia AutoComplete Places Search: https://www.algolia.com/
 function autoComplete() {
-  var currentPlace = places({
+  currentPlace = places({
     appId: 'pl3QLZ5PGJOK',
     apiKey: '17ed7fe7c8a13ca6a53f86095b7cde31',
     container: document.querySelector('#currentLocation'),
@@ -61,10 +62,8 @@ document.getElementById('destination').addEventListener('keyup', function (e) {
     }, 300);
     setTimeout(() => {
       graphData();
-      getFlightData();
     }, 600);
     setTimeout(() => {
-      getPhoto();
       setMap();
     }, 800);
   }
@@ -79,7 +78,6 @@ function getCurrentLocation() {
       origin = document.getElementById('currentLocation').value;
       $('#localHeader').hide('slow');
       $('#destHeader').show('slow');
-      $('#allTiles').show('slow');
       $('#destination').focus();
     }
   });
@@ -268,11 +266,12 @@ async function graphData() {
     $('#weatherChartContainer').show('slow');
   } catch {
     $('#weatherChartContainer').show('slow');
-    $('#weatherChartContainer').html("<h2>Weather Data has not loaded.  Please try again to retrieve Weather Data for your chosen destination</h2>").css('margin-top', '40px');
+    $('#weatherChartContainer').html("<h2>Weather Data has not loaded.  <br><br>Please reload the page and start again.</h2>");
+    $('#weatherChartContainer > h2').css('margin', '40px 20px');
   }
 }
 
-// TODAY'S TEMPERATURE TILE-------------------------------------------------------->
+// TODAY'S TEMPERATURE ---------------------------------------->
 
 // Fetched from Weatherapi.com - also incorporates push of data to tile
 
@@ -291,9 +290,15 @@ async function currentWeather() {
 // Static Google Maps Tile - utilisation of coordinates stored in Globabl Variables
 
 function setMap() {
-  const url = `https://maps.googleapis.com/maps/api/staticmap?center=${dLat},${dLng}&zoom=5&size=800x800&scale2&key=AIzaSyBKd5I7u1oc_iX8wrBze-LNNmiHFPqdtCI`;
-  document.getElementById('mapBox').style.backgroundImage = `url("${url}")`;
-  $('#mapBox').show('slow');
+  if (dLat != undefined && dLng != undefined) {
+    const url = `https://maps.googleapis.com/maps/api/staticmap?center=${dLat},${dLng}&zoom=5&size=800x800&scale2&key=AIzaSyBKd5I7u1oc_iX8wrBze-LNNmiHFPqdtCI`;
+    document.getElementById('mapBox').style.backgroundImage = `url("${url}")`;
+    $('#mapBox').show('slow');
+    getFlightData();
+    getPhoto();
+  } else {
+    alert("Destination has not register.  Please refresh the page and try again")
+  }
 }
 
 
@@ -449,3 +454,10 @@ $('#reset').click(function () {
   location.reload();
 });
 
+function hideAll() {
+  // $('#month').hide();
+  // $('#aveTemp').hide();
+  // $('#mapBox').hide();
+  // $('#flightCostBox').hide();
+  $('#imageBox').hide();
+}
