@@ -176,7 +176,6 @@ async function getWeather() {
     weatherDataTemps = weatherData.map((months, index) => {
       return weatherData[index].tavg;
     });
-    console.log(weatherDataTemps);
     weatherDataPrcp = weatherData.map((months, index) => {
       return weatherData[index].prcp;
     });
@@ -208,7 +207,6 @@ document.getElementById('month').addEventListener('click', () => {
 async function graphData() {
   try {
     const stepTwo = await getWeather();
-    console.log(weatherDataTemps);
     var ctx = await document.getElementById('myChart').getContext('2d');
     var chart = await new Chart(ctx, {
       // The type of chart we want to create
@@ -318,7 +316,6 @@ async function getFlightData() {
     });
     const originNameData = await originNameSearch.json();
     const originNameID = await originNameData.Places[0].CityId;
-    console.log(originNameID);
     const originNameShort = await originNameID.split('-', 1)[0];
 
     // Get destination airport ID
@@ -351,7 +348,6 @@ async function getFlightData() {
     });
     const data = await response.json();
     lowestPrice = data.Quotes[0].MinPrice;
-    console.log(lowestPrice);
 
 
     // Send lowest flight price to HTML and Show Tile
@@ -390,18 +386,15 @@ $('#month').click(function () {
 function getPhoto() {
   var map;
   var rotateImages = [];
-  console.log(dLat);
 
   function initialize() {
     mylatlng = new google.maps.LatLng(dLat, dLng);
-    console.log(mylatlng);
     map = new google.maps.Map({});
     var request = {
       location: mylatlng,
       radius: 500,
       query: ['point of interest'],
     };
-    console.log(request);
 
     var service = new google.maps.places.PlacesService(map);
     service.textSearch(request, callback);
@@ -411,7 +404,6 @@ function getPhoto() {
     if (status == google.maps.places.PlacesServiceStatus.OK) {
       showFirstPicture(results);
       rotateImages = results;
-      console.log(results);
     }
   }
 
@@ -424,7 +416,6 @@ function getPhoto() {
       if (results[i].photos != null) {
         $('#imageBox').css('background-image', `url("${results[i].photos[0].getUrl({ 'maxWidth': 500, 'maxHeight': 500 })}")`);
         $('#imageBox').show('slow');
-        console.log(results);
         break;
       }
     }
