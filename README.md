@@ -294,9 +294,14 @@ The following tests were carried out to ensure functionality before deployment:-
   * Check that map shows correct Destination
   * Check that Months Tile rotates when clicked, and Ave Temp and Flight Price changes
   * Check that images can be rotated on Photos Tile
-* Results:  All links were functioning.
+* Results:  Page loads in all scenarios but the following limitations are sometimes observed when carrying out the full test  
+    * Flight Prices may not always be returned.  That can be for a number of reasons, including:-  
+        1. The place name returned by Algolia is not recognised by Skyscanner.net.  For example, London is called City of London in Algolia and is therefore not regognised by Skyscanner.  
+        2. Requests to Skyscanner API may be exceeded if used too much or to quickly.  This is a limitation of the open API available.  
+        3. There may be no Flights available in that month.  
 
-Skyscanner limit
+        A Catch statement has been put in place for when the above 3 items occur, so that Users are directed to Skyscanner.net to be able to check prices manually.  The Tile may also toggle as appropriate when rotating through the months to show prices.
+    * Some city or town names may be the same in different countries, e.g. Perth.  The web page defaults only to the top selection, Perth, WA.  This is a current bug which will need to be rectified.
 
 ### Further Testing
 
@@ -317,6 +322,7 @@ No knowwn negative effect has been detected.
 2. The following error can occur at times in the console when rotating through the images in the Photo Tile:-
 !['Undefined Property' Error](README-attachments/Error-propertyUndefined.jpg "'Undefined Property' Error")
 Although the image does not change when the Error arises, the images will continue to rotate when the forward/back options are selected.
+3. A city or town with the same name in different locations will only return information on the top return.  For example, Perth will only return Perth, WA.  
 
 
 ## Deployment
