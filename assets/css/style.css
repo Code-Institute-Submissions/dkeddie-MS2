@@ -145,10 +145,6 @@ a:hover {
 
 /* Algolia Styling - for Currect Location and Destination Search */
 
-.algolia-places {
-  style: false
-}
-
 .ap-icon-pin, .ap-icon-clear {
   display: none;
 }
