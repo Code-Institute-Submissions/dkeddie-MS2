@@ -10,42 +10,62 @@
 let destination;
 let address;
 let origin;
-let currentPlace;
+// let currentPlace;
+// let destPlace;
 
 // current locations
 let dLat;
 let dLng;
 
 // Algolia AutoComplete Places Search: https://www.algolia.com/
-function autoComplete() {
-  currentPlace = places({
+function currentPlace() {
+  var placesAutocomplete = places({
     appId: 'pl3QLZ5PGJOK',
     apiKey: '17ed7fe7c8a13ca6a53f86095b7cde31',
     container: document.querySelector('#currentLocation'),
-    templates: {
-      value: function (suggestion) {
-        return suggestion.name;
-      }
-    }
+    // templates: {
+    //   value: function (suggestion) {
+    //     return suggestion.name;
+    //   }
+    // }
   }).configure({
     type: 'city',
     aroundLatLngViaIP: false,
   });
-  var destPlace = places({
+  var $address = document.querySelector('#currentLocation')
+  placesAutocomplete.on('change', function (e) {
+    $address.textContent = e.suggestion.value
+  });
+
+  placesAutocomplete.on('clear', function () {
+    $address.textContent = 'none';
+  });
+}
+function destPlace() {
+  var placesAutocomplete = places({
     appId: 'pl3QLZ5PGJOK',
     apiKey: '17ed7fe7c8a13ca6a53f86095b7cde31',
     container: document.querySelector('#destination'),
-    templates: {
-      value: function (suggestion) {
-        return suggestion.name;
-      }
-    }
+    // templates: {
+    //   value: function (suggestion) {
+    //     return suggestion.name;
+    //   }
+    // }
   }).configure({
     type: 'city',
     aroundLatLngViaIP: false,
   });
+  var $address = document.querySelector('#destination')
+  placesAutocomplete.on('change', function (e) {
+    $address.textContent = e.suggestion.value
+  });
+
+  placesAutocomplete.on('clear', function () {
+    $address.textContent = 'none';
+  });
 }
-autoComplete();
+currentPlace();
+destPlace();
 
 
 // PAGE LOADING STEPS ---------------------------------------------->
@@ -66,6 +86,8 @@ document.getElementById('destination').addEventListener('keyup', function (e) {
     setTimeout(() => {
       setMap();
     }, 800);
+    console.log(currentPlace)
+    console.log(destPlace)
   }
 });
 

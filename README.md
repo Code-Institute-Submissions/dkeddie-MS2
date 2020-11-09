@@ -301,7 +301,7 @@ The following tests were carried out to ensure functionality before deployment:-
         3. There may be no Flights available in that month.  
 
         A Catch statement has been put in place for when the above 3 items occur, so that Users are directed to Skyscanner.net to be able to check prices manually.  The Tile may also toggle as appropriate when rotating through the months to show prices.
-    * Some city or town names may be the same in different countries, e.g. Perth.  The web page defaults only to the top selection, Perth, WA.  This is a current bug which will need to be rectified.
+    * **[Bug now fixed]** *Some city or town names may be the same in different countries, e.g. Perth.  The web page defaults only to the top selection, Perth, WA.  This is a current bug which will need to be rectified.* **[Bug now fixed]**
 
 **Test**: Test the page with invalid inputs
 * Steps followed:-
