@@ -303,6 +303,17 @@ The following tests were carried out to ensure functionality before deployment:-
         A Catch statement has been put in place for when the above 3 items occur, so that Users are directed to Skyscanner.net to be able to check prices manually.  The Tile may also toggle as appropriate when rotating through the months to show prices.
     * Some city or town names may be the same in different countries, e.g. Perth.  The web page defaults only to the top selection, Perth, WA.  This is a current bug which will need to be rectified.
 
+**Test**: Test the page with invalid inputs
+* Steps followed:-
+  1. Current Location of 'Dublin' and Destination of 'Asdfasdfasdf' used to test page.
+  2. Current Location of 'Asdfasdfasdf' and Destination of 'Dublin' used to test page.
+  3.  Destination and Current Location of 'Asdfasdfasdf' used to test page.
+* Results:-
+  * Steps 1 and 3 return expected Error alert.
+  ![Invalid Input - Fail](README-attachments/InvalidInputs-Fail.jpg "Invalid Input - Fail")
+  * The page loads under Step 2, however this is to be expected as the Current Location is only required for the Flight Price Tile, which has an option if no prices are returned from the API
+  ![Invalid Input - Still Pass](README-attachments/InvalidInputs-StillPass.jpg "Invalid Input - Still Pass")
+
 ### Further Testing
 
 During the development of the website, and again as a final, comprehensive and in-depth review, the following testing was carried out:-
