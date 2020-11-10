@@ -46,11 +46,6 @@ function destPlace() {
     appId: 'pl3QLZ5PGJOK',
     apiKey: '17ed7fe7c8a13ca6a53f86095b7cde31',
     container: document.querySelector('#destination'),
-    // templates: {
-    //   value: function (suggestion) {
-    //     return suggestion.name;
-    //   }
-    // }
   }).configure({
     type: 'city',
     aroundLatLngViaIP: false,
