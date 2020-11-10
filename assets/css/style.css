@@ -12,7 +12,7 @@ h2 {
 }
 
 .fontColor {
-  color: #d17701;
+  color: #03045E;
 }
 
 .fontColor:hover {
@@ -30,7 +30,7 @@ a:hover {
   width: 100%;
   max-width: 1500px;
   height: 100%;
-  background-color: #ffed03;
+  background-color: #CAF0F8;
   position: relative;
   padding-bottom: 25px;
   border-radius: 25px;
@@ -365,7 +365,7 @@ footer {
 }
 
 footer a {
-  color: white;
+  color: 90E0EF;
   text-align: right;
 }
 
@@ -374,6 +374,6 @@ footer a h4 {
 }
 
 footer h4:hover {
-  color:white;
+  color:90E0EF;
   font-weight: 800;
 }
