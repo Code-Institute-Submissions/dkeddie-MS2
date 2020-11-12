@@ -23,11 +23,6 @@ function currentPlace() {
     appId: 'pl3QLZ5PGJOK',
     apiKey: '17ed7fe7c8a13ca6a53f86095b7cde31',
     container: document.querySelector('#currentLocation'),
-    // templates: {
-    //   value: function (suggestion) {
-    //     return suggestion.name;
-    //   }
-    // }
   }).configure({
     type: 'city',
     aroundLatLngViaIP: false,
@@ -52,12 +47,13 @@ function destPlace() {
   });
   var $address = document.querySelector('#destination')
   placesAutocomplete.on('change', function (e) {
-    $address.textContent = e.suggestion.value
+    $address.textContent = e.suggestion.value;
   });
 
   placesAutocomplete.on('clear', function () {
     $address.textContent = 'none';
   });
+
 }
 currentPlace();
 destPlace();
@@ -68,51 +64,68 @@ destPlace();
 // Initial
 $('#currentLocation').focus();
 
-// After origin / destination input
-document.getElementById('destination').addEventListener('keyup', function (e) {
-  if (e.keyCode === 13) {
-    setTimeout(() => {
-      getWeather();
-      currentWeather();
-    }, 300);
-    setTimeout(() => {
-      graphData();
-    }, 600);
-    setTimeout(() => {
-      setMap();
-    }, 800);
-    console.log(currentPlace)
-    console.log(destPlace)
-  }
-});
+
+// After origin / destination input, run sequence
+function runSequence() {
+  setTimeout(() => {
+    getWeather();
+    currentWeather();
+  }, 300);
+  setTimeout(() => {
+    graphData();
+  }, 600);
+  setTimeout(() => {
+    setMap();
+  }, 800);
+}
 
 
 // GET CURRENT LOCATION ------------------------------------->
 
-function getCurrentLocation() {
-  document.getElementById('currentLocation').addEventListener('keyup', function (e) {
-    if (e.keyCode === 13) {
-      origin = document.getElementById('currentLocation').value;
-      $('#localHeader').hide('slow');
-      $('#destHeader').show('slow');
-      $('#destination').focus();
-    }
-  });
+function loadCL() {
+  origin = $('#currentLocation').val();
+  $('#localHeader').hide('slow');
+  $('#destHeader').show('slow');
+  $('#destination').focus();
 }
-getCurrentLocation();
+
+$('#btnCL').click(loadCL);
+
+$('#currentLocation').keyup(function (e) {
+  if (e.keyCode === 13) {
+    loadCL();
+  }
+})
 
 // GET DESTINATION LOCATION / COORDINATES --------------------------->
 
 function getDestination() {
-  document.getElementById('destination').addEventListener('keyup', function (e) {
-    if (e.keyCode === 13) {
-      destination = document.getElementById('destination').value;
-      $('#month').show('slow');
-      $('#destination').blur();
-    }
-  });
-}
-getDestination();
+  destination = $('#destination').val();
+  $('#month').show('slow');
+  $('#btnDest').toggle();
+  $('#reset').toggle();
+  // $('#destination').blur();
+  runSequence();
+};
+
+$('#btnDest').click(getDestination);
+
+$('#destination').keyup(function (e) {
+  if (e.keyCode === 13) {
+    getDestination();
+  }
+})
+
+// function getDestination() {
+//   document.getElementById('destination').addEventListener('keyup', function (e) {
+//     if (e.keyCode === 13) {
+//       destination = document.getElementById('destination').value;
+//       $('#month').show('slow');
+//       $('#destination').blur();
+//     }
+//   });
+// }
+// getDestination();
 
 // MONTH TILE -------------------------------------------------------->
 
@@ -315,7 +328,7 @@ function setMap() {
     $('#mapBox').show('slow');
     // If map loads, then this will allow the following functions to load
     getFlightData();
-    getPhoto();
+    initialize();
   } else {
     alert("Error with loading your Destination.  Please refresh the page and try again, taking care to enter a recognised place in the Search Bar")
   }
@@ -409,65 +422,60 @@ $('#month').click(function () {
 
 // The below was developed from here (http://answerbig.diary.to/archives/1038987625.html) and here (http://jsfiddle.net/dLxqx3n8/), as well as the Google Maps Platform documentation associated with Maps Javascript API
 
-function getPhoto() {
-  var map;
-  var rotateImages = [];
+var map;
+var rotateImages = [];
 
-  function initialize() {
-    mylatlng = new google.maps.LatLng(dLat, dLng);
-    map = new google.maps.Map({});
-    var request = {
-      location: mylatlng,
-      radius: 500,
-      query: ['point of interest'],
-    };
+function initialize() {
+  mylatlng = new google.maps.LatLng(dLat, dLng);
+  map = new google.maps.Map({});
+  var request = {
+    location: mylatlng,
+    radius: 500,
+    query: ['point of interest'],
+  };
 
-    var service = new google.maps.places.PlacesService(map);
-    service.textSearch(request, callback);
-  }
-
-  function callback(results, status) {
-    if (status == google.maps.places.PlacesServiceStatus.OK) {
-      showFirstPicture(results);
-      rotateImages = results;
-    }
-  }
-
-  initialize();
-
-  let i = 0;
-
-  function showFirstPicture(results) {
-    for (i = 0; i < results.length; i++) {
-      if (results[i].photos != null) {
-        $('#imageBox').css('background-image', `url("${results[i].photos[0].getUrl({ 'maxWidth': 500, 'maxHeight': 500 })}")`);
-        $('#imageBox').show('slow');
-        break;
-      }
-    }
-  }
-
-  // Rotate photos with forward/back buttons
-  $('#imageForward').click(() => {
-    if (i < rotateImages.length - 1) {
-      i++;
-    }
-    else {
-      i = 0;
-    }
-    $('#imageBox').css('background-image', `url("${rotateImages[i].photos[0].getUrl({ 'maxWidth': 500, 'maxHeight': 500 })}")`);
-  });
-
-  $('#imageBack').click(() => {
-    if (i > 0) {
-      i--;
-    }
-    else {
-      i = rotateImages.length - 1;
-    }
-    $('#imageBox').css('background-image', `url("${rotateImages[i].photos[0].getUrl({ 'maxWidth': 500, 'maxHeight': 500 })}")`);
-  });
+  var service = new google.maps.places.PlacesService(map);
+  service.textSearch(request, callback);
 }
+
+function callback(results, status) {
+  if (status == google.maps.places.PlacesServiceStatus.OK) {
+    showFirstPicture(results);
+    rotateImages = results;
+  }
+}
+
+function showFirstPicture(results) {
+  for (let i = 0; i < results.length; i++) {
+    if (results[i].photos != null) {
+      $('#imageBox').css('background-image', `url("${results[i].photos[0].getUrl({ 'maxWidth': 500, 'maxHeight': 500 })}")`);
+      $('#imageBox').show('slow');
+      break;
+    }
+  }
+}
+
+// Rotate photos with forward/back buttons
+$('#imageForward').click(() => {
+  if (i < rotateImages.length - 1) {
+    i++;
+  }
+  else {
+    i = 0;
+  }
+  $('#imageBox').css('background-image', `url("${rotateImages[i].photos[0].getUrl({ 'maxWidth': 500, 'maxHeight': 500 })}")`);
+});
+
+$('#imageBack').click(() => {
+  if (i > 0) {
+    i--;
+  }
+  else {
+    i = rotateImages.length - 1;
+  }
+  $('#imageBox').css('background-image', `url("${rotateImages[i].photos[0].getUrl({ 'maxWidth': 500, 'maxHeight': 500 })}")`);
+});
+
 
 // RELOAD PAGE TO START AGAIN ------------------------------------>
 

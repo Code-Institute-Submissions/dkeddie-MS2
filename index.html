@@ -31,7 +31,8 @@
   <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 
   <!-- Maps JavaScript API -->
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBKd5I7u1oc_iX8wrBze-LNNmiHFPqdtCI&libraries=places">
+  <script type="text/javascript"
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBKd5I7u1oc_iX8wrBze-LNNmiHFPqdtCI&libraries=places">
   </script>
 
 
@@ -53,6 +54,9 @@
           <input type="text" id="currentLocation" class="autocomplete" name="currentLocation"
             placeholder="Enter your Current Location">
         </div>
+        <div class="confirm" id="btnCL">
+          <i class="fas fa-check"></i>
+        </div>
       </div>
     </div>
 
@@ -60,6 +64,9 @@
       <div class="row justify-content-center">
         <div class="col fontColor">
           <input type="text" id="destination" class="autocomplete" name="destination" placeholder="Enter Destination">
+        </div>
+        <div class="confirm" id="btnDest">
+          <i class="fas fa-check"></i>
         </div>
         <div id="reset">
           <i class="fas fa-redo-alt"></i>
@@ -128,21 +135,23 @@
       </div>
 
     </div>
-  
 
-  <footer>
-    <a href="mailto:mail@test.com">
-      <h4><i class="far fa-paper-plane"></i> Please email any comments or feedback</h4>
-    </a>
-  </footer>
-  
-</div>
+
+    <footer>
+      <a href="mailto:mail@test.com">
+        <h4><i class="far fa-paper-plane"></i> Please email any comments or feedback</h4>
+      </a>
+    </footer>
+
+  </div>
 
   <!-- CDN link for Algolia Place Search -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/places.js/1.19.0/places.min.js"></script>
 
   <!-- Link to Javascript -->
   <script src="assets/js/app.js"></script>
+
+  
 
 </body>
 

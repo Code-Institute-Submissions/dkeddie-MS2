@@ -85,8 +85,35 @@ a:hover {
   outline: none;
 }
 
-#reset {
+.confirm {
   display: inline-block;
+  position: relative;
+  height: 100px;
+  width: 100px;
+  background-color: white;
+  margin-top: 50px;
+  margin-bottom: 25px;
+  padding: 0;
+  border-radius: 25px;
+  text-align: center;
+}
+
+.confirm>i {
+  position: absolute;
+  font-size: 50px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  /* transition: transform 0.25s; */
+}
+
+.confirm>i:hover {
+  font-size: 60px;
+  /* transform: ; */
+}
+
+#reset {
+  display: none;
   position: relative;
   height: 100px;
   width: 100px;
@@ -147,30 +174,9 @@ a:hover {
 
 .ap-icon-pin, 
 .ap-icon-clear, 
-.ap-input-icon, 
-.ap-icon-pin:focus, 
-.ap-icon-clear:focus,
-.ap-input-icon:focus,
-.ap-icon-pin:focus-within, 
-.ap-icon-clear:focus-within,
-.ap-input-icon:focus-within,
-.ap-icon-pin:active, 
-.ap-icon-clear:active,
-.ap-input-icon:active,
-.ap-icon-pin:hover, 
-.ap-icon-clear:hover,
-.ap-input-icon:hover {
+.ap-input-icon {
   display: none;
-  color: red;
 }
-
-.ap-nostyle-icon-clear {
-  height: 200%;
-}
-
-/* .ap-icon-clear {
-  right: 10px;
-} */
 
 /* Toggle Tiles to be off at Initial load -*/
 
