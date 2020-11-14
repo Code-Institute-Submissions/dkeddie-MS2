@@ -15,7 +15,8 @@ let origin;
 
 let replacements = {
   "United States of America":"United States",
-  "City of London":"London"
+  "City of London":"London",
+  "People's Republic of China":"China"
 }
 
 let destinationSky
@@ -340,9 +341,13 @@ async function currentWeather() {
   const response = await fetch(`https://api.weatherapi.com/v1/current.json?key=3061f2bda70e40c4a77180232201810&q=${destination}`);
   const weatherNowData = await response.json();
   const weatherNowTemp = weatherNowData.current.temp_c;
+  const weatherNowFeels = weatherNowData.current.feelslike_c;
   const weatherNowImage = weatherNowData.current.condition.icon;
+  const weatherNowImageTxt = weatherNowData.current.condition.text;
   document.getElementById('weatherNowTemp').innerHTML = `${weatherNowTemp}&degC`;
   document.getElementById('weatherNowImage').src = `${weatherNowImage}`;
+  document.getElementById('weatherNowImage').title = `${weatherNowImageTxt}`;
+  document.getElementById('feelslike').innerHTML = `${weatherNowFeels}&degC`;
   $('#todayTemp').show("slow");
 }
 
@@ -375,6 +380,10 @@ function setMap() {
 
 
 async function getFlightData() {
+  console.log(destination);
+  console.log(origin);
+  console.log(destinationSky);
+  console.log(originSky);
   let lowestPrice = 0;
   try {
     // Get origin airport ID

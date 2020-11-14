@@ -270,6 +270,8 @@ canvas {
 
 #aveTemp h1 {
   font-size: 60px;
+  margin-top: -10px;
+  margin-bottom: -5px;
 }
 
 /* Today Temp Tile */
@@ -277,16 +279,18 @@ canvas {
 #todayTempAlign{
   text-align: center;
   margin-top: 50%;
-  transform: translate(0, -50%);
+  transform: translate(0, -55%);
 }
 
 #todayTempAlign h1{
   font-size: 55px;
-  margin: -20px;
+  margin-top: -15px;
+  margin-bottom: -5px;
 }
 
 #todayTempAlign h2{
   font-size: 30px;
+  margin: 0px;
 }
 
 #todayTemp img {
