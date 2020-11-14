@@ -186,6 +186,8 @@ showMonth();
 
 let weatherData = [];
 let weatherDataTemps = [];
+let weatherDataMins = [];
+let weatherDataMaxes = [];
 
 async function getWeather() {
 
@@ -215,13 +217,21 @@ async function getWeather() {
     weatherDataTemps = weatherData.map((months, index) => {
       return weatherData[index].tavg;
     });
+    weatherDataMins = weatherData.map((months, index) => {
+      return weatherData[index].tmin;
+    });
+    weatherDataMaxes = weatherData.map((months, index) => {
+      return weatherData[index].tmax;
+    });
     weatherDataPrcp = weatherData.map((months, index) => {
       return weatherData[index].prcp;
     });
+    console.log(weatherData)
     weatherUpdate();
   } catch (error) {
     $('#aveTemp').show('slow');
     $('#aveTempAlign').html("<h2>No data retrieved. Try again.</h2>");
+    console.log(error)
   }
 }
 
@@ -229,8 +239,12 @@ async function getWeather() {
 function weatherUpdate() {
   const mo = document.getElementById('currentMonth').innerHTML;
   const moInt = months.indexOf(mo);
-  const moTemp = weatherData[moInt].tavg;
+  const moTemp = parseInt(weatherData[moInt].tavg);
+  const moTempMin = parseInt(weatherData[moInt].tmin);
+  const moTempMax = parseInt(weatherData[moInt].tmax);
   document.getElementById('temp').innerHTML = `${moTemp}&degC`;
+  document.getElementById('tempMin').innerHTML = `${moTempMin}&degC`;
+  document.getElementById('tempMax').innerHTML = `${moTempMax}&degC`;
   $('#aveTemp').show('slow');
 }
 
@@ -238,8 +252,12 @@ function weatherUpdate() {
 document.getElementById('month').addEventListener('click', () => {
   const mo = document.getElementById('currentMonth').innerHTML;
   const moInt = months.indexOf(mo);
-  const moTemp = weatherData[moInt].tavg;
+  const moTemp = parseInt(weatherData[moInt].tavg);
+  const moTempMin = parseInt(weatherData[moInt].tmin);
+  const moTempMax = parseInt(weatherData[moInt].tmax);
   document.getElementById('temp').innerHTML = `${moTemp}&degC`;
+  document.getElementById('tempMin').innerHTML = `${moTempMin}&degC`;
+  document.getElementById('tempMax').innerHTML = `${moTempMax}&degC`;
 });
 
 // Weather Chart Tile - load Chart.js and upload weather data the chart
