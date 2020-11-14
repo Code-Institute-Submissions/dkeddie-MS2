@@ -6,12 +6,43 @@
 
 // GLOBAL VARIABLES - to be used across the page -------------------------->
 
-// destination
+// location / destination
 let destination;
 let address;
 let origin;
-// let currentPlace;
-// let destPlace;
+
+// location / destination fixes for Algolia / Skyscanner improved functionality
+
+let replacements = {
+  "United States of America":"United States",
+  "City of London":"London"
+}
+
+let destinationSky
+let originSky
+
+function ssInputs() {
+  for (i = 0; i < Object.keys(replacements).length; i++) {
+    if (destination.includes(Object.keys(replacements)[i])) {
+      destinationSky = destination.replace(Object.keys(replacements)[i], Object.values(replacements)[i]);
+      i++
+    } else {
+      destinationSky = destination
+    }
+  }
+  for (i = 0; i < Object.keys(replacements).length; i++) {
+    if (origin.includes(Object.keys(replacements)[i])) {
+      originSky = origin.replace(Object.keys(replacements)[i], Object.values(replacements)[i]);
+      i++
+    } else {
+      originSky = destination
+    }
+  }
+}
+
+
+
+
 
 // current locations
 let dLat;
@@ -23,17 +54,14 @@ function currentPlace() {
     appId: 'pl3QLZ5PGJOK',
     apiKey: '17ed7fe7c8a13ca6a53f86095b7cde31',
     container: document.querySelector('#currentLocation'),
+    templates: {
+      value: function (suggestion) {
+        return `${suggestion.name}, ${suggestion.country}`
+      }
+    }
   }).configure({
     type: 'city',
     aroundLatLngViaIP: false,
-  });
-  var $address = document.querySelector('#currentLocation')
-  placesAutocomplete.on('change', function (e) {
-    $address.textContent = e.suggestion.value
-  });
-
-  placesAutocomplete.on('clear', function () {
-    $address.textContent = 'none';
   });
 }
 function destPlace() {
@@ -41,19 +69,16 @@ function destPlace() {
     appId: 'pl3QLZ5PGJOK',
     apiKey: '17ed7fe7c8a13ca6a53f86095b7cde31',
     container: document.querySelector('#destination'),
+    templates: {
+      value: function (suggestion) {
+
+        return `${suggestion.name}, ${suggestion.country}`
+      }
+    }
   }).configure({
     type: 'city',
     aroundLatLngViaIP: false,
   });
-  var $address = document.querySelector('#destination')
-  placesAutocomplete.on('change', function (e) {
-    $address.textContent = e.suggestion.value;
-  });
-
-  placesAutocomplete.on('clear', function () {
-    $address.textContent = 'none';
-  });
-
 }
 currentPlace();
 destPlace();
@@ -68,6 +93,7 @@ $('#currentLocation').focus();
 // After origin / destination input, run sequence
 function runSequence() {
   setTimeout(() => {
+    ssInputs();
     getWeather();
     currentWeather();
   }, 300);
@@ -104,7 +130,6 @@ function getDestination() {
   $('#month').show('slow');
   $('#btnDest').toggle();
   $('#reset').toggle();
-  // $('#destination').blur();
   runSequence();
 };
 
@@ -341,11 +366,15 @@ function setMap() {
 // Use of RapidAPI.com to access Skyscanner API
 // Utilisation of Global Variables for information required to retrieve data
 
+// destination2 = destination.replace("United States of Amercia", "USA")
+
+
+
 async function getFlightData() {
   let lowestPrice = 0;
   try {
     // Get origin airport ID
-    const originNameSearch = await fetch(`https://skyscanner-skyscanner-flight-search-v1.p.rapidapi.com/apiservices/autosuggest/v1.0/UK/GBP/en-GB/?query=${origin}`, {
+    const originNameSearch = await fetch(`https://skyscanner-skyscanner-flight-search-v1.p.rapidapi.com/apiservices/autosuggest/v1.0/UK/GBP/en-GB/?query=${originSky}`, {
       "method": "GET",
       "headers": {
         "x-rapidapi-host": "skyscanner-skyscanner-flight-search-v1.p.rapidapi.com",
@@ -357,7 +386,7 @@ async function getFlightData() {
     const originNameShort = await originNameID.split('-', 1)[0];
 
     // Get destination airport ID
-    const destinationNameSearch = await fetch(`https://skyscanner-skyscanner-flight-search-v1.p.rapidapi.com/apiservices/autosuggest/v1.0/UK/GBP/en-GB/?query=${destination}`, {
+    const destinationNameSearch = await fetch(`https://skyscanner-skyscanner-flight-search-v1.p.rapidapi.com/apiservices/autosuggest/v1.0/UK/GBP/en-GB/?query=${destinationSky}`, {
       "method": "GET",
       "headers": {
         "x-rapidapi-host": "skyscanner-skyscanner-flight-search-v1.p.rapidapi.com",
