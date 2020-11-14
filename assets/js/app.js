@@ -41,9 +41,6 @@ function ssInputs() {
 }
 
 
-
-
-
 // current locations
 let dLat;
 let dLng;
@@ -140,17 +137,6 @@ $('#destination').keyup(function (e) {
     getDestination();
   }
 })
-
-// function getDestination() {
-//   document.getElementById('destination').addEventListener('keyup', function (e) {
-//     if (e.keyCode === 13) {
-//       destination = document.getElementById('destination').value;
-//       $('#month').show('slow');
-//       $('#destination').blur();
-//     }
-//   });
-// }
-// getDestination();
 
 // MONTH TILE -------------------------------------------------------->
 
@@ -301,7 +287,7 @@ async function graphData() {
             type: 'linear',
             position: 'left',
             scaleLabel: {
-              display: 'true',
+              display: 'false',
               labelString: 'Temp (\xB0C)',
               fontColor: 'rgb(175, 0, 42)'
             },
@@ -310,7 +296,7 @@ async function graphData() {
             type: 'linear',
             position: 'right',
             scaleLabel: {
-              display: 'true',
+              display: 'false',
               labelString: 'Rain (mm)',
               fontColor: 'rgb(0, 0, 204)'
             },
