@@ -298,12 +298,13 @@ async function graphData() {
           xAxes: [{
             gridLines: 'false',
             scaleLabel: {
-              padding: '20'
+              padding: '20',
             }
           }],
           yAxes: [{
             id: 'degC',
             type: 'linear',
+            gridLines: 'false',
             position: 'left',
             scaleLabel: {
               display: 'false',
@@ -313,6 +314,7 @@ async function graphData() {
           }, {
             id: 'mm',
             type: 'linear',
+            gridLines: 'false',
             position: 'right',
             scaleLabel: {
               display: 'false',
