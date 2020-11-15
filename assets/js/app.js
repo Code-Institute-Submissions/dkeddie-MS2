@@ -451,7 +451,6 @@ async function getFlightData() {
       $('#noFlightPrice').hide('fast');
       // Prevents both flight prices and fallback statement for no flight prices appearing on the tile concurrently
     }
-
   }
 }
 
@@ -467,9 +466,7 @@ $('#month').click(function () {
 // The below was developed from here (http://answerbig.diary.to/archives/1038987625.html) and here (http://jsfiddle.net/dLxqx3n8/), as well as the Google Maps Platform documentation associated with Maps Javascript API
 
 var map;
-var rotateImages = [];
 var photoResults = [];
-
 
 function initialize() {
   mylatlng = new google.maps.LatLng(dLat, dLng);
@@ -487,8 +484,6 @@ function initialize() {
 function callback(results, status) {
   if (status == google.maps.places.PlacesServiceStatus.OK) {
     showFirstPicture(results);
-    // rotateImages = resultsX
-    // console.log(rotateImages)
   }
 }
 
@@ -499,24 +494,8 @@ function showFirstPicture(results) {
       photoResults.push(results[k].photos[0]);
       i++;
     }
-  // resultsX = results.map( results => {
-  //   const container = {};
-  //   if (results[k].photos[0] != null) {
-  //     container.results[k].photos = results[k].photos
-  //   }
-  //   return container;
-  // })
-  console.log(photoResults)
-  // for (let i = 0; i < results.length && i < 10; i++) {
-  //   if (results[i].photos[0] != null) {
-  //     resultX = results[i].photos[0]
-  //     i++
-  //     console.log(results)
   $('#imageBox').css('background-image', `url("${photoResults[photoResults.length-1].getUrl({ 'maxWidth': 500, 'maxHeight': 500 })}")`);
   $('#imageBox').show('slow');
-  // break
-  //   }
-  // }
 }
 
 // Rotate photos with forward/back buttons
