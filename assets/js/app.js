@@ -14,9 +14,9 @@ let origin;
 // location / destination fixes for Algolia / Skyscanner improved functionality
 
 let replacements = {
-  "United States of America":"United States",
-  "City of London":"London",
-  "People's Republic of China":"China"
+  "United States of America": "United States",
+  "City of London": "London",
+  "People's Republic of China": "China"
 }
 
 let destinationSky
@@ -468,6 +468,8 @@ $('#month').click(function () {
 
 var map;
 var rotateImages = [];
+var photoResults = [];
+
 
 function initialize() {
   mylatlng = new google.maps.LatLng(dLat, dLng);
@@ -485,39 +487,62 @@ function initialize() {
 function callback(results, status) {
   if (status == google.maps.places.PlacesServiceStatus.OK) {
     showFirstPicture(results);
-    rotateImages = results;
+    // rotateImages = resultsX
+    // console.log(rotateImages)
   }
 }
 
 function showFirstPicture(results) {
-  for (let i = 0; i < results.length; i++) {
-    if (results[i].photos != null) {
-      $('#imageBox').css('background-image', `url("${results[i].photos[0].getUrl({ 'maxWidth': 500, 'maxHeight': 500 })}")`);
-      $('#imageBox').show('slow');
-      break;
+  console.log(results)
+  for (k = 0; k < results.length; k++)
+    if (results[k].photos != null) {
+      photoResults.push(results[k].photos[0]);
+      i++;
     }
-  }
+  // resultsX = results.map( results => {
+  //   const container = {};
+  //   if (results[k].photos[0] != null) {
+  //     container.results[k].photos = results[k].photos
+  //   }
+  //   return container;
+  // })
+  console.log(photoResults)
+  // for (let i = 0; i < results.length && i < 10; i++) {
+  //   if (results[i].photos[0] != null) {
+  //     resultX = results[i].photos[0]
+  //     i++
+  //     console.log(results)
+  $('#imageBox').css('background-image', `url("${photoResults[photoResults.length-1].getUrl({ 'maxWidth': 500, 'maxHeight': 500 })}")`);
+  $('#imageBox').show('slow');
+  // break
+  //   }
+  // }
 }
 
 // Rotate photos with forward/back buttons
+
 $('#imageForward').click(() => {
-  if (i < rotateImages.length - 1) {
-    i++;
+  if (k >= 0 && k < photoResults.length-1) {
+    k++;
+    console.log(k)
   }
   else {
-    i = 0;
+    k = 0;
+    console.log(k)  
   }
-  $('#imageBox').css('background-image', `url("${rotateImages[i].photos[0].getUrl({ 'maxWidth': 500, 'maxHeight': 500 })}")`);
+  $('#imageBox').css('background-image', `url("${photoResults[k].getUrl({ 'maxWidth': 500, 'maxHeight': 500 })}")`);
 });
 
 $('#imageBack').click(() => {
-  if (i > 0) {
-    i--;
+if (k > 0 && k <= photoResults.length-1) {
+    k--;
+    console.log(k)
   }
   else {
-    i = rotateImages.length - 1;
-  }
-  $('#imageBox').css('background-image', `url("${rotateImages[i].photos[0].getUrl({ 'maxWidth': 500, 'maxHeight': 500 })}")`);
+    k = photoResults.length-1;
+    console.log(k)
+  } 
+  $('#imageBox').css('background-image', `url("${photoResults[k].getUrl({ 'maxWidth': 500, 'maxHeight': 500 })}")`);
 });
 
 
