@@ -154,6 +154,7 @@ for (i = 0; i < 12; i++) {
 function showMonth() {
   let m = 0;
   $('#fullDate').html(monthArray[0]);
+  $('#currentYear').html(monthArray[m].getFullYear());
   $('#currentMonth').html(months[monthArray[m].getMonth()]);
   $('#monthForward').click(
     function () {
@@ -164,6 +165,7 @@ function showMonth() {
         m = 0;
       }
       $('#fullDate').html(monthArray[m]);
+      $('#currentYear').html(monthArray[m].getFullYear());
       $('#currentMonth').html(months[monthArray[m].getMonth()]);
     });
   $('#monthBack').click(
@@ -175,6 +177,7 @@ function showMonth() {
         m = 11;
       }
       $('#fullDate').html(monthArray[m]);
+      $('#currentYear').html(monthArray[m].getFullYear());
       $('#currentMonth').html(months[monthArray[m].getMonth()]);
     });
 }
@@ -342,8 +345,8 @@ async function graphData() {
 async function currentWeather() {
   const response = await fetch(`https://api.weatherapi.com/v1/current.json?key=3061f2bda70e40c4a77180232201810&q=${destination}`);
   const weatherNowData = await response.json();
-  const weatherNowTemp = weatherNowData.current.temp_c;
-  const weatherNowFeels = weatherNowData.current.feelslike_c;
+  const weatherNowTemp = parseInt(weatherNowData.current.temp_c);
+  const weatherNowFeels = parseInt(weatherNowData.current.feelslike_c);
   const weatherNowImage = weatherNowData.current.condition.icon;
   const weatherNowImageTxt = weatherNowData.current.condition.text;
   document.getElementById('weatherNowTemp').innerHTML = `${weatherNowTemp}&degC`;
