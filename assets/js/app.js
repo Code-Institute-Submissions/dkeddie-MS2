@@ -6,10 +6,10 @@
 
 // GLOBAL VARIABLES - to be used across the page -------------------------->
 
-// location / destination
+// location / destination variables
 let destination;
-let address;
 let origin;
+
 
 // location / destination fixes for Algolia / Skyscanner improved functionality
 
@@ -42,9 +42,7 @@ function ssInputs() {
 }
 
 
-// current locations
-let dLat;
-let dLng;
+
 
 // Algolia AutoComplete Places Search: https://www.algolia.com/
 function currentPlace() {
@@ -188,6 +186,8 @@ showMonth();
 // Weather DATA Import - fetch from Meteostat API
 // Global variables utilised as Data returned by API used by different functions
 
+let dLat;
+let dLng;
 let weatherData = [];
 let weatherDataTemps = [];
 let weatherDataMins = [];
@@ -378,10 +378,6 @@ function setMap() {
 // Use of RapidAPI.com to access Skyscanner API
 // Utilisation of Global Variables for information required to retrieve data
 
-// destination2 = destination.replace("United States of Amercia", "USA")
-
-
-
 async function getFlightData() {
   let lowestPrice = 0;
   try {
@@ -522,11 +518,3 @@ $('#imageBack').click(() => {
 $('#reset').click(function () {
   location.reload();
 });
-
-function hideAll() {
-  // $('#month').hide();
-  // $('#aveTemp').hide();
-  // $('#mapBox').hide();
-  // $('#flightCostBox').hide();
-  $('#imageBox').hide();
-}
