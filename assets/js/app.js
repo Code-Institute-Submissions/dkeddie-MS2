@@ -23,7 +23,7 @@ let destinationSky;
 let originSky;
 
 function ssInputs() {
-  for (i = 0; i < Object.keys(replacements).length; i++) {
+  for (i = 0; i < Object.keys(replacements).length-1; i++) {
     if (destination.includes(Object.keys(replacements)[i])) {
       destinationSky = destination.replace(Object.keys(replacements)[i], Object.values(replacements)[i]);
       i++;
@@ -31,7 +31,7 @@ function ssInputs() {
       destinationSky = destination;
     }
   }
-  for (i = 0; i < Object.keys(replacements).length; i++) {
+  for (i = 0; i < Object.keys(replacements).length-1; i++) {
     if (origin.includes(Object.keys(replacements)[i])) {
       originSky = origin.replace(Object.keys(replacements)[i], Object.values(replacements)[i]);
       i++;
@@ -380,7 +380,9 @@ function setMap() {
 
 async function getFlightData() {
   let lowestPrice = 0;
-  try {
+  console.log(originSky);
+  console.log(destinationSky);
+    try {
     // Get origin airport ID
     const originNameSearch = await fetch(`https://skyscanner-skyscanner-flight-search-v1.p.rapidapi.com/apiservices/autosuggest/v1.0/UK/GBP/en-GB/?query=${originSky}`, {
       "method": "GET",
