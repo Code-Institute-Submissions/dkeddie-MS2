@@ -17,7 +17,7 @@ The user of the site will be a prospective traveller looking to determine a suit
 
 ### **User Stories**
 
-*As a user, I want to be able to see the likely weather of a chosen destination to help me decide if it is the correct decision.
+As a user, I want to be able to see the likely weather of a chosen destination to help me decide if it is the correct decision.
 
  **Item** | **Experience** | **Objectives**
 ---------|----------------|---------------
@@ -42,7 +42,7 @@ The functions of the website are to:-
 
 2.  Retrieve flight prices for those destinations from the users current location.
 
-    - As the intention of the site is to determine the best months to travel to a particular destination, this information will provide the price from which flights start from to the destination in that particular month.  This information is provided from the Skycanner.net API.
+    - As the intention of the site is to determine the best months to travel to a particular destination, this information will provide the lowest price from which flights start from to the destination in that particular month.  This information is provided from the Skycanner.net API.
 
 3. Show users where in the world the selected destination is located.
 
@@ -70,7 +70,7 @@ The primary purpose of the web app is simply to provide weather data for chosen 
 As such, the page is developed along certain principles:-
 
   1. Not to provide multiple pages that might detract from this core set of information;
-  2. Additional functionality and more detailed information may be added to the web app in time through the Tiles (see **Features to Implement in the Future** below)  
+  2. Additional functionality and more detailed information may be added to the web app in time through the Tiles (see **Features to Implement in the Future** below).  
 <br>
 
 ### **Wireframe**
@@ -81,17 +81,8 @@ A copy of the original wireframe can be found here: [Figma](https://www.figma.co
 
 The PDF contains additional explanation on the intention of each Tile.
 
-Whilst my wireframe did not incoproate the footer, I knew that I would likely want to add this at a later point.  The contents would be minimal and yet to be decided, as the would be subsidiary to the other information provided.
-
-
-### **Colours**
-
-+++++++++++++++++
-
-The colour pallette can be viewed [HERE](http://paletton.com/#uid=c0w3k0Z3N0k6hjd2BtG4vnW82ekcH9w)
-
-++++++++++++++++
-
+Whilst my wireframe did not incoproate the footer, I knew that I would likely want to add this at a later point.  The contents would be minimal and yet to be decided, as it would be subsidiary to the other information provided.  
+<br>
 
 ### Typography
 
@@ -111,21 +102,55 @@ ___
 
 ### Responsive
 
-* Site is suitable for mobile through desktop displays.
-* +++++++++++++++=
+* The site is suitable for mobile through desktop displays.
+
+* ![Responsive Screen](/README-attachments/responsiveScreen.gif "Responsive Screen")
 
 
-### Interactive Elements  
-<br>
+### Interactive Elements
 
+The web page is interactive in the following ways:-
+
+* Three steps to fully load the page with user inputs.  The page transitions between each:-
+  1. Current Location (initial):  User inputs their current location.  Confirming the current location transitions the input field away and the destination field appears.
+  2. Destination: User inputs their chosen destination.  Confirming the destination transitions the page to load the Tiles.
+  3. Tiles (Full Page Load): The page loads information to the Tiles based on the current location and destination inputed.
+
+* Month Tile - the tile will load on the current month.  The months can be changed back and forth and this affects two other tiles:-
+  1. Average Temperature - the average temperature for each month will be shown to match the corresponding month.
+  2. Flight Prices - the lowest price to the destination will be shown for the month shown .(if one can be retrieved from the API)
+
+* Photo Tile - photos displaying Points of Interest can be changed by clicking forward/back.
+
+* The interactive elements can be seen in this Youtube video
 [![Watch the video](https://img.youtube.com/vi/jiSdyZWXRiA/hqdefault.jpg)](https://youtu.be/jiSdyZWXRiA)
-
-* ++++++++++++++
 
 
 ### Existing Features  
 
-![Flight Tile](/README-attachments/FlightLoad.gif "Flight Tile")
+The following features load on the page after inputting the Current Location and Destination:-
+
+* **Weather Chart Tile**: average temperatures and rainfall for the destination selected for a 12 month period
+![Weather Chart](/README-attachments/ChartTile.jpg "Weather Chart")
+
+* **Month Tile**: controls the month for the tiles that are 'month specific'
+![Month Tile](/README-attachments/MonthTile.jpg "Month Tile")
+
+* **Average Temperature Tile**: displays the average temperate (and high / low) for the month selected  
+![Average Temp Tile](/README-attachments/AveTempTile.jpg "Average Temp Tile")
+
+* **Current Weather Tile**: displays the current weather conditions in the destination  
+![Current Weather Tile](/README-attachments/CurrentTempTile.jpg "Current Weather Tile")
+
+* **Map Tile**: shows the location of the destination selected  
+![Map Tile](/README-attachments/MapTile.jpg "Map Tile")
+
+* **Flight Price Tile**: shows the lowest price for a flight to the destination (if available) and by clicking, takes users to Skyscanner.net  
+![Flight Price Tile](/README-attachments/FlightPriceTile.jpg "Flight Price Tile")
+
+* **Photo Tile**: displays a selection of images (points of interest) of the destination
+![Photo Tile](/README-attachments/PhotoTile.jpg "Photo Tile")
+
 
 ### Features to Implement in the Future
 
