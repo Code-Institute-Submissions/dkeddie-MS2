@@ -159,6 +159,9 @@ In the future, I will give consideration to implementing the following features 
 * **Weather Tiles - Celsius / Farenheight:** Option to switch between celsius and farenheit.
 * **Map Tile - Current Location and Travel Time:** On-click, the tile will enlarge to show Current Location and Destination, and estimated travel time to the destination.
 * **Flight Price Tile - Currency selection:** Option to switch between currencies.
+* **Flight Price Tile - Improve functionality to deliver prices:** With further refinement, and possibly use of the full Skyscanner API (currently only accessed through RapidAPI), this could be improved.  Steps to be explored:-
+  1. Searching for local airports and returning results based on that parameter, rather than the current place parameter.
+  2. Providing option to select the preferred airport.  Particularly for the current location, and in places with more than one airport (e.g. London), this could provide more tailored results for the user.
 * **Photo Tile - Improve photos returned:** The current API is a free Google facility, but the quality of pictures returned is not great.  In order to get better quality pictures of destinations, then a paid for API would have to integrated into the site.
 * **Photo Tile - Enlarge Images with details:** On-click, the images will enlarge and provide details of the image (e.g. attraction name).
 
