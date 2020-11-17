@@ -154,7 +154,13 @@ The following features load on the page after inputting the Current Location and
 
 ### Features to Implement in the Future
 
-++++++++++++++++
+In the future, I will give consideration to implementing the following features to enhance the user experience and functionality of the site:-
+
+* **Weather Tiles - Celsius / Farenheight:** Option to switch between celsius and farenheit.
+* **Map Tile - Current Location and Travel Time:** On-click, the tile will enlarge to show Current Location and Destination, and estimated travel time to the destination.
+* **Flight Price Tile - Currency selection:** Option to switch between currencies.
+* **Photo Tile - Improve photos returned:** The current API is a free Google facility, but the quality of pictures returned is not great.  In order to get better quality pictures of destinations, then a paid for API would have to integrated into the site.
+* **Photo Tile - Enlarge Images with details:** On-click, the images will enlarge and provide details of the image (e.g. attraction name).
 
 
 ## Technologies Used
