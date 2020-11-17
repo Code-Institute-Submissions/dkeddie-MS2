@@ -123,7 +123,7 @@ The web page is interactive in the following ways:-
 * Photo Tile - photos displaying Points of Interest can be changed by clicking forward/back.
 
 * The interactive elements can be seen in this Youtube video
-[![Watch the video](https://img.youtube.com/vi/jiSdyZWXRiA/hqdefault.jpg)](https://youtu.be/jiSdyZWXRiA)
+[![Interactive Overview](/README-attachments/interactive.gif "Interactive Overview")
 
 
 ### Existing Features  
@@ -133,7 +133,7 @@ The following features load on the page after inputting the Current Location and
 * **Weather Chart Tile**: average temperatures and rainfall for the destination selected for a 12 month period
 ![Weather Chart](/README-attachments/ChartTile.jpg "Weather Chart")
 
-* **Month Tile**: controls the month for the tiles that are 'month specific'
+* **Month Tile**: controls the month for the tiles that are 'month specific'  
 ![Month Tile](/README-attachments/MonthTile.jpg "Month Tile")
 
 * **Average Temperature Tile**: displays the average temperate (and high / low) for the month selected  
@@ -148,7 +148,7 @@ The following features load on the page after inputting the Current Location and
 * **Flight Price Tile**: shows the lowest price for a flight to the destination (if available) and by clicking, takes users to Skyscanner.net  
 ![Flight Price Tile](/README-attachments/FlightPriceTile.jpg "Flight Price Tile")
 
-* **Photo Tile**: displays a selection of images (points of interest) of the destination
+* **Photo Tile**: displays a selection of images (points of interest) of the destination  
 ![Photo Tile](/README-attachments/PhotoTile.jpg "Photo Tile")
 
 
@@ -165,6 +165,7 @@ In the future, I will give consideration to implementing the following features 
 * **Photo Tile - Improve photos returned:** The current API is a free Google facility, but the quality of pictures returned is not great.  In order to get better quality pictures of destinations, then a paid for API would have to integrated into the site.
 * **Photo Tile - Enlarge Images with details:** On-click, the images will enlarge and provide details of the image (e.g. attraction name).
 
+<br>
 
 ## Technologies Used
 
@@ -359,16 +360,21 @@ During the development of the website, and again as a final, comprehensive and i
 
 ### Known Bugs
 
-The following issues were identified during development of the site:-
+The following issues were identified during development of the site.  Some of them have been fixed during the final checking, testing and deployment phase:-
 
 1. The following error occurs in the console when both the Current Location and Destination have been inputted, and the Tiles are loaded:-
 !['defaultView' Error](README-attachments/Error-defaultView.jpg "'defaultView' Error")
 No knowwn negative effect has been detected.
 2. The following error can occur at times in the console when rotating through the images in the Photo Tile:-
 !['Undefined Property' Error](README-attachments/Error-propertyUndefined.jpg "'Undefined Property' Error")
-Although the image does not change when the Error arises, the images will continue to rotate when the forward/back options are selected.
+Although the image does not change when the Error arises, the images will continue to rotate when the forward/back options are selected.  
+**[Bug now fixed]** *This error has now been resolved by creating a new array which only contains places with photos, excluding those items which do not contain photos from the original API array* **[Bug now fixed]**
 3. A city or town with the same name in different locations will only return information on the top return.  For example, Perth will only return Perth, WA.  
+**[Bug now fixed]** *This fault has now been resolved by modifying the Algolia API.  The global variables now set according to the full place name and country as opposed to just the city name, which rectifies this issue.* **[Bug now fixed]**
 
+During the on-going testing and development of the site, bugs were discovered and resolved.  These can be reviewed in the list of Git commits, specifically those with the 'fix' prefix.
+
+For a list of the Git Commit history, this can be viewed [here](https://github.com/dkeddie/MS2/commits/master)
 
 ## Deployment
 

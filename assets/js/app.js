@@ -52,7 +52,7 @@ function currentPlace() {
     container: document.querySelector('#currentLocation'),
     templates: {
       value: function (suggestion) {
-        return `${suggestion.name}, ${suggestion.country}`
+        return `${suggestion.name}, ${suggestion.country}`;
       }
     }
   }).configure({
@@ -68,7 +68,7 @@ function destPlace() {
     templates: {
       value: function (suggestion) {
 
-        return `${suggestion.name}, ${suggestion.country}`
+        return `${suggestion.name}, ${suggestion.country}`;
       }
     }
   }).configure({
@@ -92,10 +92,10 @@ function runSequence() {
     ssInputs();
     getWeather();
     currentWeather();
-  }, 300);
+  }, 200);
   setTimeout(() => {
     graphData();
-  }, 600);
+  }, 400);
   setTimeout(() => {
     setMap();
   }, 800);
@@ -117,7 +117,7 @@ $('#currentLocation').keyup(function (e) {
   if (e.keyCode === 13) {
     loadCL();
   }
-})
+});
 
 // GET DESTINATION LOCATION / COORDINATES --------------------------->
 
@@ -127,7 +127,7 @@ function getDestination() {
   $('#btnDest').toggle();
   $('#reset').toggle();
   runSequence();
-};
+}
 
 $('#btnDest').click(getDestination);
 
@@ -135,7 +135,7 @@ $('#destination').keyup(function (e) {
   if (e.keyCode === 13) {
     getDestination();
   }
-})
+});
 
 // MONTH TILE -------------------------------------------------------->
 
@@ -367,7 +367,7 @@ function setMap() {
     getFlightData();
     initialize();
   } else {
-    alert("Error with loading your Destination.  Please refresh the page and try again, taking care to enter a recognised place in the Search Bar")
+    alert("Error with loading your Destination.  Please refresh the page and try again, taking care to enter a recognised place in the Search Bar");
   }
 }
 
