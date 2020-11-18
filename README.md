@@ -122,8 +122,8 @@ The web page is interactive in the following ways:-
 
 * Photo Tile - photos displaying Points of Interest can be changed by clicking forward/back.
 
-* The interactive elements can be seen in this Youtube video
-[![Interactive Overview](/README-attachments/interactive.gif "Interactive Overview")
+* The interactive elements can be seen below:-  
+![Interactive Overview](/README-attachments/interactive.gif "Interactive Overview")
 
 
 ### Existing Features  
@@ -367,10 +367,10 @@ During the development of the website, and again as a final, comprehensive and i
 
 The following issues were identified during development of the site.  Some of them have been fixed during the final checking, testing and deployment phase:-
 
-1. The following error occurs in the console when both the Current Location and Destination have been inputted, and the Tiles are loaded:-
+1. The following error occurs in the console when both the Current Location and Destination have been inputted, and the Tiles are loaded:-  
 !['defaultView' Error](README-attachments/Error-defaultView.jpg "'defaultView' Error")
 No knowwn negative effect has been detected.
-2. The following error can occur at times in the console when rotating through the images in the Photo Tile:-
+2. The following error can occur at times in the console when rotating through the images in the Photo Tile:-  
 !['Undefined Property' Error](README-attachments/Error-propertyUndefined.jpg "'Undefined Property' Error")
 Although the image does not change when the Error arises, the images will continue to rotate when the forward/back options are selected.  
 **[Bug now fixed]** *This error has now been resolved by creating a new array which only contains places with photos, excluding those items which do not contain photos from the original API array* **[Bug now fixed]**
