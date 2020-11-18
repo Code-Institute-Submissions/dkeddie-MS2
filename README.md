@@ -349,6 +349,11 @@ The following tests were carried out to ensure functionality before deployment:-
   * The page loads under Step 2, however this is to be expected as the Current Location is only required for the Flight Price Tile, which has an option if no prices are returned from the API
   ![Invalid Input - Still Pass](README-attachments/InvalidInputs-StillPass.jpg "Invalid Input - Still Pass")
 
+During the on-going testing and development of the site, bugs were discovered and resolved.  These can be reviewed in the list of Git commits, specifically those with the 'fix' prefix.
+
+For a list of the Git Commit history, this can be viewed [here](https://github.com/dkeddie/MS2/commits/master)
+
+
 ### Further Testing
 
 During the development of the website, and again as a final, comprehensive and in-depth review, the following testing was carried out:-
@@ -372,9 +377,6 @@ Although the image does not change when the Error arises, the images will contin
 3. A city or town with the same name in different locations will only return information on the top return.  For example, Perth will only return Perth, WA.  
 **[Bug now fixed]** *This fault has now been resolved by modifying the Algolia API.  The global variables now set according to the full place name and country as opposed to just the city name, which rectifies this issue.* **[Bug now fixed]**
 
-During the on-going testing and development of the site, bugs were discovered and resolved.  These can be reviewed in the list of Git commits, specifically those with the 'fix' prefix.
-
-For a list of the Git Commit history, this can be viewed [here](https://github.com/dkeddie/MS2/commits/master)
 
 ## Deployment
 
@@ -396,13 +398,13 @@ The steps from start to present were:-
     * Selecting 'master branch' of the Source dropdown menu
         
 The website is now deployed and can be viewed at:
-    [https://++++++++++](https://+++++++++++)
+    [https://dkeddie.github.io/MS2/](https://https://dkeddie.github.io/MS2/)
 
 ## Deployment of a Clone
 
 Should you wish to deploy your own version of the website, the following steps may be followed to host your own version on GitHub:-
 
-1. Visit my GitHub Repository: [++++++](https://github.com/dkeddie/++++++++++)
+1. Visit my GitHub Repository: [MS2](https://github.com/dkeddie/MS2)
 
 2. Click dropdown 'Code' and copy url to 'Clone with HTTPS'  
 ![Clone](README-attachments/clone.png)
@@ -419,16 +421,12 @@ Should you wish to deploy your own version of the website, the following steps m
 
 ### Content
 
-All content was written by the developer.
+All content and code was written by the developer, except where taken from libraries or documented within this file or the Code files.
 
 ### Media
 
-++++++
+The Media Content utilised for this site is taken from Google Places via the Google Maps Javascript API, which is available for public use.
 
 ### Acknowledgements
 
-Thank yous to:-
-
-*  My mentor for feedback and advice given throughout the project.
-
-*  Fellow Code Institute students who gave feedback as part of Peer Review:-
+Thank you to my mentor for feedback and advice given throughout the project.
