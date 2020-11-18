@@ -111,7 +111,7 @@ function loadCL() {
   $('#destination').focus();
 }
 
-$('#btnCL').click(loadCL);
+$('.btnCL').click(loadCL);
 
 $('#currentLocation').keyup(function (e) {
   if (e.keyCode === 13) {
@@ -124,12 +124,12 @@ $('#currentLocation').keyup(function (e) {
 function getDestination() {
   destination = $('#destination').val();
   $('#month').show('slow');
-  $('#btnDest').toggle();
+  $('.btnDest').hide();
   $('#reset').toggle();
   runSequence();
 }
 
-$('#btnDest').click(getDestination);
+$('.btnDest').click(getDestination);
 
 $('#destination').keyup(function (e) {
   if (e.keyCode === 13) {
