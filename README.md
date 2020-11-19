@@ -6,7 +6,7 @@ For Milestone Project Two, which requires the development of an interactive fron
 
 The website utilises APIs from various sources, sometimes sharing that data to retrive data from other sources, and then presents the data in a simple UI based on a series of tiles.
 
-The website can be viewed [here](https://dkeddie.github.io/MS2/)
+The website can be viewed <a href="https://dkeddie.github.io/MS2/" target="_blank">here</a>
 
 ## **UX**
 
@@ -77,7 +77,7 @@ As such, the page is developed along certain principles:-
 
 Figma was used to develop a key concept into framework for developing the web page / app.  Only a desktop framework was formulated at this stage.
 
-A copy of the original wireframe can be found here: [Figma](https://www.figma.com/file/3Yqx3U9HCWVm7PZprEhVEt/MS2?node-id=0%3A1) or [PDF](README-attachments/Wireframe.pdf)
+A copy of the original wireframe can be found here: <a href="https://www.figma.com/file/3Yqx3U9HCWVm7PZprEhVEt/MS2?node-id=0%3A1" target="_blank">Figma</a> or <a href="README-attachments/Wireframe.pdf/" 
 
 The PDF contains additional explanation on the intention of each Tile.
 
@@ -86,7 +86,7 @@ Whilst my wireframe did not incoproate the footer, I knew that I would likely wa
 
 ### Typography
 
-The Rubik font is the only font used throughout the whole website with Sans Serif as the fallback font in case for any reason the font isn't being imported into the site correctly. 
+The [Rubik](https://fonts.google.com/specimen/Rubik) font (from Google Fonts) is the only font used throughout the whole website with Sans Serif as the fallback font in case for any reason the font isn't being imported into the site correctly. 
 
 Rubik was selected as a super-clean, legibile front that display clearly on the Tiles.  
 <br>
@@ -102,9 +102,9 @@ ___
 
 ### Responsive
 
-* The site is suitable for mobile through desktop displays.
-
-* ![Responsive Screen](/README-attachments/responsiveScreen.gif "Responsive Screen")
+The site is suitable for mobile through desktop displays.
+https://fonts.google.com/specimen/Rubik
+![Responsive Screen](/README-attachments/responsiveScreen.gif "Responsive Screen")
 
 
 ### Interactive Elements
