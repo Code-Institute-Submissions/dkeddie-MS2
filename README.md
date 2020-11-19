@@ -36,21 +36,21 @@ As a user, I want to be able to see the likely weather of a chosen destination t
 The functions of the website are to:-    
     
 1. Provide weather information for travel destinations around the world.
-    - Users can see the average temperatures and rainfall for each month across a 12 month period.  This weather a retrieved from the Meteostat API which provides historic, average weather data, and presented in a Chart.js graph.
+    - Users can see the average temperatures and rainfall for each month across a 12 month period.  This weather a retrieved from the [Meteostat API](https://meteostat.net/en) which provides historic, average weather data, and presented in a Chart.js graph.
     - Users can also scroll through the months and see the Average Temperative of the selected month.  This is the same information provided the Meteostat API.
     - Users can also see the current weather of the destination.  This information is provided from Weatherapi.com.
 
 2.  Retrieve flight prices for those destinations from the users current location.
 
-    - As the intention of the site is to determine the best months to travel to a particular destination, this information will provide the lowest price from which flights start from to the destination in that particular month.  This information is provided from the Skycanner.net API.
+    - As the intention of the site is to determine the best months to travel to a particular destination, this information will provide the lowest price from which flights start from to the destination in that particular month.  This information is provided from the [Skycanner.net API](https://rapidapi.com/skyscanner/api/skyscanner-flight-search).
 
 3. Show users where in the world the selected destination is located.
 
-    - Users can see where in the world the selected destination is located.  This is provided by the Google Maps API.
+    - Users can see where in the world the selected destination is located.  This is provided by the [Google Maps Static API](https://developers.google.com/maps/documentation/maps-static/overview).
 
 4. Retrieve images of 'Places of Interest' of the selected destination.
 
-    - Provide a selection of images which may by Points of Interest for visitors to the chosen destination.  This is provided by Google Places by means of the Google Maps Javascript API.  
+    - Provide a selection of images which may by Points of Interest for visitors to the chosen destination.  This is provided by Google Places by means of the [Google Maps Javascript API](https://developers.google.com/maps/documentation/javascript/overview).  
 <br>
 
 ___
