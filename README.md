@@ -4,7 +4,7 @@
 
 For Milestone Project Two, which requires the development of an interactive front-end site, users can may retrieve weather and other travel related information for a chosen destinations.
 
-The website utilises APIs from various sources, sometimes sharing that data to retrive data from other sources, and then presents the data in a simple UI based on a series of tiles.
+The website utilises APIs from various sources, sometimes sharing that data to retrieve data from other sources, and then presents the data in a simple UI based on a series of tiles.
 
 The website can be viewed [here](https://dkeddie.github.io/MS2/)
 
@@ -23,7 +23,7 @@ As a user, I want to be able to see the likely weather of a chosen destination t
 ---------|----------------|---------------
 1 | As a user, I want to be able to find a possible travel destination | Provide a search field to retrieve information on destinations
 2 | As a user, I want to be able check the location of the travel destination | Provide a visual map reference to determine the location of the destination chosen
-3 | As a user of the site, I want to be able to see typical weather conditions of that destination | Provide the typical tempoerative temperature for each month of the year
+3 | As a user of the site, I want to be able to see typical weather conditions of that destination | Provide the typical temperature for each month of the year
 4 | As a user, I want to be able to determine the best months to visit the destination | Provide users with a chart of the weather showing the typical temperature and rainfall over a year
 5 | As a user, I want to see the current weather in the chosen destination | Provide the current temperature and conditions for the chosen destination
 6 | As a user, I would like to find out the cost of travelling to this destination | Provide the cost of a flight to the destination.
@@ -36,7 +36,7 @@ As a user, I want to be able to see the likely weather of a chosen destination t
 The functions of the website are to:-    
     
 1. Provide weather information for travel destinations around the world.
-    - Users can see the average temperares and rainfall for each month across a 12 month period.  This weather a retrieved from the Meteostat API which provides historic, average weather data, and presented in a Chart.js graph.
+    - Users can see the average temperatures and rainfall for each month across a 12 month period.  This weather a retrieved from the Meteostat API which provides historic, average weather data, and presented in a Chart.js graph.
     - Users can also scroll through the months and see the Average Temperative of the selected month.  This is the same information provided the Meteostat API.
     - Users can also see the current weather of the destination.  This information is provided from Weatherapi.com.
 
@@ -81,14 +81,14 @@ A copy of the original wireframe can be found here: [Figma](https://www.figma.co
 
 The PDF contains additional explanation on the intention of each Tile.
 
-Whilst my wireframe did not incoproate the footer, I knew that I would likely want to add this at a later point.  The contents would be minimal and yet to be decided, as it would be subsidiary to the other information provided.  
+Whilst my wireframe did not incorporate the footer, I knew that I would likely want to add this at a later point.  The contents would be minimal and yet to be decided, as it would be subsidiary to the other information provided.  
 <br>
 
 ### Typography
 
 The [Rubik](https://fonts.google.com/specimen/Rubik) font (from Google Fonts) is the only font used throughout the whole website with Sans Serif as the fallback font in case for any reason the font isn't being imported into the site correctly. 
 
-Rubik was selected as a super-clean, legibile front that display clearly on the Tiles.  
+Rubik was selected as a super-clean, legible front that display clearly on the Tiles.  
 <br>
 
 ### Imagery
@@ -114,7 +114,7 @@ The web page is interactive in the following ways:-
 * Three steps to fully load the page with user inputs.  The page transitions between each:-
   1. Current Location (initial):  User inputs their current location.  Confirming the current location transitions the input field away and the destination field appears.
   2. Destination: User inputs their chosen destination.  Confirming the destination transitions the page to load the Tiles.
-  3. Tiles (Full Page Load): The page loads information to the Tiles based on the current location and destination inputed.
+  3. Tiles (Full Page Load): The page loads information to the Tiles based on the current location and destination inputs.
 
 * Month Tile - the tile will load on the current month.  The months can be changed back and forth and this affects two other tiles:-
   1. Average Temperature - the average temperature for each month will be shown to match the corresponding month.
@@ -156,7 +156,7 @@ The following features load on the page after inputting the Current Location and
 
 In the future, I will give consideration to implementing the following features to enhance the user experience and functionality of the site:-
 
-* **Weather Tiles - Celsius / Farenheight:** Option to switch between celsius and farenheit.
+* **Weather Tiles - Celsius / Farhenheight:** Option to switch between Celsius and Farhenheit.
 * **Map Tile - Current Location and Travel Time:** On-click, the tile will enlarge to show Current Location and Destination, and estimated travel time to the destination.
 * **Flight Price Tile - Currency selection:** Option to switch between currencies.
 * **Flight Price Tile - Improve functionality to deliver prices:** With further refinement, and possibly use of the full Skyscanner API (currently only accessed through RapidAPI), this could be improved.  Steps to be explored:-
@@ -192,7 +192,7 @@ A static map was used for the Map Tile in order to provide users with a visual r
 The Javascript API was used for its access to the Google Places library in order to return access to images of the destination.  
 
 * [jQuery, incl UI](https://jquery.com/)  
-jQuery is used for javascript DOM manipulation.  The UI 
+jQuery is used for Javascript DOM manipulation.  The UI 
 is also library is also for effects to enable smooth transitions for the Tiles.
 
 * [Git](https://git-scm.com/)  
@@ -238,8 +238,8 @@ _____________
 ---------|----------------
 **4** | **As a user, I want to be able to determine the best months to visit the destination**
 (a) | Once the destination is loaded, the panel displays two past trends of weather for that place, the average temperature and rainfall for each month in the form of a Line Chart.
-(b) | The Chart will show the warmest and dryest months to visit a destination, two factors which help to determine the best months to visit a destination.
-(c) | To see the average temperature of each month, scroll through the months to read the temperature in degrees celsius.
+(b) | The Chart will show the warmest and driest months to visit a destination, two factors which help to determine the best months to visit a destination.
+(c) | To see the average temperature of each month, scroll through the months to read the temperature in degrees Celsius.
 (d) |![Typical Weather](/README-attachments/TypicalWeather.gif "Typical Weather")
 _____________
 
@@ -247,7 +247,7 @@ _____________
 
 **5** | **As a user, I want to see the current weather in the chosen destination**
 ---------|----------------
-(a) | A currerent weather tile is included on the page.
+(a) | A Current Weather tile is included on the page.
 (b) | ![Current Weather](/README-attachments/CurrentWeather.jpg  "Current Weather")
 _____________
 
@@ -297,12 +297,12 @@ There are no errors found on the validation service for CSS.
 
 ### Javascript Code Quality - JSHint
 
-[JSHint](https://jshint.com/) has been used to check and test the Code Quality of the javascript used on this page.  The Javascript has been updated in line with warnings initially returned.  The following items remain and which are deemed not critical to the functioning of the site:-
+[JSHint](https://jshint.com/) has been used to check and test the Code Quality of the Javascript used on this page.  The Javascript has been updated in line with warnings initially returned.  The following items remain and which are deemed not critical to the functioning of the site:-
 
 - Where warnings of ES6, 8 and 10 have been raised, these have not been ignored, as the main browsers will function with the use of this version of Javascript.
-- There remains one warning, 'Redefinition of 'origin'', hover this is an intented part of the Javascript to be implemented on the page.
+- There remains one warning, 'Redefinition of 'origin'', hover this is an intended part of the Javascript to be implemented on the page.
 - Undefined variables - these are undefined on the initial page load but become defined after further Javascript has been implemented.
-- Unused variablies - these variables are required for the running of external APIs.
+- Unused variables - these variables are required for the running of external APIs.
 <br>
 <br>
 
@@ -315,23 +315,23 @@ The following tests were carried out to ensure functionality before deployment:-
   * Static Current Location of Dublin for 10 different Destinations tested
   * 10 different Current Locations with static Destination of Dublin tested
   * 10 different locations used were:-  
-    1. New York
-    2. Shanghai
-    3. Milan  
-    4. London
-    5. Abu Dhabi
-    6. Los Cristianos
-    7. Florence
-    8. Perth
-    9. Wellington
-    10. Cape Town
+    * New York
+    * Shanghai
+    * Milan  
+    * London
+    * Abu Dhabi
+    * Los Cristianos
+    * Florence
+    * Perth
+    * Wellington
+    * Cape Town
   * Check that all Tiles load
   * Check that map shows correct Destination
   * Check that Months Tile rotates when clicked, and Ave Temp and Flight Price changes
   * Check that images can be rotated on Photos Tile
 * Results:  Page loads in all scenarios but the following limitations are sometimes observed when carrying out the full test  
     * Flight Prices may not always be returned.  That can be for a number of reasons, including:-  
-        1. The place name returned by Algolia is not recognised by Skyscanner.net.  For example, London is called City of London in Algolia and is therefore not regognised by Skyscanner.  
+        1. The place name returned by Algolia is not recognised by Skyscanner.net.  For example, London is called City of London in Algolia and is therefore not recognised by Skyscanner.  
         2. Requests to Skyscanner API may be exceeded if used too much or to quickly.  This is a limitation of the open API available.  
         3. There may be no Flights available in that month.  
 
@@ -369,7 +369,7 @@ The following issues were identified during development of the site.  Some of th
 
 1. The following error occurs in the console when both the Current Location and Destination have been inputted, and the Tiles are loaded:-  
 !['defaultView' Error](README-attachments/Error-defaultView.jpg "'defaultView' Error")
-No knowwn negative effect has been detected.
+No known negative effect has been detected.
 2. The following error can occur at times in the console when rotating through the images in the Photo Tile:-  
 !['Undefined Property' Error](README-attachments/Error-propertyUndefined.jpg "'Undefined Property' Error")
 Although the image does not change when the Error arises, the images will continue to rotate when the forward/back options are selected.  
