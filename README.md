@@ -38,7 +38,7 @@ The functions of the website are to:-
 1. Provide weather information for travel destinations around the world.
     - Users can see the average temperatures and rainfall for each month across a 12 month period.  This weather a retrieved from the [Meteostat API](https://meteostat.net/en) which provides historic, average weather data, and presented in a Chart.js graph.
     - Users can also scroll through the months and see the Average Temperative of the selected month.  This is the same information provided the Meteostat API.
-    - Users can also see the current weather of the destination.  This information is provided from Weatherapi.com.
+    - Users can also see the current weather of the destination.  This information is provided from [Weatherapi.com](https://www.weatherapi.com/).
 
 2.  Retrieve flight prices for those destinations from the users current location.
 
@@ -185,12 +185,6 @@ Google fonts is used to import the 'Rubik' font into the style.css file which is
 * [Chart.js](https://www.chartjs.org/)  
 Chart.js is used to display the monthly average temperatures and rainfalls.
 
-* [Google Maps Static API](https://developers.google.com/maps/documentation/maps-static/overview)  
-A static map was used for the Map Tile in order to provide users with a visual reference of where their destination is located.
-
-* [Google Maps Javascript API](https://developers.google.com/maps/documentation/javascript/overview) 
-The Javascript API was used for its access to the Google Places library in order to return access to images of the destination.  
-
 * [jQuery, incl UI](https://jquery.com/)  
 jQuery is used for Javascript DOM manipulation.  The UI 
 is also library is also for effects to enable smooth transitions for the Tiles.
@@ -209,6 +203,26 @@ Kapwing used for editing videos and creating GIFs used in this README file.
 
 * [Screen Recorder](https://chrome.google.com/webstore/detail/screen-recorder/hniebljpgcogalllopnjokppmgbhaden)  
 Screen Recorder used for creating videos (edited in Kapwing) of website features in operation.
+
+### Third Party APIs Used
+
+* [Algolia Places](https://github.com/algolia/places) 
+The API is used to provide place search autocomplete when inputting the Current Location and Destination fields on the page startup.
+
+* [Meteostat](https://meteostat.net/en) 
+Meteostat provides historic weather and climate information that is used to display the information contained on the Weather Chart and Average Temperature Tiles.  
+
+* [Weatherapi.com](https://www.weatherapi.com/) 
+Weatherapi.com provides the information used in the Current Weather Tile.  The API provides the current temperature (actual and 'feels like') and the current conditions (including the image as well as the description).  
+
+* [Google Maps Javascript API](https://developers.google.com/maps/documentation/javascript/overview) 
+The Javascript API was used for its access to the Google Places library in order to return access to images of the destination.  
+
+* [Google Maps Static API](https://developers.google.com/maps/documentation/maps-static/overview)  
+A static map is used for the Map Tile in order to provide users with a visual reference of where their destination is located.  
+
+* [Skyscanner API via RapidAPI](https://rapidapi.com/skyscanner/api/skyscanner-flight-search)  
+As the principle Skyscanner API is restricted to 'Partners', the results have been accessed through RapidAPI.  The API returns the lowest price between the Current Location and Destination.  
 
 
 ## Testing
@@ -282,12 +296,13 @@ The W3C Markup Validator and W3C CSS Validator Services were used to validate ev
 
 **[W3C Markup Validator](https://validator.w3.org/) - [Results](https://validator.w3.org/nu/?doc=https%3A%2F%2Fdkeddie.github.io%2FMS2%2F)**
 
-The following errors are raised on the validator:-
+The following errors were raised on the validator:-
 
 ![HTML Validator Errors](README-attachments/ValidatorErrors.jpg "HTML Validator Errors")  
 
-These errors are associated with the blank headings / fields which will be populated once the Javascript app has run, following the input of the user information and full load of the page.  
-As such, these Errors will be rectified once the page has fully loaded.
+These errors were associated with the blank headings / fields which will be populated once the Javascript app has run, following the input of the user information and full load of the page.  
+
+In order to overcome this issue, a non-breaking space, *"&nbsp"*, has been added to the headings as a temporary input until the Javasript runs, and a placeholder image has been used for the 'src' attribute (from [Placeholder.com](https://placeholder.com/)).
 
 <br>
 

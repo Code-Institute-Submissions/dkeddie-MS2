@@ -239,27 +239,27 @@ async function getWeather() {
 
 // Function to push weather to Average Temperature Tile
 function weatherUpdate() {
-  const mo = document.getElementById('currentMonth').innerHTML;
+  const mo = $('#currentMonth').html();
   const moInt = months.indexOf(mo);
   const moTemp = parseInt(weatherData[moInt].tavg);
   const moTempMin = parseInt(weatherData[moInt].tmin);
   const moTempMax = parseInt(weatherData[moInt].tmax);
-  document.getElementById('temp').innerHTML = `${moTemp}&degC`;
-  document.getElementById('tempMin').innerHTML = `${moTempMin}&degC`;
-  document.getElementById('tempMax').innerHTML = `${moTempMax}&degC`;
+  $('#temp').html(`${moTemp}&degC`);
+  $('#tempMin').html(`${moTempMin}&degC`);
+  $('#tempMax').html(`${moTempMax}&degC`);
   $('#aveTemp').show('slow');
 }
 
 // Change Average Temp Tile to align with month selected
 document.getElementById('month').addEventListener('click', () => {
-  const mo = document.getElementById('currentMonth').innerHTML;
+  const mo = $('#currentMonth').html();
   const moInt = months.indexOf(mo);
   const moTemp = parseInt(weatherData[moInt].tavg);
   const moTempMin = parseInt(weatherData[moInt].tmin);
   const moTempMax = parseInt(weatherData[moInt].tmax);
-  document.getElementById('temp').innerHTML = `${moTemp}&degC`;
-  document.getElementById('tempMin').innerHTML = `${moTempMin}&degC`;
-  document.getElementById('tempMax').innerHTML = `${moTempMax}&degC`;
+  $('#temp').html(`${moTemp}&degC`);
+  $('#tempMin').html(`${moTempMin}&degC`);
+  $('#tempMax').html(`${moTempMax}&degC`);
 });
 
 // Weather Chart Tile - load Chart.js and upload weather data the chart
@@ -347,10 +347,10 @@ async function currentWeather() {
   const weatherNowFeels = parseInt(weatherNowData.current.feelslike_c);
   const weatherNowImage = weatherNowData.current.condition.icon;
   const weatherNowImageTxt = weatherNowData.current.condition.text;
-  document.getElementById('weatherNowTemp').innerHTML = `${weatherNowTemp}&degC`;
-  document.getElementById('weatherNowImage').src = `${weatherNowImage}`;
-  document.getElementById('weatherNowImage').title = `${weatherNowImageTxt}`;
-  document.getElementById('feelslike').innerHTML = `${weatherNowFeels}&degC`;
+  $('#weatherNowTemp').html(`${weatherNowTemp}&degC`);
+  $('#weatherNowImage').attr('src', `${weatherNowImage}`);
+  $('#weatherNowImage').attr('title', `${weatherNowImageTxt}`);
+  $('#feelslike').html(`${weatherNowFeels}&degC`);
   $('#todayTemp').show("slow");
 }
 
@@ -428,7 +428,7 @@ async function getFlightData() {
 
 
     // Send lowest flight price to HTML and Show Tile
-    document.getElementById('flightPrice').innerHTML = `£${lowestPrice}`;
+    $('#flightPrice').html(`£${lowestPrice}`);
     $('#flightCostBox').show('slow');
 
     // Update Tile with link to Skyscanner with pre-inserted search info
@@ -439,7 +439,7 @@ async function getFlightData() {
   } catch (error) {
     // If no flight prices returned, direct users to Skyscanner.net
     if (lowestPrice === 0) {
-      document.getElementById('flightPrice').innerHTML = "";
+      $('#flightPrice').html('');
       $('#flightCostBox').show('slow');
       $('#noFlightPrice').show('fast');
     } else {
