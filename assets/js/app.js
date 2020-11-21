@@ -4,24 +4,30 @@
 // jshint esversion: 8
 // jshint esversion: 10
 
-// GLOBAL VARIABLES - to be used across the page -------------------------->
+// <------ GLOBAL VARIABLES - to be used across the page  ------>
 
 // location / destination variables
 let destination;
 let origin;
 
 
-// location / destination fixes for Algolia / Skyscanner improved functionality
 
+// <----- ALGOLIA FIXES FOR SKYSCANNER INTERFACE ----->
+// Some Algolia places return place names that do not function well with Skyscanner.  For example, rather than returning 'London', Algolia returns 'City of London', which Skyscanner does not recognise in the API return.  As such, as these interoperability issues become known, the below list can be updated to provide a fix and enable the Skyscanner API to return results and provide Flight Prices for the current location / destination.
+// Rather than using the destination and origin variables (which was the original basis of the Skyscanner API before implementing this fix), the below function checks if the destination / origin is contained within the list of 'replacements, and pushes either the replacement locationname , or the Algolia location name if not in the list, to the new variable (destinationSky / originSky)
+
+// locations returned from Algolia to be replaced
 let replacements = {
   "City of London": "London",
   "United States of America": "United States",
   "People's Republic of China": "China"
 };
 
+// locations variables for use in Skyscanner function below
 let destinationSky;
 let originSky;
 
+// Function to check location names, replacing with 'replacements' variable if applicable, and pushing variables to new variables for Skyscanner
 function ssInputs() {
   for (i = 0; i < Object.keys(replacements).length-1; i++) {
     if (destination.includes(Object.keys(replacements)[i])) {
@@ -42,9 +48,11 @@ function ssInputs() {
 }
 
 
-
+// <----- ALGOLIA AUTOCOMPLETE DROPDOWN ----->
+// When inputting the current location and destination, autocomplete suggestions will be returned in a dropdown menu
 
 // Algolia AutoComplete Places Search: https://www.algolia.com/
+
 function currentPlace() {
   var placesAutocomplete = places({
     appId: 'pl3QLZ5PGJOK',
@@ -80,13 +88,51 @@ currentPlace();
 destPlace();
 
 
-// PAGE LOADING STEPS ---------------------------------------------->
+// <----- GET CURRENT LOCATION ----->
 
-// Initial
+// Ensures that cursor is active in the Search Field when the page loads
 $('#currentLocation').focus();
 
+// Updates the global variable for the current location and transitions the Current Location search to Destination Search Bar
+function loadCL() {
+  origin = $('#currentLocation').val();
+  $('#localHeader').hide('slow');
+  $('#destHeader').show('slow');
+  $('#destination').focus();
+}
 
-// After origin / destination input, run sequence
+// The above function will run by either clicking the 'tick' button or pressing Enter on the keyboard
+$('.btnCL').click(loadCL);
+$('#currentLocation').keyup(function (e) {
+  if (e.keyCode === 13) {
+    loadCL();
+  }
+});
+
+// <----- GET DESTINATION ----->
+
+// Updates the global variable for the destination, transitions the 'tick' button to refresh and starts the Page Loading Sequence
+function getDestination() {
+  destination = $('#destination').val();
+  $('#month').show('slow');
+  $('.btnDest').hide();
+  $('#reset').toggle();
+  runSequence();
+}
+
+// The above function will run by either clicking the 'tick' button or pressing Enter on the keyboard
+$('.btnDest').click(getDestination);
+$('#destination').keyup(function (e) {
+  if (e.keyCode === 13) {
+    getDestination();
+  }
+});
+
+
+// <----- PAGE LOADING SEQUENCE ----->
+
+// This functions sets a sequence for running the functions and loading the Tiles.  As some of the APIs deliver variables that are required by other APIs, the setTimout function gives enough time for the information to be returned for those functions so that they do not run synchronously and deliver Errors
+
 function runSequence() {
   setTimeout(() => {
     ssInputs();
@@ -102,44 +148,10 @@ function runSequence() {
 }
 
 
-// GET CURRENT LOCATION ------------------------------------->
+// <----- MONTH TILE ----->
 
-function loadCL() {
-  origin = $('#currentLocation').val();
-  $('#localHeader').hide('slow');
-  $('#destHeader').show('slow');
-  $('#destination').focus();
-}
-
-$('.btnCL').click(loadCL);
-
-$('#currentLocation').keyup(function (e) {
-  if (e.keyCode === 13) {
-    loadCL();
-  }
-});
-
-// GET DESTINATION LOCATION / COORDINATES --------------------------->
-
-function getDestination() {
-  destination = $('#destination').val();
-  $('#month').show('slow');
-  $('.btnDest').hide();
-  $('#reset').toggle();
-  runSequence();
-}
-
-$('.btnDest').click(getDestination);
-
-$('#destination').keyup(function (e) {
-  if (e.keyCode === 13) {
-    getDestination();
-  }
-});
-
-// MONTH TILE -------------------------------------------------------->
-
-// Steps to create an array of dates to start with the current month
+// Creates an array of dates starting with the current month
+// As the date function in Javascript returns a numberic value for the month, the 'months' array can be used to represent the date as a three letter abbreviation
 let currentDate = new Date();
 let monthArray = [];
 let months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
@@ -181,23 +193,27 @@ function showMonth() {
 }
 showMonth();
 
-// WEATHER / TEMPERATURE TILES -------------------------------------------->
+// <----- WEATHER / TEMPERATURE TILES ------>
+// Includes Weather Chart Tile and Average Temperature Tiles
+// This section utilises data fetched from the Meteostat API and displays it in the Weather Chart Tile and the Average Temperature Tile
 
-// Weather DATA Import - fetch from Meteostat API
-// Global variables utilised as Data returned by API used by different functions
+// Global variables are utilised as they are used by different Tiles to display the data.  The empty variables are populated by the funciton getWeather()
 
 let dLat;
 let dLng;
+// The following will be Arrays
 let weatherData = [];
 let weatherDataTemps = [];
 let weatherDataMins = [];
 let weatherDataMaxes = [];
 
+// This first function fetches the data and populates the global variables to be utilised on the Tiles
+
 async function getWeather() {
 
   try {
 
-    // Get Coordinates for weather
+    // API request to Google Maps API to determine the longitude and latitude coordinates of the destination, which is needed by the Meteostat API to return weather data
 
     const url = 'https://maps.googleapis.com/maps/api/geocode/json?address=';
     const key = '&key=AIzaSyBKd5I7u1oc_iX8wrBze-LNNmiHFPqdtCI';
@@ -207,7 +223,7 @@ async function getWeather() {
     dLat = locationData.results[0].geometry.location.lat;
     dLng = locationData.results[0].geometry.location.lng;
 
-    // Get Weather Data
+    // API request to Meteostat API to get weather data to be used for the Tiles.  The global variables are updated with this data in an Array
 
     const urlWeather = `https://api.meteostat.net/v2/point/climate?lat=${dLat}&lon=${dLng}`;
 
@@ -230,28 +246,36 @@ async function getWeather() {
     weatherDataPrcp = weatherData.map((months, index) => {
       return weatherData[index].prcp;
     });
-    weatherUpdate();
+
+    // Once the data has been fetched and the variables updated, the following function is activated to update the Tiles with the Data
+        weatherUpdate();
+
   } catch (error) {
-    $('#aveTemp').show('slow');
+    // If there are any errors in returning the data, an error message is returned to the Average Temperature Tile, prompting users to try again.
+        $('#aveTemp').show('slow');
     $('#aveTempAlign').html("<h2>No data retrieved. Try again.</h2>");
   }
 }
 
-// Function to push weather to Average Temperature Tile
+// AVERAGE TEMPERATURE TILE
+// The following function pushes the data retried from the getWeather function to the Average Temperature Tile for the month displayed in the Month Tile
 function weatherUpdate() {
+  // Step to determine the Month shown / selected on the Month Tile
   const mo = $('#currentMonth').html();
   const moInt = months.indexOf(mo);
+  // Selectes the weather for the month selected from the Variables / Arrays and stores as a local variable
   const moTemp = parseInt(weatherData[moInt].tavg);
   const moTempMin = parseInt(weatherData[moInt].tmin);
   const moTempMax = parseInt(weatherData[moInt].tmax);
+  // Select the relevant elements, inserts the data to the Average Temperature Tile and reveals the Tile
   $('#temp').html(`${moTemp}&degC`);
   $('#tempMin').html(`${moTempMin}&degC`);
   $('#tempMax').html(`${moTempMax}&degC`);
   $('#aveTemp').show('slow');
 }
 
-// Change Average Temp Tile to align with month selected
-document.getElementById('month').addEventListener('click', () => {
+// Listener Event monitors the current month displayed on the Month Tile, which can be changed by selecting the forward / back buttons, and updates the Average Temperature Tile.  (Follows same methodology as preceding function)
+$('#month').click(() => {
   const mo = $('#currentMonth').html();
   const moInt = months.indexOf(mo);
   const moTemp = parseInt(weatherData[moInt].tavg);
@@ -262,16 +286,17 @@ document.getElementById('month').addEventListener('click', () => {
   $('#tempMax').html(`${moTempMax}&degC`);
 });
 
-// Weather Chart Tile - load Chart.js and upload weather data the chart
+// WEATHER CHART TILE
+// Function loads Chart.js and upload weather data from the Metestat API and the global variables populated above
 async function graphData() {
   try {
     const stepTwo = await getWeather();
     var ctx = await document.getElementById('myChart').getContext('2d');
     var chart = await new Chart(ctx, {
-      // The type of chart we want to create
+      // Type of Chart
       type: 'line',
 
-      // The data for our dataset
+      // Datasets
       data: {
         labels: months,
         datasets: [{
@@ -289,7 +314,7 @@ async function graphData() {
         }]
       },
 
-      // Configuration options go here
+      // Configuration options
       options: {
         maintainAspectRatio: 'false',
         legend: {
@@ -326,27 +351,30 @@ async function graphData() {
         }
       }
     });
+    // Displays the Weather Chart Tile which the data loads
     $('#weatherChartContainer').show('slow');
   } catch {
+    // If there is no Data for the Chart to display, the following steps implement to display a message asking the User to start the process again.
     $('#weatherChartContainer').show('slow');
     $('#weatherChartContainer').html("<h2>Weather Data has not loaded.  <br><br>Please reload the page and start again.</h2>");
     $('#weatherChartContainer > h2').css('margin', '60px 20px');
-    // Hide months again if no Weather Data loads
+    // Hide Months Tile if no Weather Data loads, so only the Error messages appear
     $('#month').hide();
   }
 }
 
-// TODAY'S TEMPERATURE ---------------------------------------->
-
-// Fetched from Weatherapi.com - also incorporates push of data to tile
+// <-----TODAY'S TEMPERATURE ----->
+// Fetches current weather data from Weatherapi.com for the Current Weather Tile
 
 async function currentWeather() {
   const response = await fetch(`https://api.weatherapi.com/v1/current.json?key=3061f2bda70e40c4a77180232201810&q=${destination}`);
   const weatherNowData = await response.json();
+  // Select data to be used from query in Tile as local variables.  Converts temperatures to integers from strings.
   const weatherNowTemp = parseInt(weatherNowData.current.temp_c);
   const weatherNowFeels = parseInt(weatherNowData.current.feelslike_c);
   const weatherNowImage = weatherNowData.current.condition.icon;
   const weatherNowImageTxt = weatherNowData.current.condition.text;
+  // Push the variables to Current Weather Tiles and reveals the Tile
   $('#weatherNowTemp').html(`${weatherNowTemp}&degC`);
   $('#weatherNowImage').attr('src', `${weatherNowImage}`);
   $('#weatherNowImage').attr('title', `${weatherNowImageTxt}`);
@@ -354,35 +382,40 @@ async function currentWeather() {
   $('#todayTemp').show("slow");
 }
 
-// MAP TILE
-
-// Static Google Maps Tile - utilisation of coordinates stored in Globabl Variables
+// <----- MAP TILE ----->
+// Utilises Static Google Maps API to return a map image of the destination.  The API uses the longitude and latitude coordinates established for the Weather / Temperatures Tiles above.
 
 function setMap() {
+  // If the coordinates are defined, ie if the original function to fetch the coordinates has run and returned the coordinates, then the Static Google Maps API to return the map image will be fetched
   if (dLat != undefined && dLng != undefined) {
     const url = `https://maps.googleapis.com/maps/api/staticmap?center=${dLat},${dLng}&zoom=5&size=800x800&scale2&key=AIzaSyBKd5I7u1oc_iX8wrBze-LNNmiHFPqdtCI`;
     document.getElementById('mapBox').style.backgroundImage = `url("${url}")`;
     $('#mapBox').show('slow');
-    // If map loads, then this will allow the following functions to load
+    // If map loads, then the following functions will also be loaded
     getFlightData();
     initialize();
   } else {
+    // Error statement if the map image is not able to be retrieved
     alert("Error with loading your Destination.  Please refresh the page and try again, taking care to enter a recognised place in the Search Bar");
   }
 }
 
 
-// FLIGHT COST TILE -------------------------------------------->
+// <----- FLIGHT COST TILE ----->
+// Utilises Skyscanner API viz RapidAPI to provide the lowest flight price from the current location to the destination for the month currently shown / selected on the Month Tile.
+// Use of RapidAPI.com to access Skyscanner API, as the direct Skyscanner API is for 'Partners'
 
-// Initial load of Flight data on origin/destination load
-// Use of RapidAPI.com to access Skyscanner API
-// Utilisation of Global Variables for information required to retrieve data
 
 async function getFlightData() {
+
+  // Local variable set within function which will be used on the Flight Price Tile
   let lowestPrice = 0;
   console.log(originSky);
-  console.log(destinationSky);
+  console.log(destinationSky); 
+
+  // Two Skyscanner APIs required to return results.  First, to get airport names.  Then second to return the lowest price.
     try {
+    // 1st API to get airport names.  Utilises the modified global origin and destination variables.
     // Get origin airport ID
     const originNameSearch = await fetch(`https://skyscanner-skyscanner-flight-search-v1.p.rapidapi.com/apiservices/autosuggest/v1.0/UK/GBP/en-GB/?query=${originSky}`, {
       "method": "GET",
@@ -393,6 +426,7 @@ async function getFlightData() {
     });
     const originNameData = await originNameSearch.json();
     const originNameID = await originNameData.Places[0].CityId;
+    // The returned value has to be modified for the next second API, removing the suffic '-sky'
     const originNameShort = await originNameID.split('-', 1)[0];
 
     // Get destination airport ID
@@ -407,8 +441,8 @@ async function getFlightData() {
     const destinationNameID = await destinationNameData.Places[0].CityId;
     const destinationNameShort = await destinationNameID.split('-', 1)[0];
 
-    // Get Flight Prices
-
+    // 2nd API to return the lowest Flight Prices
+    // Establishes local variables to be used in the API call
     let monthNr = ('0' + (new Date($('#fullDate').html()).getMonth() + 1)).slice(-2);
     // Attr: Skyscanner month requires to be two digits e.g. 02 for Feb.  Resolved on Stackoverflow https://stackoverflow.com/questions/1267283/how-can-i-pad-a-value-with-leading-zeros
     let yearNr = new Date($('#fullDate').html()).getFullYear();
@@ -449,14 +483,16 @@ async function getFlightData() {
   }
 }
 
-// Get current month from month array, reloads function to update price dependent on current month active in the Month Tile
+// Update to Price based on the month currently shown / selected.  
+// Gets current month from month array, reloads function to update price dependent on current month active in the Month Tile
 
 $('#month').click(function () {
   getFlightData();
 });
 
 
-// PHOTO TILE -------------------------------------------------------->
+// <----- PHOTO TILE ----->
+// Utilises Google Places to deliver photos of the destination which is delivered via the Google Maps Javascript API.  
 
 // The below was developed from here (http://answerbig.diary.to/archives/1038987625.html) and here (http://jsfiddle.net/dLxqx3n8/), as well as the Google Maps Platform documentation associated with Maps Javascript API
 
@@ -482,6 +518,7 @@ function callback(results, status) {
   }
 }
 
+// Function to push only the results with photos to a new array, and send the first result to the Photo Tile
 function showFirstPicture(results) {
   for (k = 0; k < results.length; k++)
     if (results[k].photos != null) {
@@ -492,8 +529,7 @@ function showFirstPicture(results) {
   $('#imageBox').show('slow');
 }
 
-// Rotate photos with forward/back buttons
-
+// Event listener cycles through the photoResults array when clicking back/forward
 $('#imageForward').click(() => {
   if (k >= 0 && k < photoResults.length - 1) {
     k++;
@@ -515,7 +551,7 @@ $('#imageBack').click(() => {
 });
 
 
-// RELOAD PAGE TO START AGAIN ------------------------------------>
+// <----- RELOAD PAGE TO START AGAIN ----->
 
 $('#reset').click(function () {
   location.reload();
