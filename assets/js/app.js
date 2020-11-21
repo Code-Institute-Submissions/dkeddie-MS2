@@ -29,7 +29,7 @@ let originSky;
 
 // Function to check location names, replacing with 'replacements' variable if applicable, and pushing variables to new variables for Skyscanner
 function ssInputs() {
-  for (i = 0; i < Object.keys(replacements).length-1; i++) {
+  for (i = 0; i < Object.keys(replacements).length - 1; i++) {
     if (destination.includes(Object.keys(replacements)[i])) {
       destinationSky = destination.replace(Object.keys(replacements)[i], Object.values(replacements)[i]);
       i++;
@@ -37,7 +37,7 @@ function ssInputs() {
       destinationSky = destination;
     }
   }
-  for (i = 0; i < Object.keys(replacements).length-1; i++) {
+  for (i = 0; i < Object.keys(replacements).length - 1; i++) {
     if (origin.includes(Object.keys(replacements)[i])) {
       originSky = origin.replace(Object.keys(replacements)[i], Object.values(replacements)[i]);
       i++;
@@ -248,11 +248,11 @@ async function getWeather() {
     });
 
     // Once the data has been fetched and the variables updated, the following function is activated to update the Tiles with the Data
-        weatherUpdate();
+    weatherUpdate();
 
   } catch (error) {
     // If there are any errors in returning the data, an error message is returned to the Average Temperature Tile, prompting users to try again.
-        $('#aveTemp').show('slow');
+    $('#aveTemp').show('slow');
     $('#aveTempAlign').html("<h2>No data retrieved. Try again.</h2>");
   }
 }
@@ -411,10 +411,10 @@ async function getFlightData() {
   // Local variable set within function which will be used on the Flight Price Tile
   let lowestPrice = 0;
   console.log(originSky);
-  console.log(destinationSky); 
+  console.log(destinationSky);
 
   // Two Skyscanner APIs required to return results.  First, to get airport names.  Then second to return the lowest price.
-    try {
+  try {
     // 1st API to get airport names.  Utilises the modified global origin and destination variables.
     // Get origin airport ID
     const originNameSearch = await fetch(`https://skyscanner-skyscanner-flight-search-v1.p.rapidapi.com/apiservices/autosuggest/v1.0/UK/GBP/en-GB/?query=${originSky}`, {
@@ -523,10 +523,34 @@ function showFirstPicture(results) {
   for (k = 0; k < results.length; k++)
     if (results[k].photos != null) {
       photoResults.push(results[k].photos[0]);
-      i++;
+      k++;
     }
   $('#imageBox').css('background-image', `url("${photoResults[photoResults.length - 1].getUrl({ 'maxWidth': 500, 'maxHeight': 500 })}")`);
   $('#imageBox').show('slow');
+  
+
+  // Implementation of automatic forward rotation of pictures once loaded by implementing a setInterval function
+  let goRotate = setInterval(autoRotate, 2500)
+  function autoRotate() {
+    if (k >= 0 && k < photoResults.length - 1) {
+    }
+    else {
+      k = 0;
+    }
+
+    $('#imageBox').css('background-image', `url("${photoResults[k++].getUrl({ 'maxWidth': 500, 'maxHeight': 500 })}")`)
+  }
+
+  // Clicking the manual forward/backward buttons stops the rotation/setInterval function
+  $('#imageBack').click( () => {
+    stopRotate();
+  });
+  $('#imageForward').click( () => {
+    stopRotate();
+  });
+  function stopRotate() {
+    clearInterval(goRotate)
+  }
 }
 
 // Event listener cycles through the photoResults array when clicking back/forward

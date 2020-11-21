@@ -251,10 +251,16 @@ a:hover {
 #aveTemp,
 #todayTemp,
 #mapBox,
-#flightCostBox,
-#imageBox {
+#flightCostBox {
   display: none;
 }
+
+#imageBox {
+  display: none;
+  background-color: grey;
+  transition: linear 0.6s;
+}
+
 
 /* Weather Chart Tile */
 
@@ -445,21 +451,6 @@ canvas {
 #imageBack:active,
 #imageForward:active {
   opacity: 0.7;
-}
-
-.dashContainer {
-  position: absolute;
-  bottom: 5px;
-  left: 50%;
-  transform: translate(-50%, 0);
-}
-.dash {
-  position: relative;
-  display: inline-block;
-  height: 3px;
-  width: 25px;
-  background-color: white;
-  margin: 0px 1px;
 }
 
 /* Footer Formatting */
