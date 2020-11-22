@@ -30,14 +30,14 @@
   <!-- Font Awasome -->
   <script src="https://kit.fontawesome.com/f55296781a.js" crossorigin="anonymous"></script>
 
-  <!-- Chart.jx -->
+  <!-- Chart.js -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 
   <!-- Maps JavaScript API -->
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBKd5I7u1oc_iX8wrBze-LNNmiHFPqdtCI&libraries=places">
-    </script>
+  </script>
 
-
+  <!-- CSS Style Sheet -->
   <link rel="stylesheet" href="assets/css/style.css" type="text/css">
 
 
@@ -45,9 +45,9 @@
 </head>
 
 <body>
-
+  <!-- Container for all everything - to be displayed in a flexible box -->
   <div class="container fontColor" id="bigBox">
-
+    <!-- SEARCH BOX - CURRENT LOCATION -->
     <div class="container" id="localHeader">
       <div class="row justify-content-center">
         <div class="col fontColor">
@@ -62,7 +62,8 @@
         </div>
       </div>
     </div>
-
+    <!-- SEARCH BOX - DESTINATION -->
+    <!-- Hidden on initial page load - loads after Current Location inputed -->
     <div class="container" id="destHeader">
       <div class="row justify-content-center">
         <div class="col fontColor">
@@ -81,8 +82,9 @@
     </div>
     <div></div>
 
+    <!-- TILES SECTION -->
+    <!-- All Tiles hidden until Current Location and Destination inputed -->
     <div class="container-fluid" id="allTiles">
-
       <div class="row no-gutters justify-content-center flex-wrap">
 
         <!-- Weather Chart Tile -->
@@ -110,7 +112,7 @@
           </div>
         </div>
 
-        <!-- Today's Temperature Tile -->
+        <!-- Today's Weather Tile -->
         <div class="col square" id="todayTemp">
           <div class="fontColor" id="todayTempAlign">
             <h2>Now <img id="weatherNowImage" src="https://via.placeholder.com/450" alt="Weather Conditions">&nbsp;</h2>
@@ -119,12 +121,12 @@
           </div>
         </div>
 
-        <!-- Map Box -->
+        <!-- Map Tile -->
         <div class="col rectangle" id="mapBox">
           <img src="assets/images/crosshair.png" alt="Crosshair">
         </div>
 
-        <!-- Flight Cost Box -->
+        <!-- Flight Cost Tile -->
         <div class="col square" id="flightCostBox">
           <a href="https://www.skyscanner.net" target="_blank" id="ssLink">
             <div class="fontColor" id="flightCostBoxAlign">
@@ -149,7 +151,8 @@
 
     <footer>
       <a href="mailto:mail@test.com">
-        <i class="far fa-paper-plane"></i>  <h4>Please email any comments or feedback</h4>
+        <i class="far fa-paper-plane"></i>
+        <h4>Please email any comments or feedback</h4>
       </a>
     </footer>
 
@@ -160,8 +163,6 @@
 
   <!-- Link to Javascript -->
   <script src="assets/js/app.js"></script>
-
-
 
 </body>
 

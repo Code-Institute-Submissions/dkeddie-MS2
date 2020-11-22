@@ -19,7 +19,7 @@ a:hover {
   text-decoration: none;
 }
 
-/* Box Set-up */
+/* FLEXIBLE CONTAINER / Big Box */
 
 #bigBox {
   font-family: 'Rubik', sans-serif;
@@ -32,6 +32,8 @@ a:hover {
   border-radius: 25px;
   margin-top: 25px; 
 }
+
+/* SEARCH BOX - Current Location */
 
 #currentLocation {
   color: inherit;
@@ -58,6 +60,7 @@ a:hover {
   margin: 0;
 }
 
+/* SEARCH BOX - Destination */
 
 #destination {
   color: inherit;
@@ -81,6 +84,8 @@ a:hover {
   border: 0px solid white;
   outline: none;
 }
+
+/* SEARCH BOXES - Confirm buttons */
 
 .confirmSmall {
   display: none;
@@ -111,8 +116,10 @@ a:hover {
   font-size: 60px;
 }
 
+/* sEARCH BOX - Small screen buttons */
+
 @media only screen and (max-width: 500px) {
-    #currentLocation,
+  #currentLocation,
   #destination {
     margin-top: 25px;
   }
@@ -145,6 +152,8 @@ a:hover {
   }
 }
 
+/* SEARCH BOX - Reload page button */
+
 #reset {
   display: none;
   position: relative;
@@ -167,6 +176,8 @@ a:hover {
 #reset>i:hover {
   transform: rotate(360deg);
 }
+
+/* SEARCH BOX - Small screen reload page button */
 
 @media only screen and (max-width: 500px) {
     #reset {
@@ -194,6 +205,8 @@ a:hover {
     transform: rotate(360deg);
   }
 }
+
+/* TILE DIMENSIONS */
 
 .rectangle {
   min-width: 450px;
@@ -260,7 +273,6 @@ a:hover {
   background-color: grey;
   transition: linear 0.6s;
 }
-
 
 /* Weather Chart Tile */
 
