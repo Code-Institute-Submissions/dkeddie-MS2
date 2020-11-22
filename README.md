@@ -173,6 +173,7 @@ In the future, I will give consideration to implementing the following features 
 
 * [HTML5](https://en.wikipedia.org/wiki/HTML5)
 * [CSS](https://en.wikipedia.org/wiki/Cascading_Style_Sheets) 
+* [Javascript](https://en.wikipedia.org/wiki/JavaScript)
 
 ### Frameworks, Libraries and Programmes Used 
 
@@ -190,7 +191,12 @@ jQuery is used for Javascript DOM manipulation.  The UI
 is also library is also for effects to enable smooth transitions for the Tiles.
 
 * [Git](https://git-scm.com/)  
-Git was used for version control by utilizing the Gitpod terminal to commit to Git and Push to GitHub.
+Git was used for version control by utilizing the terminal in VSCode terminal to commit and push changes to GitHub.  
+In addition, in order to track the purpose of commits, the following pre-fixes have been adopted, which are taken from the Commit Message Guidelines outlined by [Angular Framework](https://github.com/angular/angular/blob/22b96b9/CONTRIBUTING.md#-commit-message-guidelines):-
+  * feat: new feature has been added to the code
+  * fix: bug fixed during on-going testing
+  * refactor: 'tidy up' of code
+  * docs: addition of comments to code or writing of README file
 
 * [GitHub](https://github.com/)  
 GitHub is used to store the projects code after being pushed from Git.
@@ -224,6 +230,7 @@ A static map is used for the Map Tile in order to provide users with a visual re
 * [Skyscanner API via RapidAPI](https://rapidapi.com/skyscanner/api/skyscanner-flight-search)  
 As the principle Skyscanner API is restricted to 'Partners', the results have been accessed through RapidAPI.  The API returns the lowest price between the Current Location and Destination.  
 
+**Async / Await and Fetch()** - In order to retrieve the API/JSON information, the Fetch() function was used in conjunction with Async / Await.  The Async / Await method enables a simple method to aynchronously load the data before the Tiles are loaded and displayed.
 
 ## Testing
 
@@ -395,17 +402,20 @@ Although the image does not change when the Error arises, the images will contin
 
 ## Deployment
 
+### For Development Purposes
+
 The website has been deployed on GitHub and is currently publicly accessible. 
 
-The development of the website has been undertaken on Gitpod.
+The development of the website has been undertaken on VSCode.
 
 The steps from start to present were:-
 
 1. Creation of repository on GitHub, utilising Code Institute template.
 
-2. Launch of repository on Gitpod.
+2. Clone of GitHub repository to local machine but utilising GitBash to implement the command:-  
+`git clone https://github.com/dkeddie/MS2.git`
 
-3. Utilise Git to push content back to GitHub.  This was undertaken at regular intervals throughout the development of the website.
+3. Utilise Git via the VSCode terminal to push content back to GitHub.  This was undertaken at regular intervals throughout the development of the website.
 
 4. Deployment of the webpage was implemented by
     * Going to the 'Settings' of the repository,
@@ -413,9 +423,10 @@ The steps from start to present were:-
     * Selecting 'master branch' of the Source dropdown menu
         
 The website is now deployed and can be viewed at:
-    [https://dkeddie.github.io/MS2/](https://https://dkeddie.github.io/MS2/)
+    [https://dkeddie.github.io/MS2/](https://https://dkeddie.github.io/MS2/)  
+<br>
 
-## Deployment of a Clone
+### Cloning of the Repository
 
 Should you wish to deploy your own version of the website, the following steps may be followed to host your own version on GitHub:-
 
