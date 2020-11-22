@@ -303,13 +303,15 @@ The W3C Markup Validator and W3C CSS Validator Services were used to validate ev
 
 **[W3C Markup Validator](https://validator.w3.org/) - [Results](https://validator.w3.org/nu/?doc=https%3A%2F%2Fdkeddie.github.io%2FMS2%2F)**
 
-The following errors were raised on the validator:-
+The following errors were raised on the validator on first pass:-
 
 ![HTML Validator Errors](README-attachments/ValidatorErrors.jpg "HTML Validator Errors")  
 
 These errors were associated with the blank headings / fields which will be populated once the Javascript app has run, following the input of the user information and full load of the page.  
 
 In order to overcome this issue, a non-breaking space, *"&nbsp"*, has been added to the headings as a temporary input until the Javasript runs, and a placeholder image has been used for the 'src' attribute (from [Placeholder.com](https://placeholder.com/)).
+
+**There are now no errors remaining on the HTML validator**
 
 <br>
 
@@ -325,7 +327,6 @@ There are no errors found on the validation service for CSS.
 - There remains one warning, 'Redefinition of 'origin'', hover this is an intended part of the Javascript to be implemented on the page.
 - Undefined variables - these are undefined on the initial page load but become defined after further Javascript has been implemented.
 - Unused variables - these variables are required for the running of external APIs.
-<br>
 <br>
 
 ### Manual Testing of the Site
