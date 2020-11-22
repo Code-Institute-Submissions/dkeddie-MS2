@@ -530,15 +530,14 @@ function showFirstPicture(results) {
   
 
   // Implementation of automatic forward rotation of pictures once loaded by implementing a setInterval function
-  let goRotate = setInterval(autoRotate, 2500)
+  let goRotate = setInterval(autoRotate, 2500);
   function autoRotate() {
     if (k >= 0 && k < photoResults.length - 1) {
     }
     else {
       k = 0;
     }
-
-    $('#imageBox').css('background-image', `url("${photoResults[k++].getUrl({ 'maxWidth': 500, 'maxHeight': 500 })}")`)
+    $('#imageBox').css('background-image', `url("${photoResults[k++].getUrl({ 'maxWidth': 500, 'maxHeight': 500 })}")`);
   }
 
   // Clicking the manual forward/backward buttons stops the rotation/setInterval function
@@ -549,7 +548,7 @@ function showFirstPicture(results) {
     stopRotate();
   });
   function stopRotate() {
-    clearInterval(goRotate)
+    clearInterval(goRotate);
   }
 }
 
