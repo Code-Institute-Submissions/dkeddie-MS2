@@ -118,7 +118,7 @@ a:hover {
 
 /* sEARCH BOX - Small screen buttons */
 
-@media only screen and (max-width: 500px) {
+@media only screen and (max-width: 768px) {
   #currentLocation,
   #destination {
     margin-top: 25px;
@@ -179,7 +179,7 @@ a:hover {
 
 /* SEARCH BOX - Small screen reload page button */
 
-@media only screen and (max-width: 500px) {
+@media only screen and (max-width: 768px) {
     #reset {
     display: none;
     position: relative;
